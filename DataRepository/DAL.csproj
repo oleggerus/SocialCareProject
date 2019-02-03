@@ -49,10 +49,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
+    <Compile Include="Entity\Address.cs" />
+    <Compile Include="Entity\Administration.cs" />
+    <Compile Include="Entity\BaseEntity.cs" />
+    <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\Customer.cs" />
+    <Compile Include="Entity\Offer.cs" />
+    <Compile Include="Entity\Permission.cs" />
+    <Compile Include="Entity\Product.cs" />
+    <Compile Include="Entity\ProductSchedule.cs" />
+    <Compile Include="Entity\ReturnRequest.cs" />
+    <Compile Include="Entity\Role.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\Vendor.cs" />
+    <Compile Include="Entity\Worker.cs" />
+    <Compile Include="Entity\WorkerPersonAssignment.cs" />
     <Compile Include="Migrations\201902031618125_initial_migration.cs" />
     <Compile Include="Migrations\201902031618125_initial_migration.Designer.cs">
       <DependentUpon>201902031618125_initial_migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902031959102_Added few entities.cs" />
+    <Compile Include="Migrations\201902031959102_Added few entities.Designer.cs">
+      <DependentUpon>201902031959102_Added few entities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902032109067_few more entities12.cs" />
+    <Compile Include="Migrations\201902032109067_few more entities12.Designer.cs">
+      <DependentUpon>201902032109067_few more entities12.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +86,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902031618125_initial_migration.resx">
       <DependentUpon>201902031618125_initial_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902031959102_Added few entities.resx">
+      <DependentUpon>201902031959102_Added few entities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902032109067_few more entities12.resx">
+      <DependentUpon>201902032109067_few more entities12.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
