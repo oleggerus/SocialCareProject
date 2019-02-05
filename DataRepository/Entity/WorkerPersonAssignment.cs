@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,15 +9,16 @@ namespace DataRepository.Entity
 {
     public class WorkerPersonAssignment : BaseEntity
     {
+        [Required]
         public DateTime CreatedOnUtc { get; set; }
-        public int StatusId { get; set; }
+        [Required]
+        public int AssignmentStatusId { get; set; }
 
-        
+        [Required]
         public virtual Worker Worker { get; set; }
+        [Required]
         public virtual Customer Customer { get; set; }
-        public virtual Worker ApprovedBy { get; set; }
-
-        public virtual Administration Administration { get; set; }
-
+        [Required]
+        public virtual Worker ApprovedBy { get; set; }        
     }
 }

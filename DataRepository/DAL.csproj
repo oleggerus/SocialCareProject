@@ -110,6 +110,54 @@
     <Compile Include="Migrations\201902042020080_Add product Schedule Table.Designer.cs">
       <DependentUpon>201902042020080_Add product Schedule Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902051909029_few required columms added.cs" />
+    <Compile Include="Migrations\201902051909029_few required columms added.Designer.cs">
+      <DependentUpon>201902051909029_few required columms added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902051914477_few required columms added1.cs" />
+    <Compile Include="Migrations\201902051914477_few required columms added1.Designer.cs">
+      <DependentUpon>201902051914477_few required columms added1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902051917253_few required columms added12.cs" />
+    <Compile Include="Migrations\201902051917253_few required columms added12.Designer.cs">
+      <DependentUpon>201902051917253_few required columms added12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902051919247_few required columms added123.cs" />
+    <Compile Include="Migrations\201902051919247_few required columms added123.Designer.cs">
+      <DependentUpon>201902051919247_few required columms added123.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902051938393_all required fields.cs" />
+    <Compile Include="Migrations\201902051938393_all required fields.Designer.cs">
+      <DependentUpon>201902051938393_all required fields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902051940500_Add navigation properties for permissions.cs" />
+    <Compile Include="Migrations\201902051940500_Add navigation properties for permissions.Designer.cs">
+      <DependentUpon>201902051940500_Add navigation properties for permissions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902051951100_Changed Keys.cs" />
+    <Compile Include="Migrations\201902051951100_Changed Keys.Designer.cs">
+      <DependentUpon>201902051951100_Changed Keys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902051959031_add role to permission.cs" />
+    <Compile Include="Migrations\201902051959031_add role to permission.Designer.cs">
+      <DependentUpon>201902051959031_add role to permission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902052002330_add foreign keys somewhere.cs" />
+    <Compile Include="Migrations\201902052002330_add foreign keys somewhere.Designer.cs">
+      <DependentUpon>201902052002330_add foreign keys somewhere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902052019440_add all navigation properties.cs" />
+    <Compile Include="Migrations\201902052019440_add all navigation properties.Designer.cs">
+      <DependentUpon>201902052019440_add all navigation properties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902052020185_add all navigation properties1.cs" />
+    <Compile Include="Migrations\201902052020185_add all navigation properties1.Designer.cs">
+      <DependentUpon>201902052020185_add all navigation properties1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902052023141_finished with db.cs" />
+    <Compile Include="Migrations\201902052023141_finished with db.Designer.cs">
+      <DependentUpon>201902052023141_finished with db.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -150,6 +198,42 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902042020080_Add product Schedule Table.resx">
       <DependentUpon>201902042020080_Add product Schedule Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051909029_few required columms added.resx">
+      <DependentUpon>201902051909029_few required columms added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051914477_few required columms added1.resx">
+      <DependentUpon>201902051914477_few required columms added1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051917253_few required columms added12.resx">
+      <DependentUpon>201902051917253_few required columms added12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051919247_few required columms added123.resx">
+      <DependentUpon>201902051919247_few required columms added123.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051938393_all required fields.resx">
+      <DependentUpon>201902051938393_all required fields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051940500_Add navigation properties for permissions.resx">
+      <DependentUpon>201902051940500_Add navigation properties for permissions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051951100_Changed Keys.resx">
+      <DependentUpon>201902051951100_Changed Keys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051959031_add role to permission.resx">
+      <DependentUpon>201902051959031_add role to permission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902052002330_add foreign keys somewhere.resx">
+      <DependentUpon>201902052002330_add foreign keys somewhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902052019440_add all navigation properties.resx">
+      <DependentUpon>201902052019440_add all navigation properties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902052020185_add all navigation properties1.resx">
+      <DependentUpon>201902052020185_add all navigation properties1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902052023141_finished with db.resx">
+      <DependentUpon>201902052023141_finished with db.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

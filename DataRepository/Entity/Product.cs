@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +21,15 @@ namespace DataRepository.Entity
             this.Width = 0.0;
         }
 
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+        [Required]
         public bool? IsNew { get; set; }
         public bool? IsGift { get; set; }
+        [Required]
         public bool IsActive { get; set; }
+        [Required]
         public bool IsDeleted { get; set; }
         public string Manufacturer { get; set; }
         public double Price{ get; set; }
@@ -36,11 +42,16 @@ namespace DataRepository.Entity
         public int? ScheduleId { get; set; }
         public int StatusId { get; set; }
 
-
+        [Required]
         public DateTime CreatedOnUtc { get; set; }
+        [Required]
         public virtual User CreatedBy { get; set; }
         public virtual ProductSchedule Schedule { get; set; }
+        [Required]
         public virtual Category Category{ get; set; }
+
+        [InverseProperty("Product")]
+        public virtual ICollection<Offer> Offers { get; set; } = new List<Offer>();
 
     }
 }

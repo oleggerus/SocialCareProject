@@ -17,10 +17,22 @@ namespace DataRepository
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Person>()
-            //    .HasRequired(c => c.Administration)
-            //    .WithMany()
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Provider>()
+                .HasRequired(c => c.User)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ReturnRequest>()
+                .HasRequired(c => c.Offer)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+
+            modelBuilder.Entity<Product>()
+                .HasRequired(c => c.CreatedBy)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
 
             modelBuilder.Entity<Worker>()
                 .HasRequired(c => c.Administration)
