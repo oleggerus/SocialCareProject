@@ -11,8 +11,6 @@ namespace DataRepository.Entity
         public string ZipPostalCode { get; set; }
         public string PhoneNumber { get; set; }
         public bool Deleted { get; set; }
-        public int? CreatedById { get; set; }
-        public int? UpdatedById { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public DateTime? UpdatedOnUtc { get; set; }
 
@@ -32,7 +30,6 @@ namespace DataRepository.Entity
                 CreatedOnUtc = CreatedOnUtc,
                 UpdatedOnUtc = UpdatedOnUtc,
                 Deleted = Deleted,
-                UpdatedById = UpdatedById
             };
             return address;
         }

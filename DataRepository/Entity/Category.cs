@@ -10,7 +10,6 @@ namespace DataRepository.Entity
     public class Category : BaseEntity
     {
         public string Name { get; set; }
-        public virtual ICollection<Vendor> Vendors { get; set; } = new Collection<Vendor>();
 
     }
 }

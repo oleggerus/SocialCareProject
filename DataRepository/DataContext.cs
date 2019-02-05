@@ -31,6 +31,15 @@ namespace DataRepository
                 .HasRequired(c => c.Administration)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<WorkerPersonAssignment>()
+                .HasRequired(c=> c.Worker)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<WorkerPersonAssignment>()
+                .HasRequired(c => c.Customer)
+                .WithMany()
+                .WillCascadeOnDelete(false);
         }
 
         public DbSet<Address> Addresses { get; set; }
@@ -39,8 +48,10 @@ namespace DataRepository
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<PersonRequest> PersonRequests { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductSchedule> ProductSchedules { get; set; }
+        public DbSet<Provider> Providers { get; set; }
         public DbSet<ReturnRequest> ReturnRequests { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }

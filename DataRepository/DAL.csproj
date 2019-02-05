@@ -56,12 +56,14 @@
     <Compile Include="Entity\Customer.cs" />
     <Compile Include="Entity\Offer.cs" />
     <Compile Include="Entity\Permission.cs" />
+    <Compile Include="Entity\PersonRequest.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\ProductSchedule.cs" />
     <Compile Include="Entity\ReturnRequest.cs" />
     <Compile Include="Entity\Role.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Entity\Vendor.cs" />
+    <Compile Include="Entity\Provider.cs" />
     <Compile Include="Entity\Worker.cs" />
     <Compile Include="Entity\WorkerPersonAssignment.cs" />
     <Compile Include="Migrations\201902031618125_initial_migration.cs" />
@@ -75,6 +77,38 @@
     <Compile Include="Migrations\201902032109067_few more entities12.cs" />
     <Compile Include="Migrations\201902032109067_few more entities12.Designer.cs">
       <DependentUpon>201902032109067_few more entities12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902041947342_Defined All Entities.cs" />
+    <Compile Include="Migrations\201902041947342_Defined All Entities.Designer.cs">
+      <DependentUpon>201902041947342_Defined All Entities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902041955271_Defined All Entities1.cs" />
+    <Compile Include="Migrations\201902041955271_Defined All Entities1.Designer.cs">
+      <DependentUpon>201902041955271_Defined All Entities1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902042002151_removed unused keys.cs" />
+    <Compile Include="Migrations\201902042002151_removed unused keys.Designer.cs">
+      <DependentUpon>201902042002151_removed unused keys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902042006146_removed unused keys-2.cs" />
+    <Compile Include="Migrations\201902042006146_removed unused keys-2.Designer.cs">
+      <DependentUpon>201902042006146_removed unused keys-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902042008416_removed unused keys-3.cs" />
+    <Compile Include="Migrations\201902042008416_removed unused keys-3.Designer.cs">
+      <DependentUpon>201902042008416_removed unused keys-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902042010116_removed unused keys-4.cs" />
+    <Compile Include="Migrations\201902042010116_removed unused keys-4.Designer.cs">
+      <DependentUpon>201902042010116_removed unused keys-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902042012345_added tables.cs" />
+    <Compile Include="Migrations\201902042012345_added tables.Designer.cs">
+      <DependentUpon>201902042012345_added tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902042020080_Add product Schedule Table.cs" />
+    <Compile Include="Migrations\201902042020080_Add product Schedule Table.Designer.cs">
+      <DependentUpon>201902042020080_Add product Schedule Table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +126,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902032109067_few more entities12.resx">
       <DependentUpon>201902032109067_few more entities12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902041947342_Defined All Entities.resx">
+      <DependentUpon>201902041947342_Defined All Entities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902041955271_Defined All Entities1.resx">
+      <DependentUpon>201902041955271_Defined All Entities1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902042002151_removed unused keys.resx">
+      <DependentUpon>201902042002151_removed unused keys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902042006146_removed unused keys-2.resx">
+      <DependentUpon>201902042006146_removed unused keys-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902042008416_removed unused keys-3.resx">
+      <DependentUpon>201902042008416_removed unused keys-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902042010116_removed unused keys-4.resx">
+      <DependentUpon>201902042010116_removed unused keys-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902042012345_added tables.resx">
+      <DependentUpon>201902042012345_added tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902042020080_Add product Schedule Table.resx">
+      <DependentUpon>201902042020080_Add product Schedule Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

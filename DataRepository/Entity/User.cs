@@ -20,14 +20,9 @@ namespace DataRepository.Entity
         public DateTime DateOfBirth { get; set; }
         public bool IsMale { get; set; }
         public byte[] Avatar { get; set; }
-        public int RoleId { get; set; }
-        public int? CreatedById { get; set; }
-        public int? UpdatedById { get; set; }
+
         public DateTime CreatedOnUtc { get; set; }
         public DateTime? UpdatedOnUtc { get; set; }
-        
-
-
-        public virtual Role Role{ get; set; }
+        public virtual Role Role { get; set; }
     }
 }
