@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.AccessControl;
+using DataRepository.Entity.People;
 
 namespace DataRepository.Entity
 {

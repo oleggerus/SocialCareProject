@@ -1,19 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataRepository.Entity
+namespace DataRepository.Entity.People
 {
-    public class Provider:BaseEntity
+    public class Provider: BaseEntity
     {
+        public  Provider()
+        {
+            CreatedOnUtc = DateTime.UtcNow;
+        }
+
         [Required]
         public DateTime CreatedOnUtc { get; set; }
         public DateTime? UpdatedOnUtc { get; set; }
 
-
+        public int? PositionId { get; set; }
         public virtual Address Address { get; set; }
         [Required]
         public virtual User User { get; set; }

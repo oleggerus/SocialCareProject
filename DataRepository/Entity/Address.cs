@@ -1,19 +1,24 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using DataRepository.Entity.People;
 
 namespace DataRepository.Entity
 {
     public class Address : BaseEntity
     {
+        public Address()
+        {
+            CreatedOnUtc = DateTime.UtcNow;
+        }
         public string HouseNameRoomNumber { get; set; }
-        [Required]
+        public string Street { get; set; }
+
         public string Email { get; set; }
         [Required]
         public int RegionId { get; set; }
         [Required]
         public string City { get; set; }
         public string ZipPostalCode { get; set; }
-        [Required]
         public string PhoneNumber { get; set; }
         [Required]
         public bool Deleted { get; set; }

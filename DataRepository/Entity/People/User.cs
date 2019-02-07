@@ -1,13 +1,17 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataRepository.Entity
+namespace DataRepository.Entity.People
 {
     public class User : BaseEntity
     {
+        public User()
+        {
+            CreatedOnUtc = DateTime.UtcNow;
+        }
+
         [Required]
-        public string Firstname { get; set; }
+        public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
         public string MiddleName { get; set; }
@@ -33,12 +37,6 @@ namespace DataRepository.Entity
         public DateTime? UpdatedOnUtc { get; set; }
         [Required]
         public virtual Role Role { get; set; }
-        //[InverseProperty("User")]
-        //public virtual Customer Customer{ get; set; }
-        //[InverseProperty("User")]
-        //public virtual Worker Worker { get; set; }
-        //[InverseProperty("User")]
-        //public virtual Provider Provider { get; set; }
 
     }
 }

@@ -53,7 +53,7 @@
     <Compile Include="Entity\Administration.cs" />
     <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\Category.cs" />
-    <Compile Include="Entity\Customer.cs" />
+    <Compile Include="Entity\People\Customer.cs" />
     <Compile Include="Entity\Offer.cs" />
     <Compile Include="Entity\Permission.cs" />
     <Compile Include="Entity\PersonRequest.cs" />
@@ -61,11 +61,15 @@
     <Compile Include="Entity\ProductSchedule.cs" />
     <Compile Include="Entity\ReturnRequest.cs" />
     <Compile Include="Entity\Role.cs" />
-    <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\People\User.cs" />
     <Compile Include="Entity\Vendor.cs" />
-    <Compile Include="Entity\Provider.cs" />
-    <Compile Include="Entity\Worker.cs" />
+    <Compile Include="Entity\People\Provider.cs" />
+    <Compile Include="Entity\People\Worker.cs" />
     <Compile Include="Entity\WorkerPersonAssignment.cs" />
+    <Compile Include="Enums\AreaTypes.cs" />
+    <Compile Include="Enums\ProviderPositions.cs" />
+    <Compile Include="Enums\Regions.cs" />
+    <Compile Include="Enums\WorkerPositions.cs" />
     <Compile Include="Migrations\201902031618125_initial_migration.cs" />
     <Compile Include="Migrations\201902031618125_initial_migration.Designer.cs">
       <DependentUpon>201902031618125_initial_migration.cs</DependentUpon>
@@ -158,6 +162,26 @@
     <Compile Include="Migrations\201902052023141_finished with db.Designer.cs">
       <DependentUpon>201902052023141_finished with db.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902071832449_first data inizialization.cs" />
+    <Compile Include="Migrations\201902071832449_first data inizialization.Designer.cs">
+      <DependentUpon>201902071832449_first data inizialization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902071854022_first data inizialization1.cs" />
+    <Compile Include="Migrations\201902071854022_first data inizialization1.Designer.cs">
+      <DependentUpon>201902071854022_first data inizialization1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902071857077_first data inizialization2.cs" />
+    <Compile Include="Migrations\201902071857077_first data inizialization2.Designer.cs">
+      <DependentUpon>201902071857077_first data inizialization2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902071947414_first not broken data.cs" />
+    <Compile Include="Migrations\201902071947414_first not broken data.Designer.cs">
+      <DependentUpon>201902071947414_first not broken data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902072012465_first not broken data - 2.cs" />
+    <Compile Include="Migrations\201902072012465_first not broken data - 2.Designer.cs">
+      <DependentUpon>201902072012465_first not broken data - 2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -234,6 +258,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902052023141_finished with db.resx">
       <DependentUpon>201902052023141_finished with db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902071832449_first data inizialization.resx">
+      <DependentUpon>201902071832449_first data inizialization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902071854022_first data inizialization1.resx">
+      <DependentUpon>201902071854022_first data inizialization1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902071857077_first data inizialization2.resx">
+      <DependentUpon>201902071857077_first data inizialization2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902071947414_first not broken data.resx">
+      <DependentUpon>201902071947414_first not broken data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902072012465_first not broken data - 2.resx">
+      <DependentUpon>201902072012465_first not broken data - 2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

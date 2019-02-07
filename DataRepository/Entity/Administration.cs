@@ -5,11 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataRepository.Entity.People;
 
 namespace DataRepository.Entity
 {
     public class Administration : BaseEntity
     {
+        public Administration()
+        {
+            CreatedOnUtc = DateTime.UtcNow;
+        }
+
         [Required]
         public string Name { get; set; }
         [Required]
@@ -29,7 +35,6 @@ namespace DataRepository.Entity
         public virtual User UpdatedBy { get; set; }
         [Required]
         public virtual Address Address { get; set; }
-        [Required]
         public virtual Worker Contact { get; set; }
 
         [InverseProperty("Administration")]

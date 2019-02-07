@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataRepository.Entity.People;
 
 namespace DataRepository
 {
@@ -27,6 +28,10 @@ namespace DataRepository
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<User>()
+                .HasRequired(c => c.Role)
+                .WithMany()
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
                 .HasRequired(c => c.CreatedBy)
