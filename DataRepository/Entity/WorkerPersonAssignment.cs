@@ -10,6 +10,11 @@ namespace DataRepository.Entity
 {
     public class WorkerPersonAssignment : BaseEntity
     {
+        public WorkerPersonAssignment()
+        {
+            CreatedOnUtc = DateTime.UtcNow;
+        }
+
         [Required]
         public DateTime CreatedOnUtc { get; set; }
         [Required]
@@ -20,6 +25,6 @@ namespace DataRepository.Entity
         [Required]
         public virtual Customer Customer { get; set; }
         [Required]
-        public virtual Worker ApprovedBy { get; set; }        
+        public virtual Worker ApprovedBy { get; set; }
     }
 }

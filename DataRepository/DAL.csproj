@@ -67,120 +67,15 @@
     <Compile Include="Entity\People\Worker.cs" />
     <Compile Include="Entity\WorkerPersonAssignment.cs" />
     <Compile Include="Enums\AreaTypes.cs" />
+    <Compile Include="Enums\OfferStatuses.cs" />
+    <Compile Include="Enums\ProductStatuses.cs" />
     <Compile Include="Enums\ProviderPositions.cs" />
     <Compile Include="Enums\Regions.cs" />
+    <Compile Include="Enums\WorkerPersonAssignmentStatuses.cs" />
     <Compile Include="Enums\WorkerPositions.cs" />
-    <Compile Include="Migrations\201902031618125_initial_migration.cs" />
-    <Compile Include="Migrations\201902031618125_initial_migration.Designer.cs">
-      <DependentUpon>201902031618125_initial_migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902031959102_Added few entities.cs" />
-    <Compile Include="Migrations\201902031959102_Added few entities.Designer.cs">
-      <DependentUpon>201902031959102_Added few entities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902032109067_few more entities12.cs" />
-    <Compile Include="Migrations\201902032109067_few more entities12.Designer.cs">
-      <DependentUpon>201902032109067_few more entities12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902041947342_Defined All Entities.cs" />
-    <Compile Include="Migrations\201902041947342_Defined All Entities.Designer.cs">
-      <DependentUpon>201902041947342_Defined All Entities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902041955271_Defined All Entities1.cs" />
-    <Compile Include="Migrations\201902041955271_Defined All Entities1.Designer.cs">
-      <DependentUpon>201902041955271_Defined All Entities1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902042002151_removed unused keys.cs" />
-    <Compile Include="Migrations\201902042002151_removed unused keys.Designer.cs">
-      <DependentUpon>201902042002151_removed unused keys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902042006146_removed unused keys-2.cs" />
-    <Compile Include="Migrations\201902042006146_removed unused keys-2.Designer.cs">
-      <DependentUpon>201902042006146_removed unused keys-2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902042008416_removed unused keys-3.cs" />
-    <Compile Include="Migrations\201902042008416_removed unused keys-3.Designer.cs">
-      <DependentUpon>201902042008416_removed unused keys-3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902042010116_removed unused keys-4.cs" />
-    <Compile Include="Migrations\201902042010116_removed unused keys-4.Designer.cs">
-      <DependentUpon>201902042010116_removed unused keys-4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902042012345_added tables.cs" />
-    <Compile Include="Migrations\201902042012345_added tables.Designer.cs">
-      <DependentUpon>201902042012345_added tables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902042020080_Add product Schedule Table.cs" />
-    <Compile Include="Migrations\201902042020080_Add product Schedule Table.Designer.cs">
-      <DependentUpon>201902042020080_Add product Schedule Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902051909029_few required columms added.cs" />
-    <Compile Include="Migrations\201902051909029_few required columms added.Designer.cs">
-      <DependentUpon>201902051909029_few required columms added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902051914477_few required columms added1.cs" />
-    <Compile Include="Migrations\201902051914477_few required columms added1.Designer.cs">
-      <DependentUpon>201902051914477_few required columms added1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902051917253_few required columms added12.cs" />
-    <Compile Include="Migrations\201902051917253_few required columms added12.Designer.cs">
-      <DependentUpon>201902051917253_few required columms added12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902051919247_few required columms added123.cs" />
-    <Compile Include="Migrations\201902051919247_few required columms added123.Designer.cs">
-      <DependentUpon>201902051919247_few required columms added123.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902051938393_all required fields.cs" />
-    <Compile Include="Migrations\201902051938393_all required fields.Designer.cs">
-      <DependentUpon>201902051938393_all required fields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902051940500_Add navigation properties for permissions.cs" />
-    <Compile Include="Migrations\201902051940500_Add navigation properties for permissions.Designer.cs">
-      <DependentUpon>201902051940500_Add navigation properties for permissions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902051951100_Changed Keys.cs" />
-    <Compile Include="Migrations\201902051951100_Changed Keys.Designer.cs">
-      <DependentUpon>201902051951100_Changed Keys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902051959031_add role to permission.cs" />
-    <Compile Include="Migrations\201902051959031_add role to permission.Designer.cs">
-      <DependentUpon>201902051959031_add role to permission.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902052002330_add foreign keys somewhere.cs" />
-    <Compile Include="Migrations\201902052002330_add foreign keys somewhere.Designer.cs">
-      <DependentUpon>201902052002330_add foreign keys somewhere.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902052019440_add all navigation properties.cs" />
-    <Compile Include="Migrations\201902052019440_add all navigation properties.Designer.cs">
-      <DependentUpon>201902052019440_add all navigation properties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902052020185_add all navigation properties1.cs" />
-    <Compile Include="Migrations\201902052020185_add all navigation properties1.Designer.cs">
-      <DependentUpon>201902052020185_add all navigation properties1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902052023141_finished with db.cs" />
-    <Compile Include="Migrations\201902052023141_finished with db.Designer.cs">
-      <DependentUpon>201902052023141_finished with db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902071832449_first data inizialization.cs" />
-    <Compile Include="Migrations\201902071832449_first data inizialization.Designer.cs">
-      <DependentUpon>201902071832449_first data inizialization.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902071854022_first data inizialization1.cs" />
-    <Compile Include="Migrations\201902071854022_first data inizialization1.Designer.cs">
-      <DependentUpon>201902071854022_first data inizialization1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902071857077_first data inizialization2.cs" />
-    <Compile Include="Migrations\201902071857077_first data inizialization2.Designer.cs">
-      <DependentUpon>201902071857077_first data inizialization2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902071947414_first not broken data.cs" />
-    <Compile Include="Migrations\201902071947414_first not broken data.Designer.cs">
-      <DependentUpon>201902071947414_first not broken data.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902072012465_first not broken data - 2.cs" />
-    <Compile Include="Migrations\201902072012465_first not broken data - 2.Designer.cs">
-      <DependentUpon>201902072012465_first not broken data - 2.cs</DependentUpon>
+    <Compile Include="Migrations\201902091658126_Initial.cs" />
+    <Compile Include="Migrations\201902091658126_Initial.Designer.cs">
+      <DependentUpon>201902091658126_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -190,89 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902031618125_initial_migration.resx">
-      <DependentUpon>201902031618125_initial_migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902031959102_Added few entities.resx">
-      <DependentUpon>201902031959102_Added few entities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902032109067_few more entities12.resx">
-      <DependentUpon>201902032109067_few more entities12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902041947342_Defined All Entities.resx">
-      <DependentUpon>201902041947342_Defined All Entities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902041955271_Defined All Entities1.resx">
-      <DependentUpon>201902041955271_Defined All Entities1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902042002151_removed unused keys.resx">
-      <DependentUpon>201902042002151_removed unused keys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902042006146_removed unused keys-2.resx">
-      <DependentUpon>201902042006146_removed unused keys-2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902042008416_removed unused keys-3.resx">
-      <DependentUpon>201902042008416_removed unused keys-3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902042010116_removed unused keys-4.resx">
-      <DependentUpon>201902042010116_removed unused keys-4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902042012345_added tables.resx">
-      <DependentUpon>201902042012345_added tables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902042020080_Add product Schedule Table.resx">
-      <DependentUpon>201902042020080_Add product Schedule Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902051909029_few required columms added.resx">
-      <DependentUpon>201902051909029_few required columms added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902051914477_few required columms added1.resx">
-      <DependentUpon>201902051914477_few required columms added1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902051917253_few required columms added12.resx">
-      <DependentUpon>201902051917253_few required columms added12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902051919247_few required columms added123.resx">
-      <DependentUpon>201902051919247_few required columms added123.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902051938393_all required fields.resx">
-      <DependentUpon>201902051938393_all required fields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902051940500_Add navigation properties for permissions.resx">
-      <DependentUpon>201902051940500_Add navigation properties for permissions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902051951100_Changed Keys.resx">
-      <DependentUpon>201902051951100_Changed Keys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902051959031_add role to permission.resx">
-      <DependentUpon>201902051959031_add role to permission.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902052002330_add foreign keys somewhere.resx">
-      <DependentUpon>201902052002330_add foreign keys somewhere.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902052019440_add all navigation properties.resx">
-      <DependentUpon>201902052019440_add all navigation properties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902052020185_add all navigation properties1.resx">
-      <DependentUpon>201902052020185_add all navigation properties1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902052023141_finished with db.resx">
-      <DependentUpon>201902052023141_finished with db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902071832449_first data inizialization.resx">
-      <DependentUpon>201902071832449_first data inizialization.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902071854022_first data inizialization1.resx">
-      <DependentUpon>201902071854022_first data inizialization1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902071857077_first data inizialization2.resx">
-      <DependentUpon>201902071857077_first data inizialization2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902071947414_first not broken data.resx">
-      <DependentUpon>201902071947414_first not broken data.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902072012465_first not broken data - 2.resx">
-      <DependentUpon>201902072012465_first not broken data - 2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902091658126_Initial.resx">
+      <DependentUpon>201902091658126_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,13 +3,13 @@ using DataRepository.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Text;
 using DataRepository.Entity.People;
 
 namespace DataRepository.Migrations
 {
-    using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DataRepository.DataContext>
     {
@@ -18,13 +18,17 @@ namespace DataRepository.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(DataRepository.DataContext context)
+        protected override void Seed(DataContext context)
         {
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-
+            context.WorkerPersonAssignments.RemoveRange(context.WorkerPersonAssignments);
+            context.ReturnRequests.RemoveRange(context.ReturnRequests);
+            context.Offers.RemoveRange(context.Offers);
+            context.Products.RemoveRange(context.Products);
+            context.Categories.RemoveRange(context.Categories);
             context.Providers.RemoveRange(context.Providers);
             context.Workers.RemoveRange(context.Workers);
             context.Vendors.RemoveRange(context.Vendors);
@@ -33,8 +37,6 @@ namespace DataRepository.Migrations
             context.Addresses.RemoveRange(context.Addresses);
             context.Users.RemoveRange(context.Users);
             context.Roles.RemoveRange(context.Roles);
-
-
 
             #region roles
 
@@ -170,6 +172,22 @@ namespace DataRepository.Migrations
                 Phone = "09090909990",
                 Username = "provider"
             };
+            var providerNotVendorUser = new User
+            {
+                Role = vendorRole,
+                FirstName = "Міно",
+                LastName = "Райола",
+                MiddleName = "Анатолійович",
+                DateOfBirth = new DateTime(1935, 07, 14),
+                Email = "vendor2@mail.com",
+                IsActive = true,
+                IsDeleted = false,
+                IsMale = true,
+                Password = "123",
+                Phone = "09090909990",
+                Username = "provider2"
+            };
+
             var adminUser = new User
             {
                 Role = adminRole,
@@ -192,6 +210,7 @@ namespace DataRepository.Migrations
             context.Users.AddOrUpdate(vendorUser);
             context.Users.AddOrUpdate(adminUser);
             context.Users.AddOrUpdate(providerUser);
+            context.Users.AddOrUpdate(providerNotVendorUser);
 
 
 
@@ -362,15 +381,139 @@ namespace DataRepository.Migrations
             {
                 Address = providerAddress,
                 User = providerUser,
-                PositionId = (int) ProviderPositions.Мідл,
+                PositionId = (int)ProviderPositions.Мідл,
                 Vendor = vendor
             };
 
+            var providerWithoutVendor = new Provider
+            {
+                Address = providerAddress,
+                User = providerUser,
+            };
+
             context.Providers.AddOrUpdate(provider);
+            context.Providers.AddOrUpdate(providerWithoutVendor);
 
             #endregion
 
-            SaveChanges(context);
+            #region Category
+
+            var healthCareCategory = new Category
+            {
+                Name = "Охорона здоров'я"
+            };
+            var homeHelCategory = new Category
+            {
+                Name = "Допомога по дому"
+            };
+            var psychoHelpCategory = new Category
+            {
+                Name = "Консультація"
+            };
+
+            context.Categories.Add(healthCareCategory);
+            context.Categories.Add(homeHelCategory);
+            context.Categories.Add(psychoHelpCategory);
+
+            #endregion
+
+            #region Products
+
+            var wheelChair = new Product
+            {
+                Category = healthCareCategory,
+                Name = "Інвалідний візок",
+                Description = "Дуже зручний і сучасний візок",
+                Manufacturer = "Tesla",
+                Height = 1,
+                Width = 1,
+                Weight = 4,
+                IsActive = true,
+                IsDeleted = false,
+                Price = 1250,
+                StatusId = (int)ProductStatuses.Продукт,
+                IsGift = false,
+                IsNew = true,
+                CreatedBy = provider,
+                Length = 1,
+            };
+
+            var bones = new Product
+            {
+                Category = healthCareCategory,
+                Name = "Костилі",
+                Description = "2 шт.",
+                Manufacturer = "Tesla",
+                Height = 1,
+                IsActive = true,
+                IsDeleted = false,
+                Price = 50,
+                StatusId = (int)ProductStatuses.Продукт,
+                IsGift = false,
+                IsNew = false,
+                CreatedBy = providerWithoutVendor,
+            };
+
+            context.Products.AddOrUpdate(bones);
+            context.Products.AddOrUpdate(wheelChair);
+
+            #endregion
+
+            #region Offers
+
+            var wheelChairOffer = new Offer
+            {
+                Product = wheelChair,
+                CreatedBy = provider,
+                Description = "Найкращий вибір",
+                IsDeleted = false,
+                StatusId = (int)OfferStatuses.Створений,
+                Customer = customer
+            };
+
+            var bonesOffer = new Offer
+            {
+                Product = bones,
+                CreatedBy = providerWithoutVendor,
+                Description = "Думаю, це те що Вам потрібно",
+                IsDeleted = false,
+                ReviewedOnUtc = DateTime.UtcNow,
+                StatusId = (int)OfferStatuses.Відхилений,
+                ReviewedBy = administrationLeadUser,
+                Customer = customer
+            };
+
+            context.Offers.AddOrUpdate(wheelChairOffer);
+            context.Offers.AddOrUpdate(bonesOffer);
+            #endregion
+
+            #region ReturnRequest
+
+            var bonesReturn = new ReturnRequest
+            {
+                CreatedBy = bonesOffer.ReviewedBy,
+                Offer = bonesOffer,
+                Reason = "Товар у дуже поганому стані"
+            };
+
+            context.ReturnRequests.AddOrUpdate(bonesReturn);
+
+            #endregion
+
+            #region WorkerPersonAssignment
+
+            var assignment = new WorkerPersonAssignment
+            {
+                Customer = customer,
+                Worker = worker,
+                ApprovedBy = lead,
+                AssignmentStatusId = (int)WorkerPersonAssignmentStatuses.Активно
+            };
+
+            context.WorkerPersonAssignments.AddOrUpdate(assignment);
+            #endregion
+
+            //SaveChanges(context);
             base.Seed(context);
 
         }
@@ -382,6 +525,8 @@ namespace DataRepository.Migrations
             }
             catch (DbEntityValidationException ex)
             {
+                Console.WriteLine(ex.Message);
+
                 var sb = new StringBuilder();
                 foreach (var failure in ex.EntityValidationErrors)
                 {

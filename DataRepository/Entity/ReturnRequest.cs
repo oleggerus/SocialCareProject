@@ -8,6 +8,11 @@ namespace DataRepository.Entity
 {
     public class ReturnRequest : BaseEntity
     {
+        public ReturnRequest()
+        {
+            CreatedOnUtc = DateTime.UtcNow;
+        }
+
         public int CreatedById { get; set; }
         [Required]
         public string Reason { get; set; }
@@ -18,6 +23,6 @@ namespace DataRepository.Entity
         [ForeignKey("CreatedById")]
         public virtual User CreatedBy { get; set; }
         [Required]
-        public virtual Offer Offer{ get; set; }
+        public virtual Offer Offer { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace DataRepository.Entity
     {
         public Product()
         {
+            CreatedOnUtc = DateTime.UtcNow;
             this.Price = 0.0;
             this.PriceFrom = 0.0;
             this.PriceTo = 0.0;
@@ -33,11 +34,11 @@ namespace DataRepository.Entity
         [Required]
         public bool IsDeleted { get; set; }
         public string Manufacturer { get; set; }
-        public double Price{ get; set; }
+        public double Price { get; set; }
         public double PriceFrom { get; set; }
         public double PriceTo { get; set; }
         public double Weight { get; set; }
-        public double Length{ get; set; }
+        public double Length { get; set; }
         public double Width { get; set; }
         public double Height { get; set; }
         public int? ScheduleId { get; set; }
@@ -46,10 +47,10 @@ namespace DataRepository.Entity
         [Required]
         public DateTime CreatedOnUtc { get; set; }
         [Required]
-        public virtual User CreatedBy { get; set; }
+        public virtual Provider CreatedBy { get; set; }
         public virtual ProductSchedule Schedule { get; set; }
         [Required]
-        public virtual Category Category{ get; set; }
+        public virtual Category Category { get; set; }
 
         [InverseProperty("Product")]
         public virtual ICollection<Offer> Offers { get; set; } = new List<Offer>();
