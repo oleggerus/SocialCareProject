@@ -1,11 +1,12 @@
-﻿using DataRepository.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataRepository.Entity.People;
+using DataRepository.Entities;
+using DataRepository.Entities.Orders;
+using DataRepository.Entities.People;
 
 namespace DataRepository
 {

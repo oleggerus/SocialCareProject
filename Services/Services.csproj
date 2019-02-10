@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6ADD051F-8947-4016-9CD5-5DCF1A997322}</ProjectGuid>
+    <ProjectGuid>{46661BAB-C52F-4E9A-A5DC-1C1664B44957}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataRepository</RootNamespace>
-    <AssemblyName>DataRepository</AssemblyName>
+    <RootNamespace>Services</RootNamespace>
+    <AssemblyName>Services</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -37,17 +37,10 @@
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -75,49 +68,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContext.cs" />
-    <Compile Include="DbContextExtensions.cs" />
-    <Compile Include="Entities\Address.cs" />
-    <Compile Include="Entities\Administration.cs" />
-    <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\Orders\Category.cs" />
-    <Compile Include="Entities\People\Customer.cs" />
-    <Compile Include="Entities\Orders\Offer.cs" />
-    <Compile Include="Entities\Permission.cs" />
-    <Compile Include="Entities\Orders\PersonRequest.cs" />
-    <Compile Include="Entities\Orders\Product.cs" />
-    <Compile Include="Entities\Orders\ProductSchedule.cs" />
-    <Compile Include="Entities\Orders\ReturnRequest.cs" />
-    <Compile Include="Entities\Role.cs" />
-    <Compile Include="Entities\People\User.cs" />
-    <Compile Include="Entities\Vendor.cs" />
-    <Compile Include="Entities\People\Provider.cs" />
-    <Compile Include="Entities\People\Worker.cs" />
-    <Compile Include="Entities\WorkerPersonAssignment.cs" />
-    <Compile Include="Enums\AreaTypes.cs" />
-    <Compile Include="Enums\OfferStatuses.cs" />
-    <Compile Include="Enums\ProductStatuses.cs" />
-    <Compile Include="Enums\ProviderPositions.cs" />
-    <Compile Include="Enums\Regions.cs" />
-    <Compile Include="Enums\WorkerPersonAssignmentStatuses.cs" />
-    <Compile Include="Enums\WorkerPositions.cs" />
-    <Compile Include="RepositoryPattern\EfRepository.cs" />
-    <Compile Include="RepositoryPattern\IRepository.cs" />
-    <Compile Include="Migrations\201902091658126_Initial.cs" />
-    <Compile Include="Migrations\201902091658126_Initial.Designer.cs">
-      <DependentUpon>201902091658126_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Address\AddressService.cs" />
+    <Compile Include="Address\IAddressService.cs" />
+    <Compile Include="Administration\AdministrationService.cs" />
+    <Compile Include="Administration\IAdministrationService.cs" />
+    <Compile Include="Assignments\IWorkerPersonAssignmentService.cs" />
+    <Compile Include="Assignments\WorkerPersonAssignmentService.cs" />
+    <Compile Include="Offer\IOfferService.cs" />
+    <Compile Include="Offer\OfferService.cs" />
+    <Compile Include="People\CustomerService.cs" />
+    <Compile Include="People\ICustomerService.cs" />
+    <Compile Include="People\IProviderService.cs" />
+    <Compile Include="People\IUserService.cs" />
+    <Compile Include="People\IWorkerService.cs" />
+    <Compile Include="People\ProviderService.cs" />
+    <Compile Include="People\UserService.cs" />
+    <Compile Include="People\WorkerService.cs" />
+    <Compile Include="Product\IProductService.cs" />
+    <Compile Include="Product\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vendor\IVendorService.cs" />
+    <Compile Include="Vendor\VendorService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902091658126_Initial.resx">
-      <DependentUpon>201902091658126_Initial.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\DataRepository\DAL.csproj">
+      <Project>{6ADD051F-8947-4016-9CD5-5DCF1A997322}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

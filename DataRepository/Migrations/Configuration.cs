@@ -1,4 +1,3 @@
-using DataRepository.Entity;
 using DataRepository.Enums;
 using System;
 using System.Collections.Generic;
@@ -6,7 +5,9 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Text;
-using DataRepository.Entity.People;
+using DataRepository.Entities;
+using DataRepository.Entities.Orders;
+using DataRepository.Entities.People;
 
 namespace DataRepository.Migrations
 {
