@@ -168,6 +168,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +192,7 @@
     <Content Include="Areas\Customer\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Customer\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\common.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -227,7 +229,6 @@
     <Folder Include="Areas\Worker\Controllers\" />
     <Folder Include="Areas\Worker\Models\" />
     <Folder Include="Areas\Worker\Views\Shared\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

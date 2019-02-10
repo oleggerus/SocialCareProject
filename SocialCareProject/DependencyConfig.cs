@@ -1,5 +1,4 @@
-﻿using System.Web.Mvc;
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
 using DataRepository.RepositoryPattern;
 using Services;
@@ -10,6 +9,8 @@ using Services.Offer;
 using Services.People;
 using Services.Product;
 using Services.Vendor;
+using System.Web;
+using System.Web.Mvc;
 
 namespace SocialCareProject
 {
@@ -24,6 +25,24 @@ namespace SocialCareProject
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             //builder.RegisterType<EfRepository<User>>().As<IRepository<User>>().InstancePerLifetimeScope();
 
+            builder.Register(c =>
+                        (new HttpContextWrapper(HttpContext.Current) as HttpContextBase))
+                .As<HttpContextBase>()
+                .InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<HttpContextBase>().Request)
+                .As<HttpRequestBase>()
+                .InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<HttpContextBase>().Response)
+                .As<HttpResponseBase>()
+                .InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<HttpContextBase>().Server)
+                .As<HttpServerUtilityBase>()
+                .InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<HttpContextBase>().Session)
+                .As<HttpSessionStateBase>()
+                .InstancePerLifetimeScope();
+
+
             // регистрируем споставление типов
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
             builder.RegisterType<OfferService>().As<IOfferService>().InstancePerLifetimeScope();
@@ -36,6 +55,8 @@ namespace SocialCareProject
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
             builder.RegisterType<VendorService>().As<IVendorService>().InstancePerLifetimeScope();
             builder.RegisterType<WorkerPersonAssignmentService>().As<IWorkerPersonAssignmentService>().InstancePerLifetimeScope();
+            builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
+
 
 
             // создаем новый контейнер с теми зависимостями, которые определены выше

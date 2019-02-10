@@ -18,5 +18,16 @@ namespace Services.People
             return _userRepository.TableNoTracking;
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return _userRepository.Table.SingleOrDefault(x => Equals(x.Email, email));
+        }
+
+        public string GetSaltByEmail(string email)
+        {
+            return _userRepository.Table.SingleOrDefault(x => Equals(x.Email, email))?.PasswordSalt;
+        }
+
+
     }
 }

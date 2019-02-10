@@ -20,6 +20,8 @@ namespace DataRepository.Entities.People
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
+        [Required]
+        public string PasswordSalt { get; set; }
         public int? NoAttempts { get; set; }
         [Required]
         public bool IsActive { get; set; }

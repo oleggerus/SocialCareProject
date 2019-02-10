@@ -97,7 +97,8 @@ namespace DataRepository.Migrations
                 IsActive = true,
                 IsDeleted = false,
                 IsMale = true,
-                Password = "123",
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
                 Phone = "09090909990",
                 Username = "connor"
             };
@@ -111,7 +112,8 @@ namespace DataRepository.Migrations
                 IsActive = true,
                 IsDeleted = false,
                 IsMale = true,
-                Password = "123",
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
                 Phone = "09090909990",
                 Username = "username1"
             };
@@ -125,7 +127,8 @@ namespace DataRepository.Migrations
                 IsActive = true,
                 IsDeleted = false,
                 IsMale = true,
-                Password = "123",
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
                 Phone = "09090909990",
                 Username = "administration"
             };
@@ -139,7 +142,8 @@ namespace DataRepository.Migrations
                 IsActive = true,
                 IsDeleted = false,
                 IsMale = true,
-                Password = "123",
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
                 Phone = "09090909990",
                 Username = "administrationLead"
             };
@@ -154,7 +158,8 @@ namespace DataRepository.Migrations
                 IsActive = true,
                 IsDeleted = false,
                 IsMale = true,
-                Password = "123",
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
                 Phone = "09090909990",
                 Username = "vendor"
             };
@@ -169,7 +174,8 @@ namespace DataRepository.Migrations
                 IsActive = true,
                 IsDeleted = false,
                 IsMale = true,
-                Password = "123",
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
                 Phone = "09090909990",
                 Username = "provider"
             };
@@ -184,7 +190,8 @@ namespace DataRepository.Migrations
                 IsActive = true,
                 IsDeleted = false,
                 IsMale = true,
-                Password = "123",
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
                 Phone = "09090909990",
                 Username = "provider2"
             };
@@ -199,7 +206,8 @@ namespace DataRepository.Migrations
                 IsActive = true,
                 IsDeleted = false,
                 IsMale = true,
-                Password = "123",
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
                 Phone = "09090909990",
                 Username = "admin"
             };
