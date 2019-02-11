@@ -13,4 +13,12 @@ namespace SocialCareProject.Models
         public string Password { get; set; }
 
     }
+
+    public class UserModel
+    {
+        public int UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public List<string> RoleName { get; set; }
+    }
 }

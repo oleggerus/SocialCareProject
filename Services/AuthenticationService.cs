@@ -70,6 +70,7 @@ namespace Services
 
         public virtual User GetAuthenticatedCustomer()
         {
+
             if (_cachedUser != null)
                 return _cachedUser;
 

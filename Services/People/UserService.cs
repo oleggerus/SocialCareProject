@@ -27,7 +27,5 @@ namespace Services.People
         {
             return _userRepository.Table.SingleOrDefault(x => Equals(x.Email, email))?.PasswordSalt;
         }
-
-
     }
 }

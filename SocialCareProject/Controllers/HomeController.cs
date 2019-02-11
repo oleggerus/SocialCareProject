@@ -1,12 +1,21 @@
 ﻿using DataRepository.Enums;
+using Newtonsoft.Json;
 using Services;
 using Services.Offer;
 using Services.People;
 using SocialCareProject.Models;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using DataRepository.Entities.People;
 
 namespace SocialCareProject.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly IUserService _userService;
@@ -52,7 +61,25 @@ namespace SocialCareProject.Controllers
             {
                 var user = _userService.GetUserByEmail(model.Username);
 
-                _authenticationService.SignIn(user, false);
+                var userModel = new Models.UserModel
+                {
+                    UserId = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    RoleName = new List<string>() { user.Role.Name }
+                };
+
+                var userData = JsonConvert.SerializeObject(userModel);
+                var authTicket = new FormsAuthenticationTicket
+                (
+                    1, model.Username, DateTime.Now, DateTime.Now.AddMinutes(15), false, userData
+                );
+
+                var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                var faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                Response.Cookies.Add(faCookie);
+
+                //_authenticationService.SignIn(user, false);
 
                 switch (user.Role.AreaId)
                 {
@@ -65,43 +92,20 @@ namespace SocialCareProject.Controllers
                 }
             }
 
-
-            return View("Index", model);
+            return RedirectToAction("About");
         }
 
-        //public ActionResult Logout()
-        //{
-        //    //external authentication
-        //    ExternalAuthorizerHelper.RemoveParameters();
+        public ActionResult Logout()
+        {
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "")
+            {
+                Expires = DateTime.Now.AddYears(-1)
+            };
+            Response.Cookies.Add(cookie);
 
-        //    if (_workContext.OriginalCustomerIfImpersonated != null)
-        //    {
-        //        var isAdmin = _workContext.OriginalCustomerIfImpersonated.IsAdmin();
-        //        //logout impersonated customer
-        //        _genericAttributeService.SaveAttribute<int?>(_workContext.OriginalCustomerIfImpersonated,
-        //            SystemCustomerAttributeNames.ImpersonatedCustomerId, null);
-
-        //        //redirect back to customer details page (admin area)
-        //        if (isAdmin)
-        //        {
-        //            return RedirectToAction("Edit", "Customer",
-        //                new { id = _workContext.CurrentCustomer.Id, area = "Admin" });
-        //        }
-        //        return RedirectToRoute("HomePage");
-        //    }
-
-
-
-        //    //standard logout 
-
-        //    //activity log
-        //    _customerActivityService.InsertActivity("PublicStore.Logout",
-        //        _localizationService.GetResource("ActivityLog.PublicStore.Logout"));
-
-        //    _authenticationService.SignOut();
-        //    return RedirectToRoute("HomePage");
-        //}
-
+            FormsAuthentication.SignOut();
+            return RedirectToRoute("HomePage");
+        }
 
 
 
@@ -111,7 +115,7 @@ namespace SocialCareProject.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+           
             return View();
         }
 
@@ -120,6 +124,133 @@ namespace SocialCareProject.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [HttpGet]
+        public ActionResult Registration()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registration(RegistrationModel registrationView)
+        {
+            bool statusRegistration = false;
+            string messageRegistration = string.Empty;
+
+            if (ModelState.IsValid)
+            {
+                // Email Verification
+                string userName = Membership.GetUserNameByEmail(registrationView.Email);
+                if (!string.IsNullOrEmpty(userName))
+                {
+                    ModelState.AddModelError("Warning Email", "Sorry: Email already Exists");
+                    return View(registrationView);
+                }
+
+                //Save User Data 
+                //using (AuthenticationDB dbContext = new AuthenticationDB())
+                //{
+                //    var user = new User()
+                //    {
+                //        Username = registrationView.Username,
+                //        FirstName = registrationView.FirstName,
+                //        LastName = registrationView.LastName,
+                //        Email = registrationView.Email,
+                //        Password = registrationView.Password,
+                //        ActivationCode = Guid.NewGuid(),
+                //    };
+
+                //    dbContext.Users.Add(user);
+                //    dbContext.SaveChanges();
+                //}
+
+                //Verification Email
+                VerificationEmail(registrationView.Email, registrationView.ActivationCode.ToString());
+                messageRegistration = "Your account has been created successfully. ^_^";
+                statusRegistration = true;
+            }
+            else
+            {
+                messageRegistration = "Something Wrong!";
+            }
+            ViewBag.Message = messageRegistration;
+            ViewBag.Status = statusRegistration;
+
+            return View(registrationView);
+        }
+
+        [HttpGet]
+        public ActionResult ActivationAccount(string id)
+        {
+            bool statusAccount = false;
+            //using (AuthenticationDB dbContext = new DataAccess.AuthenticationDB())
+            //{
+            //    var userAccount = dbContext.Users.Where(u => u.ActivationCode.ToString().Equals(id)).FirstOrDefault();
+
+            //    if (userAccount != null)
+            //    {
+            //        userAccount.IsActive = true;
+            //        dbContext.SaveChanges();
+            //        statusAccount = true;
+            //    }
+            //    else
+            //    {
+            //        ViewBag.Message = "Something Wrong !!";
+            //    }
+
+            //}
+            ViewBag.Status = statusAccount;
+            return View();
+        }
+        [NonAction]
+        public void VerificationEmail(string email, string activationCode)
+        {
+            var url = string.Format("/Account/ActivationAccount/{0}", activationCode);
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
+
+            var fromEmail = new MailAddress("mehdi.rami2012@gmail.com", "Activation Account - AKKA");
+            var toEmail = new MailAddress(email);
+
+            var fromEmailPassword = "******************";
+            string subject = "Activation Account !";
+
+            string body = "<br/> Please click on the following link in order to activate your account" + "<br/><a href='" + link + "'> Activation Account ! </a>";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
+            };
+
+            using (var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+
+            })
+
+                smtp.Send(message);
+
         }
     }
 }
