@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataRepository.Entities.People
 {
@@ -32,12 +33,16 @@ namespace DataRepository.Entities.People
         [Required]
         public DateTime DateOfBirth { get; set; }
         [Required]
-        public bool IsMale { get; set; }
+        public int Gender { get; set; }
         public byte[] Avatar { get; set; }
 
         public DateTime CreatedOnUtc { get; set; }
         public DateTime? UpdatedOnUtc { get; set; }
         [Required]
+        public int RoleId { get; set; }
+
+        [Required]
+        [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
 
     }

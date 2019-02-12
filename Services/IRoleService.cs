@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataRepository.Entities;
 
-namespace Services.Vendor
+namespace Services
 {
-    public interface IVendorService
+    public interface IRoleService
     {
-        IList<KeyValuePair<int, string>> GetAllVendorsKeyValuePairs();
-
+        Role GetRoleByAreaId(int id);
     }
 }

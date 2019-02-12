@@ -1,17 +1,20 @@
 ﻿using DataRepository.Enums;
 using Newtonsoft.Json;
 using Services;
+using Services.Administration;
 using Services.Offer;
 using Services.People;
+using Services.Vendor;
+using SocialCareProject.Factories;
 using SocialCareProject.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using DataRepository.Entities.People;
 
 namespace SocialCareProject.Controllers
 {
@@ -21,15 +24,38 @@ namespace SocialCareProject.Controllers
         private readonly IUserService _userService;
         private readonly IOfferService _offerService;
         private readonly IAuthenticationService _authenticationService;
+        private readonly IAdministrationService _administrationService;
+        private readonly IVendorService _vendorService;
+        private readonly IPeopleFactory _peopleFactory;
+        private readonly IAddressModelFactory _addressModelFactory;
+
+        private readonly ICustomerService _customerService;
+        private readonly IProviderService _providerService;
+        private readonly IRoleService _roleService;
+
 
 
         public HomeController(IUserService userService,
             IOfferService offerService,
-            IAuthenticationService authenticationService)
+            IAuthenticationService authenticationService,
+            IAdministrationService administrationService,
+            IVendorService vendorService,
+            IPeopleFactory peopleFactory,
+            IAddressModelFactory addressModelFactory,
+            ICustomerService customerService,
+            IProviderService providerService,
+            IRoleService roleService)
         {
             _userService = userService;
             _offerService = offerService;
             _authenticationService = authenticationService;
+            _administrationService = administrationService;
+            _vendorService = vendorService;
+            _peopleFactory = peopleFactory;
+            _addressModelFactory = addressModelFactory;
+            _customerService = customerService;
+            _providerService = providerService;
+            _roleService = roleService;
         }
 
         public ActionResult Index()
@@ -110,12 +136,10 @@ namespace SocialCareProject.Controllers
 
 
 
-
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-           
+
             return View();
         }
 
@@ -129,69 +153,77 @@ namespace SocialCareProject.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         [HttpGet]
         public ActionResult Registration()
         {
-            return View();
+            var model = new RegistrationModel();
+            ViewBag.Administrations = _administrationService.GetAllAdministrationsKeyValuePairs();
+            ViewBag.Vendors = _vendorService.GetAllVendorsKeyValuePairs();
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Registration(RegistrationModel registrationView)
+        public ActionResult Registration(RegistrationModel model)
         {
-            bool statusRegistration = false;
-            string messageRegistration = string.Empty;
+            var statusRegistration = false;
+            var messageRegistration = string.Empty;
+            ViewBag.Administrations = _administrationService.GetAllAdministrationsKeyValuePairs();
+            ViewBag.Vendors = _vendorService.GetAllVendorsKeyValuePairs();
+            switch (model.RoleId)
+            {
+                case default(int):
+                    ModelState.AddModelError("RoleId", "Оберіть роль");
+                    break;
+                case (int)AreaTypes.Customer:
+                    {
+                        if (model.AdministrationId == null || model.AdministrationId.Value == default(int))
+                        {
+                            ModelState.AddModelError("AdministrationId", "Оберіть адміністрацію");
+                        }
+
+                        break;
+                    }
+            }
+
 
             if (ModelState.IsValid)
             {
                 // Email Verification
-                string userName = Membership.GetUserNameByEmail(registrationView.Email);
-                if (!string.IsNullOrEmpty(userName))
+                var userName = _userService.GetUserByEmail(model.Email);
+                if (userName != null)
                 {
-                    ModelState.AddModelError("Warning Email", "Sorry: Email already Exists");
-                    return View(registrationView);
+                    ModelState.AddModelError("Warning Email", "Ця електронна адреса уже зареєстрована");
+                    return View(model);
                 }
 
-                //Save User Data 
-                //using (AuthenticationDB dbContext = new AuthenticationDB())
-                //{
-                //    var user = new User()
-                //    {
-                //        Username = registrationView.Username,
-                //        FirstName = registrationView.FirstName,
-                //        LastName = registrationView.LastName,
-                //        Email = registrationView.Email,
-                //        Password = registrationView.Password,
-                //        ActivationCode = Guid.NewGuid(),
-                //    };
+                var user = _peopleFactory.PrepareUser(model);
+                var address = _addressModelFactory.PrepareAddressFromRegistrationModel(model);
+                if (model.RoleId == (int)AreaTypes.Customer)
+                {
+                    var customer = _peopleFactory.PrepareCustomer(model, user, address);
+                    _customerService.Create(customer);
+                }
+                if (model.RoleId == (int)AreaTypes.Vendor)
+                {
+                    var provider = _peopleFactory.PrepareProvider(model, user, address);
+                    _providerService.Create(provider);
+                }
 
-                //    dbContext.Users.Add(user);
-                //    dbContext.SaveChanges();
-                //}
 
                 //Verification Email
-                VerificationEmail(registrationView.Email, registrationView.ActivationCode.ToString());
-                messageRegistration = "Your account has been created successfully. ^_^";
+                //VerificationEmail(registrationView.Email, registrationView.ActivationCode.ToString());
+                messageRegistration = "Ви були успішно зареєстровані";
                 statusRegistration = true;
             }
             else
             {
-                messageRegistration = "Something Wrong!";
+                var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
+                messageRegistration = "Перевірте свої дані!";
             }
             ViewBag.Message = messageRegistration;
             ViewBag.Status = statusRegistration;
 
-            return View(registrationView);
+            return View(model);
         }
 
         [HttpGet]

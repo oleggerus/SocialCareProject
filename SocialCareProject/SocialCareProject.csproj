@@ -168,6 +168,10 @@
     <Compile Include="Authentication\CustomRole.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DependencyConfig.cs" />
+    <Compile Include="Factories\AddressModelFactory.cs" />
+    <Compile Include="Factories\IAddressModelFactory.cs" />
+    <Compile Include="Factories\IPeopleFactory.cs" />
+    <Compile Include="Factories\PeopleModelFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

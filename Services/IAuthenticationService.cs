@@ -13,7 +13,9 @@ namespace Services
         void SignIn(User customer, bool createPersistentCookie);
         void SignOut();
         User GetAuthenticatedCustomer();
-
+        
         UserValidationsStatuses ValidateUser(string email, string password);
+        string CreateSaltKey(int length);
+        string EncryptText(string plainText, string encryptionPrivateKey = "");
     }
 }

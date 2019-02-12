@@ -9,10 +9,17 @@ namespace DataRepository.Entities.People
         public Customer()
         {
             CreatedOnUtc = DateTime.UtcNow;
+            IsSelfPaid = false;
+            IsInvalid = false;
         }
 
         [Required]
         public int AdministrationId { get; set; }
+        [Required]
+        public int AddressId { get; set; }
+        [Required]
+        public int UserId { get; set; }
+
 
         public string Info { get; set; }
         [Required]
@@ -27,9 +34,14 @@ namespace DataRepository.Entities.People
 
         public virtual User CreatedBy { get; set; }
         public virtual User UpdatedBy { get; set; }
+
+        
         [Required]
+        [ForeignKey("AddressId")]
         public virtual Address Address { get; set; }
+
         [Required]
+        [ForeignKey("UserId")]
         public virtual User User { get; set; }
 
         [ForeignKey("AdministrationId")]

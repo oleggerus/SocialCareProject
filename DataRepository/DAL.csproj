@@ -96,6 +96,7 @@
     <Compile Include="Entities\People\Worker.cs" />
     <Compile Include="Entities\WorkerPersonAssignment.cs" />
     <Compile Include="Enums\AreaTypes.cs" />
+    <Compile Include="Enums\GenderEnum.cs" />
     <Compile Include="Enums\OfferStatuses.cs" />
     <Compile Include="Enums\ProductStatuses.cs" />
     <Compile Include="Enums\ProviderPositions.cs" />
@@ -103,9 +104,19 @@
     <Compile Include="Enums\UserValidationsStatuses.cs" />
     <Compile Include="Enums\WorkerPersonAssignmentStatuses.cs" />
     <Compile Include="Enums\WorkerPositions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\EnumHelpers.cs" />
     <Compile Include="Migrations\201902102022422_ChangedDb.cs" />
     <Compile Include="Migrations\201902102022422_ChangedDb.Designer.cs">
       <DependentUpon>201902102022422_ChangedDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121831004_ModifiedUser.cs" />
+    <Compile Include="Migrations\201902121831004_ModifiedUser.Designer.cs">
+      <DependentUpon>201902121831004_ModifiedUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902122024218_ModifiedCustomerAndvendor.cs" />
+    <Compile Include="Migrations\201902122024218_ModifiedCustomerAndvendor.Designer.cs">
+      <DependentUpon>201902122024218_ModifiedCustomerAndvendor.cs</DependentUpon>
     </Compile>
     <Compile Include="RepositoryPattern\EfRepository.cs" />
     <Compile Include="RepositoryPattern\IRepository.cs" />
@@ -126,6 +137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902102022422_ChangedDb.resx">
       <DependentUpon>201902102022422_ChangedDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121831004_ModifiedUser.resx">
+      <DependentUpon>201902121831004_ModifiedUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902122024218_ModifiedCustomerAndvendor.resx">
+      <DependentUpon>201902122024218_ModifiedCustomerAndvendor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

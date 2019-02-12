@@ -18,6 +18,7 @@ namespace Services
         private User _cachedUser;
         private readonly HttpContextBase _httpContext;
         private readonly IUserService _userService;
+
         public AuthenticationService(HttpContextBase httpContext,
             IUserService userService)
         {
@@ -129,7 +130,7 @@ namespace Services
 
 
 
-        public static string GenerateRandomDigitCode(int length)
+        public string GenerateRandomDigitCode(int length)
         {
             var random = new Random();
             string str = string.Empty;
@@ -145,7 +146,7 @@ namespace Services
         /// <param name="plainText">Text to encrypt</param>
         /// <param name="encryptionPrivateKey">Encryption private key</param>
         /// <returns>Encrypted text</returns>
-        private string EncryptText(string plainText, string encryptionPrivateKey = "")
+        public string EncryptText(string plainText, string encryptionPrivateKey = "")
         {
             if (string.IsNullOrEmpty(plainText))
                 return plainText;
@@ -217,7 +218,7 @@ namespace Services
             }
         }
 
-        public virtual string CreateSaltKey(int size)
+        public string CreateSaltKey(int size)
         {
             //generate a cryptographic random number
             using (var provider = new RNGCryptoServiceProvider())

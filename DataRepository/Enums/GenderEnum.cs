@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Vendor
+namespace DataRepository.Enums
 {
-    public interface IVendorService
+    public enum GenderEnum
     {
-        IList<KeyValuePair<int, string>> GetAllVendorsKeyValuePairs();
-
+        Чоловік = 1,
+        Жінка = 2
     }
 }

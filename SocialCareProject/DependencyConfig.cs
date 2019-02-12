@@ -11,6 +11,7 @@ using Services.Product;
 using Services.Vendor;
 using System.Web;
 using System.Web.Mvc;
+using SocialCareProject.Factories;
 
 namespace SocialCareProject
 {
@@ -56,8 +57,11 @@ namespace SocialCareProject
             builder.RegisterType<VendorService>().As<IVendorService>().InstancePerLifetimeScope();
             builder.RegisterType<WorkerPersonAssignmentService>().As<IWorkerPersonAssignmentService>().InstancePerLifetimeScope();
             builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
+            builder.RegisterType<RoleService>().As<IRoleService>().InstancePerLifetimeScope();
 
 
+            builder.RegisterType<PeopleModelFactory>().As<IPeopleFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<AddressModelFactory>().As<IAddressModelFactory>().InstancePerLifetimeScope();
 
             // создаем новый контейнер с теми зависимостями, которые определены выше
             var container = builder.Build();
