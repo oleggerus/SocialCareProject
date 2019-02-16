@@ -10,5 +10,6 @@ namespace Services
     public interface IRoleService
     {
         Role GetRoleByAreaId(int id);
+        List<int> GeAllowedAreasByUserId(int id);
     }
 }

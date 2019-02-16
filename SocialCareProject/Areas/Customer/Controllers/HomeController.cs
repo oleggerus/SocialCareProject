@@ -7,7 +7,7 @@ using Services;
 
 namespace SocialCareProject.Areas.Customer.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseCustomerController
     {
         private readonly IAuthenticationService _authenticationService;
         public HomeController(
