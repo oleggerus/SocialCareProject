@@ -24,12 +24,17 @@ namespace SocialCareProject
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/general_styles.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                 "~/Scripts/knockout-{version}.js"));
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                 "~/Scripts/common.js"));
+
+            //sass
+            bundles.Add(new StyleBundle("~/Content/sassCustom").Include(
+                "~/Content/custom/customer_styles.css"));
+
         }
     }
 }

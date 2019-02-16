@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "Content/custom/customer_styles.css",
+    "inputFile": "Content/custom/customer_styles.scss"
+  },
+  {
+    "outputFile": "Content/custom/variables.css",
+    "inputFile": "Content/custom/variables.scss"
+  },
+  {
+    "outputFile": "Content/_bootstrap.css",
+    "inputFile": "Content/_bootstrap.scss"
+  },
+  {
+    "outputFile": "Content/general_styles.css",
+    "inputFile": "Content/general_styles.scss"
+  }
+]
