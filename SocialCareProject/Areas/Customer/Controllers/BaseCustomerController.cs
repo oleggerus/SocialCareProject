@@ -40,12 +40,12 @@ namespace SocialCareProject.Areas.Customer.Controllers
       
         protected ActionResult AccessDeniedView()
         {
-            return RedirectToAction("AccessDenied", "Common", new { pageUrl = Request.RawUrl });
+            return RedirectToAction("AccessDenied", "Error", new { pageUrl = Request.RawUrl });
         }
 
         protected override void HandleUnknownAction(string actionName)
         {
-            RedirectToAction("PageNotFound", "Common").ExecuteResult(ControllerContext);
+            RedirectToAction("AccessDenied", "Error").ExecuteResult(ControllerContext);
         }
 
     }

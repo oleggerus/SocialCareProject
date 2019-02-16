@@ -19,9 +19,6 @@ namespace SocialCareProject.Areas.Customer.Controllers
         // GET: Customer/Home
         public ActionResult Index()
         {
-            var usr = _authenticationService.GetAuthenticatedCustomer();
-            var a = System.Web.HttpContext.Current.User;
-
             return View();
         }
        

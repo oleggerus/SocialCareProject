@@ -18,5 +18,13 @@
   {
     "outputFile": "Content/AccessDenied.css",
     "inputFile": "Content/AccessDenied.scss"
+  },
+  {
+    "outputFile": "Content/custom/provider_styles.css",
+    "inputFile": "Content/custom/provider_styles.scss"
+  },
+  {
+    "outputFile": "Content/custom/worker_styles.css",
+    "inputFile": "Content/custom/worker_styles.scss"
   }
 ]

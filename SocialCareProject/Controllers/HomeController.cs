@@ -130,10 +130,8 @@ namespace SocialCareProject.Controllers
             Response.Cookies.Add(cookie);
 
             FormsAuthentication.SignOut();
-            return RedirectToRoute("HomePage");
+            return RedirectToAction("Index");
         }
-
-
 
 
         public ActionResult About()

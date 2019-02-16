@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Social Carer</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/sassCustom")
+    @Styles.Render("~/Content/customer_styles")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Social carer</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,24 +19,22 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">
                         <i class="fa fa-home"></i>
-                        Home
-                        <span class="sr-only">(current)</span>
+                        </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-envelope-o">
+                            <span class="badge badge-primary">11</span>
+                        </i>
+                        Каталог
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa fa-envelope-o">
-                            <span class="badge badge-danger">11</span>
+                            <span class="badge badge-primary">11</span>
                         </i>
-                        Link
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">
-                        <i class="fa fa-envelope-o">
-                            <span class="badge badge-warning">11</span>
-                        </i>
-                        Disabled
+                        Замовлення
                     </a>
                 </li>
                 <li class="nav-item dropdown">
@@ -44,13 +42,13 @@
                         <i class="fa fa-envelope-o">
                             <span class="badge badge-primary">11</span>
                         </i>
-                        Dropdown
+                        Персональні дані
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Мій профіль</a>
+                        <a class="dropdown-item" href="#">Мій соціальний працівник</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Моя організація</a>
                     </div>
                 </li>
             </ul>
@@ -58,24 +56,32 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa fa-bell">
-                            <span class="badge badge-info">11</span>
+                            <span class="badge badge-info">4</span>
                         </i>
-                        Test
+                        Нотифікації
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa fa-globe">
-                            <span class="badge badge-success">11</span>
+                            <span class="badge badge-success">1</span>
                         </i>
-                        Test
+                        Повідомлення
                     </a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="Пошук" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пошук</button>
             </form>
+            <ul class="navbar-nav mx-5">
+                <li class="nav-item">
+                    <a class="nav-link" href='@Url.Action("Logout", "Home", new{area=""})'>
+                        <i class="fa fa-sign-out"></i>
+                        Вихід
+                    </a>
+                </li>                
+            </ul>
         </div>
     </nav>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
@@ -97,13 +103,15 @@
                 </div>
             </div>
         </div>*@
-    <div class="container body-content">
+<div class="container body-content">
+    <div class="card-body">    
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        </div>
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

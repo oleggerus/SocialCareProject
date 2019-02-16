@@ -32,8 +32,12 @@ namespace SocialCareProject
                 "~/Scripts/common.js"));
 
             //sass
-            bundles.Add(new StyleBundle("~/Content/sassCustom").Include(
+            bundles.Add(new StyleBundle("~/Content/customer_styles").Include(
                 "~/Content/custom/customer_styles.css"));
+            bundles.Add(new StyleBundle("~/Content/provider_styles").Include(
+                "~/Content/custom/provider_styles.css"));
+            bundles.Add(new StyleBundle("~/Content/worker_styles").Include(
+                "~/Content/custom/worker_styles.css"));
 
             bundles.Add(new StyleBundle("~/Content/accessdenied").Include(
                 "~/Content/accessdenied.css"));
