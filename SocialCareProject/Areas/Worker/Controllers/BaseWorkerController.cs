@@ -3,12 +3,12 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using SocialCareProject.Authentication;
 
-namespace SocialCareProject.Areas.Customer.Controllers
+namespace SocialCareProject.Areas.Worker.Controllers
 {
 
 
-    [CustomAuthorize(Roles = "CustomerRole")]
-    public abstract partial class BaseCustomerController : Controller
+    [CustomAuthorize(Roles = "AdministrationRole, AdministrationLeadRole")]
+    public abstract partial class BaseWorkerController : Controller
     {
         /// <summary>
         /// On exception

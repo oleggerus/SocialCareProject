@@ -5,15 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using Services;
 
-namespace SocialCareProject.Areas.Customer.Controllers
+namespace SocialCareProject.Areas.Provider.Controllers
 {
-    public class HomeController : BaseCustomerController
+    public class HomeController : BaseProviderController
     {
         private readonly IAuthenticationService _authenticationService;
         public HomeController(
             IAuthenticationService authenticationService)
         {
-           
+
             _authenticationService = authenticationService;
         }
         // GET: Customer/Home
@@ -24,6 +24,7 @@ namespace SocialCareProject.Areas.Customer.Controllers
 
             return View();
         }
-       
+
     }
+
 }

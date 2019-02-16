@@ -14,5 +14,9 @@
   {
     "outputFile": "Content/general_styles.css",
     "inputFile": "Content/general_styles.scss"
+  },
+  {
+    "outputFile": "Content/AccessDenied.css",
+    "inputFile": "Content/AccessDenied.scss"
   }
 ]

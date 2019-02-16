@@ -3,12 +3,10 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using SocialCareProject.Authentication;
 
-namespace SocialCareProject.Areas.Customer.Controllers
+namespace SocialCareProject.Areas.Provider.Controllers
 {
-
-
-    [CustomAuthorize(Roles = "CustomerRole")]
-    public abstract partial class BaseCustomerController : Controller
+    [CustomAuthorize(Roles = "VendorRole")]
+    public abstract partial class BaseProviderController : Controller
     {
         /// <summary>
         /// On exception
@@ -22,7 +20,6 @@ namespace SocialCareProject.Areas.Customer.Controllers
                 return;
             }
 
-            
             filterContext.ExceptionHandled = true;
             //var Result = RedirectToAction("Error", "Common");
 
@@ -37,15 +34,15 @@ namespace SocialCareProject.Areas.Customer.Controllers
             base.OnException(filterContext);
         }
 
-      
+
         protected ActionResult AccessDeniedView()
         {
-            return RedirectToAction("AccessDenied", "Common", new { pageUrl = Request.RawUrl });
+            return RedirectToAction("AccessDenied", "Error", new { pageUrl = Request.RawUrl });
         }
 
         protected override void HandleUnknownAction(string actionName)
         {
-            RedirectToAction("PageNotFound", "Common").ExecuteResult(ControllerContext);
+            RedirectToAction("PageNotFound", "Error").ExecuteResult(ControllerContext);
         }
 
     }

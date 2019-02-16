@@ -21,14 +21,7 @@ namespace SocialCareProject.Authentication
 
         public bool IsInRole(string role)
         {
-            if (Roles.Any(r => role.Contains(r)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Roles.Any(role.Contains);
         }
 
         public CustomPrincipal(string username)

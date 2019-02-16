@@ -158,10 +158,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Customer\Controllers\BaseCustomerController.cs" />
+    <Compile Include="Areas\Customer\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Customer\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
-    <Compile Include="Areas\Customer\CustomerAuthorizeAttribute.cs" />
+    <Compile Include="Areas\Provider\Controllers\BaseProviderController.cs" />
+    <Compile Include="Areas\Provider\Controllers\ErrorController.cs" />
+    <Compile Include="Areas\Provider\Controllers\HomeController.cs" />
     <Compile Include="Areas\Provider\ProviderAreaRegistration.cs" />
+    <Compile Include="Areas\Worker\Controllers\BaseWorkerController.cs" />
+    <Compile Include="Areas\Worker\Controllers\ErrorController.cs" />
+    <Compile Include="Areas\Worker\Controllers\HomeController.cs" />
     <Compile Include="Areas\Worker\WorkerAreaRegistration.cs" />
     <Compile Include="Authentication\CustomAuthorizeAttribute.cs" />
     <Compile Include="Authentication\CustomPrincipal.cs" />
@@ -181,6 +187,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AccessDenied.css">
+      <DependentUpon>AccessDenied.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\AccessDenied.min.css">
+      <DependentUpon>AccessDenied.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -293,6 +305,11 @@
     <Content Include="Content\bootstrap\mixins\_alerts.scss" />
     <Content Include="Content\custom\customer_styles.scss" />
     <Content Include="Content\variables.scss" />
+    <Content Include="Areas\Customer\Views\Error\AccessDenied.cshtml" />
+    <Content Include="Areas\Provider\Views\Error\AccessDenied.cshtml" />
+    <Content Include="Areas\Provider\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Worker\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Worker\Views\Error\AccessDenied.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -316,6 +333,7 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Content\AccessDenied.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap\affix.js" />
     <Content Include="Scripts\bootstrap\alert.js" />
@@ -382,13 +400,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Customer\Models\" />
-    <Folder Include="Areas\Customer\Views\BaseCustomer\" />
-    <Folder Include="Areas\Provider\Controllers\" />
     <Folder Include="Areas\Provider\Models\" />
-    <Folder Include="Areas\Provider\Views\Shared\" />
-    <Folder Include="Areas\Worker\Controllers\" />
+    <Folder Include="Areas\Provider\Views\Errror\" />
+    <Folder Include="Areas\Provider\Views\Home\" />
     <Folder Include="Areas\Worker\Models\" />
-    <Folder Include="Areas\Worker\Views\Shared\" />
+    <Folder Include="Areas\Worker\Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

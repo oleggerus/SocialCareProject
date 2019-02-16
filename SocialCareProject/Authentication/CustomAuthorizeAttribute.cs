@@ -27,10 +27,10 @@ namespace SocialCareProject.Authentication
                 routeData = new RedirectToRouteResult
                 (new System.Web.Routing.RouteValueDictionary
                 (new
-                    {
-                        controller = "Home",
-                        action = "Login",
-                    }
+                {
+                    controller = "Home",
+                    action = "Login",
+                }
                 ));
             }
             else
@@ -38,10 +38,10 @@ namespace SocialCareProject.Authentication
                 routeData = new RedirectToRouteResult
                 (new System.Web.Routing.RouteValueDictionary
                 (new
-                    {
-                        controller = "Error",
-                        action = "AccessDenied"
-                    }
+                {
+                    controller = "Error",
+                    action = "AccessDenied",
+                }
                 ));
             }
 
