@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using DataRepository;
 using DataRepository.RepositoryPattern;
 
 namespace Services.Offer
@@ -17,5 +19,12 @@ namespace Services.Offer
             return _offerRepository.TableNoTracking;
         }
 
+        public IPagedList<DataRepository.Entities.Orders.Offer> GetFilteredOffers(int pageIndex = default(int), int pageSize = Int32.MaxValue)
+        {
+            var query = _offerRepository.TableNoTracking.Where(x => !x.IsDeleted);
+
+            return new PagedList<DataRepository.Entities.Orders.Offer>(query.OrderBy(x => x.CreatedOnUtc), pageIndex,
+                pageSize);
+        }
     }
 }

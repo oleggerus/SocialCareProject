@@ -1,0 +1,106 @@
+﻿@using DataRepository.Enums
+@using DataRepository.Extensions
+@model SocialCareProject.Areas.Customer.Models.Offer.OfferListModel
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    @Scripts.Render("~/Scripts/app/customer/offerList.js")
+    ViewBag.Title = "Список отриманих та запропонованих послуг";
+}
+
+
+<div id="offersList">
+    <div class="container inner-container">
+        <div class="panel">
+            <div class="panel-body paged-list-in-tab">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-group results-table" data-bind="foreach: Offers">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <label class="control-label" data-bind="text: Name"></label>
+                                        <br />
+                                        <span data-bind="text: Category"></span>
+                                    </div>
+                                    <div class="col-xs-3 ">
+                                        <!--ko if: StatusId()==Offers.Statuses.Created -->
+                                        <span class="label label-success text-uppercase" data-bind="text:Status"></span>
+                                        <br>
+                                        <span class="text-muted">Створено: </span>
+                                        <span class="text-muted" data-bind="text: ModifiedOnUtc"></span>
+                                        <!--/ko-->
+                                        <!--ko if: StatusId()==Offers.Statuses.Rejected -->
+                                        <span class="label label-danger text-uppercase" data-bind="text:Status"></span>
+                                        <br>
+                                        <span class="text-muted">Відхилено: </span>
+                                        <span class="text-muted" data-bind="text: ModifiedOnUtc"></span>
+                                        <!--/ko-->
+                                        <!--ko if: StatusId()==Offers.Statuses.Closed -->
+                                        <span class="label label-primary text-uppercase" data-bind="text:Status"></span>
+                                        <br>
+                                        <span class="text-muted">Закрито: </span>
+                                        <span class="text-muted" data-bind="text: ModifiedOnUtc"></span>
+                                        <!--/ko-->
+                                        <!--ko if: StatusId()==Offers.Statuses.Approved -->
+                                        <span class="label label-success text-uppercase" data-bind="text:Status"></span>
+                                        <br>
+                                        <span class="text-muted">Підтверджено: </span>
+                                        <span class="text-muted" data-bind="text: ModifiedOnUtc"></span>
+                                        <!--/ko-->
+                                    </div>
+
+                                    <div class="col-xs-3 ">
+                                        <span>Ціна: </span>
+                                        <span data-bind="text: Price"></span>
+                                        <br />
+                                        <span>Виробник: </span>
+                                        <span data-bind="text: Manufacturer"></span>
+                                    </div>
+                                    
+                                    <div class="col-xs-3 text-center">
+                                        <button type="button" data-bind="click:$root.Details.bind(this,Id())" class="btn btn-primary">Деталі</button>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-xs-12 ">
+                                        <span>Опис: </span>
+                                        <span data-bind="text: Description"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-2 col-xs-8 text-center" data-bind="with: Pager">
+                        @Html.Partial("_Pager")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    @*offers.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
+    Offers.GetOffers = '@Html.Raw(Url.Action("GetFilteredOffers", "Offer"))';
+    Offers.GeneralErrorMessage = 'An error occured';
+    Offers.Offers = @Html.Raw(Json.Encode(Model.Offers));
+    Offers.Pager = @Html.Raw(Json.Encode(Model.Pager));
+    Offers.ContainerId = 'offersList';
+    Offers.Statuses =  @Html.Raw(Json.Encode(EnumHelpers.GetEnumKeyValuePairList<OfferStatuses>()));
+
+    Offers.Statuses = {
+        Created: @((int)OfferStatuses.Створений),
+        Rejected: @((int)OfferStatuses.Відхилений),
+        Closed: @((int)OfferStatuses.Неактуальний),
+        Approved: @((int)OfferStatuses.Підтверджений)
+    };
+
+    $(document).ready(function() {
+        Offers.Init();
+    });
+
+</script>

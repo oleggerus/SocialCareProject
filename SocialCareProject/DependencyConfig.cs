@@ -63,6 +63,8 @@ namespace SocialCareProject
             builder.RegisterType<PeopleModelFactory>().As<IPeopleFactory>().InstancePerLifetimeScope();
             builder.RegisterType<AddressModelFactory>().As<IAddressModelFactory>().InstancePerLifetimeScope();
             builder.RegisterType<ProductFactory>().As<IProductFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<OfferModelFactory>().As<IOfferModelFactory>().InstancePerLifetimeScope();
+
 
             // создаем новый контейнер с теми зависимостями, которые определены выше
             var container = builder.Build();

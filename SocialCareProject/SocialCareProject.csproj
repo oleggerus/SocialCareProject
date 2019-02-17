@@ -160,8 +160,10 @@
     <Compile Include="Areas\Customer\Controllers\BaseCustomerController.cs" />
     <Compile Include="Areas\Customer\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Customer\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Customer\Controllers\OfferController.cs" />
     <Compile Include="Areas\Customer\Controllers\ProductController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\Models\Offer\OfferModel.cs" />
     <Compile Include="Areas\Customer\Models\Product\ProductModel.cs" />
     <Compile Include="Areas\Provider\Controllers\BaseProviderController.cs" />
     <Compile Include="Areas\Provider\Controllers\ErrorController.cs" />
@@ -180,8 +182,10 @@
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Factories\AddressModelFactory.cs" />
     <Compile Include="Factories\IAddressModelFactory.cs" />
+    <Compile Include="Factories\IOfferModelFactory.cs" />
     <Compile Include="Factories\IPeopleFactory.cs" />
     <Compile Include="Factories\IProductFactory.cs" />
+    <Compile Include="Factories\OfferModelFactory.cs" />
     <Compile Include="Factories\PeopleModelFactory.cs" />
     <Compile Include="Factories\ProductFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -237,6 +241,7 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\customer\offerList.js" />
     <Content Include="Scripts\app\customer\productList.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -330,6 +335,7 @@
     <Content Include="Areas\Worker\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Worker\Views\Error\AccessDenied.cshtml" />
     <Content Include="Areas\Customer\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Customer\Views\Offer\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

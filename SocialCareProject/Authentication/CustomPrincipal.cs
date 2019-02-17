@@ -8,6 +8,7 @@ namespace SocialCareProject.Authentication
         #region Identity Properties
 
         public int UserId { get; set; }
+        public int AreaId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

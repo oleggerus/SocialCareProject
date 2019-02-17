@@ -8,6 +8,7 @@ body {
     padding-bottom: 20px;
     background-color: $light-grey;
 }
+
 footer {
     position: absolute;
     bottom: 0;
@@ -17,8 +18,58 @@ footer {
     height: $footer-height;
     background-color: $gray-dark;
 }
+
 .control-label {
     font-weight: bold;
+    margin-bottom: -5px;
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+
+.label-default {
+    background-color: #2F3132;
+}
+
+.label-default[href]:hover, .label-default[href]:focus {
+    background-color: #161718;
+}
+
+.label-primary {
+    background-color: #8B418C;
+}
+
+.label-primary[href]:hover, .label-primary[href]:focus {
+    background-color: #683169;
+}
+
+.label-success {
+    background-color: #1FAE69;
+}
+
+
+.label-info {
+    background-color: #5bc0de;
+}
+
+
+.label-warning {
+    background-color: #FA9F2D;
+}
+
+.label-danger {
+    background-color: #E64B3F;
 }
 
 
@@ -251,7 +302,6 @@ html {
     background-color: $list-group-bg;
     border: 1px solid $list-group-border;
     // Round the first and last items
-    
 }
 
 

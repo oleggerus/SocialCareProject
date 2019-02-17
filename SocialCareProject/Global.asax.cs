@@ -37,6 +37,7 @@ namespace SocialCareProject
                     UserId = serializeModel.UserId,
                     FirstName = serializeModel.FirstName,
                     LastName = serializeModel.LastName,
+                    AreaId = serializeModel.AreaId,
                     Roles = serializeModel.RoleName.ToArray<string>()
                 };
 

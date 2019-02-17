@@ -15,6 +15,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using SocialCareProject.Authentication;
 
 namespace SocialCareProject.Controllers
 {
@@ -60,6 +61,22 @@ namespace SocialCareProject.Controllers
 
         public ActionResult Index()
         {
+            var currentUser = _authenticationService.GetAuthenticatedCustomer();
+            var user = HttpContext.User as CustomUser;
+            if (user == null)
+            {
+                return View();
+            }
+
+            switch (user.AreaId)
+            {
+                case (int)AreaTypes.Customer:
+                    return RedirectToAction("Index", "Home", new { area = "Customer" });
+                case (int)AreaTypes.Vendor:
+                    return RedirectToAction("Index", "Home", new { area = "Provider" });
+                case (int)AreaTypes.Administration:
+                    return RedirectToAction("Index", "Home", new { area = "Worker" });
+            }
             return View();
         }
 
@@ -90,6 +107,7 @@ namespace SocialCareProject.Controllers
                 var userModel = new Models.UserModel
                 {
                     UserId = user.Id,
+                    AreaId = user.Role.AreaId,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     RoleName = new List<string>() { user.Role.Name }
