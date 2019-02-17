@@ -356,6 +356,7 @@ namespace DataRepository.Migrations
                 User = custUser1,
                 IsInvalid = false,
                 IsSelfPaid = false,
+                StatusId = (int)CustomerCareStatuses.ПідДоглядом
             };
             var customer2 = new Customer
             {
@@ -364,6 +365,7 @@ namespace DataRepository.Migrations
                 User = custUser2,
                 IsInvalid = true,
                 IsSelfPaid = false,
+                StatusId = (int)CustomerCareStatuses.НеПотребуєДогляду
             };
 
             context.Customers.AddOrUpdate(customer);

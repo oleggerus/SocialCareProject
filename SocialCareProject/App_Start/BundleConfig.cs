@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace SocialCareProject
 {
@@ -35,7 +34,8 @@ namespace SocialCareProject
                 "~/Scripts/common.js"));
             bundles.Add(new ScriptBundle("~/bundles/moment").Include(
                 "~/Scripts/moment.js",
-                "~/Scripts/moment-with-locales.js"));
+                "~/Scripts/moment-with-locales.js",
+            "~/Scripts/bootstrap-datepicker"));
 
             //sass
             bundles.Add(new StyleBundle("~/Content/customer_styles").Include(

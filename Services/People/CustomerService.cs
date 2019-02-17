@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DataRepository.Entities.People;
 using DataRepository.RepositoryPattern;
 
@@ -21,6 +22,16 @@ namespace Services.People
             _customerRepository.Insert(customer);
 
             return customer;
+        }
+
+        public Customer GetCustomerById(int id)
+        {
+            return _customerRepository.GetById(id);
+        }
+
+        public Customer GetCustomerByUserId(int id)
+        {
+            return _customerRepository.TableNoTracking.SingleOrDefault(x => x.UserId == id);
         }
     }
 }

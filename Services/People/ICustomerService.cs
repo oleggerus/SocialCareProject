@@ -10,5 +10,8 @@ namespace Services.People
     public interface ICustomerService
     {
         Customer Create(Customer customer);
+        Customer GetCustomerById(int id);
+        Customer GetCustomerByUserId(int id);
+
     }
 }

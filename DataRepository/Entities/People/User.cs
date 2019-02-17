@@ -40,7 +40,7 @@ namespace DataRepository.Entities.People
         public DateTime? UpdatedOnUtc { get; set; }
         [Required]
         public int RoleId { get; set; }
-
+        
         [Required]
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }

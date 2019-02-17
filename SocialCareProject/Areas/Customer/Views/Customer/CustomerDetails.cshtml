@@ -1,0 +1,95 @@
+﻿@using DataRepository.Enums
+@using DataRepository.Extensions
+@model SocialCareProject.Areas.Customer.Models.Customer.CustomerModel
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    @Scripts.Render("~/Scripts/app/customer/customer.details.js")
+    ViewBag.Title = "Мій профіль";
+}
+
+<div id="customerDetails">
+    <div class="container inner-container" data-bind="with: Details">
+
+        <div class="card">
+            <div class="row">
+                <div class="col-xs-3" style="height: 200px; background: cadetblue">
+                </div>
+                <div class="col-xs-9">
+                    @*<div class="form-group">
+                        <div class="form-control">
+                            <label class="control-label"></label>
+                        </div>
+                    </div>*@
+                    <div class="row">
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Ім'я</label>
+                            <div>
+                                <input class="form-control" maxlength="60" data-bind="value:  FirstName" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Прізвище</label>
+                            <div>
+                                <input class="form-control" maxlength="60" data-bind="value:  LastName" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">По-батькові</label>
+                            <div>
+                                <input class="form-control" maxlength="60" data-bind="value:  MiddleName" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Дата народження</label>
+                            <div>
+                                <input data-bind="datePicker:'11/01/2011'" />
+                                @*<input class="form-control datepicker" maxlength="60" data-bind="value:  DateOfBirth" />*@
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Стать</label>
+                            <div>
+                                <input class="form-control" maxlength="60" data-bind="value:  FirstName" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Електронна адреса</label>
+                            <div>
+                                <input class="form-control" data-bind="value:  Email" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Мобільний телефон</label>
+                            <div>
+                                <input class="form-control" maxlength="60" data-bind="value:  Phone" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    @*offers.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
+    @*CustomerDetails.GetOffers = '@Html.Raw(Url.Action("GetFilteredOffers", "Offer"))';*@
+    CustomerDetails.Details = @Html.Raw(Json.Encode(Model));
+    @*CustomerDetails.Pager = @Html.Raw();*@
+    CustomerDetails.ContainerId = 'customerDetails';
+    @*CustomerDetails.Statuses =  @Html.Raw(Json.Encode(EnumHelpers.GetEnumKeyValuePairList<OfferStatuses>()));*@
+
+    CustomerDetails.Statuses = {
+        Created: @((int)OfferStatuses.Створений),
+        Rejected: @((int)OfferStatuses.Відхилений),
+        Closed: @((int)OfferStatuses.Неактуальний),
+        Approved: @((int)OfferStatuses.Підтверджений)
+    };
+    CustomerDetails.GeneralErrorMessage = 'An error occured';
+
+    CustomerDetails.Init();
+
+
+</script>

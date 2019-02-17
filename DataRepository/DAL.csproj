@@ -96,6 +96,7 @@
     <Compile Include="Entities\People\Worker.cs" />
     <Compile Include="Entities\WorkerPersonAssignment.cs" />
     <Compile Include="Enums\AreaTypes.cs" />
+    <Compile Include="Enums\CustomerCareStatuses.cs" />
     <Compile Include="Enums\GenderEnum.cs" />
     <Compile Include="Enums\OfferStatuses.cs" />
     <Compile Include="Enums\ProductStatuses.cs" />
