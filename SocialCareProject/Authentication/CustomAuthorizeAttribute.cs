@@ -8,9 +8,11 @@ namespace SocialCareProject.Authentication
 {
     public class CustomAuthorizeAttribute : AuthorizeAttribute
     {
-        protected virtual CustomPrincipal CurrentUser
+
+
+        protected virtual CustomUser CurrentUser
         {
-            get { return HttpContext.Current.User as CustomPrincipal; }
+            get { return HttpContext.Current.User as CustomUser; }
         }
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)

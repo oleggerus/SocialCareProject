@@ -16,6 +16,6 @@ namespace Services
         
         UserValidationsStatuses ValidateUser(string email, string password);
         string CreateSaltKey(int length);
-        string EncryptText(string plainText, string encryptionPrivateKey = "");
+        string EncryptText(string plainText, string encryptionPrivateKey = "");        
     }
 }

@@ -10,6 +10,13 @@ namespace SocialCareProject.Areas.Customer.Controllers
     [CustomAuthorize(Roles = "CustomerRole")]
     public abstract partial class BaseCustomerController : Controller
     {
+
+        protected virtual JsonResult CreateJsonResult(bool success, string redirect = null, object data = null,
+            string message = null, string returnUrl = null)
+        {
+            return Json(new { success, redirect, data, message, returnUrl });
+        }
+
         /// <summary>
         /// On exception
         /// </summary>
@@ -22,7 +29,7 @@ namespace SocialCareProject.Areas.Customer.Controllers
                 return;
             }
 
-            
+
             filterContext.ExceptionHandled = true;
             //var Result = RedirectToAction("Error", "Common");
 
@@ -37,7 +44,7 @@ namespace SocialCareProject.Areas.Customer.Controllers
             base.OnException(filterContext);
         }
 
-      
+
         protected ActionResult AccessDeniedView()
         {
             return RedirectToAction("AccessDenied", "Error", new { pageUrl = Request.RawUrl });

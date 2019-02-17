@@ -27,6 +27,8 @@ namespace Services
             _userService = userService;
         }
 
+        
+
         public void SignIn(User user, bool createPersistentCookie)
         {
             var now = DateTime.UtcNow.ToLocalTime();

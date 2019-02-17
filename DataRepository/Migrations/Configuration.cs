@@ -462,9 +462,122 @@ namespace DataRepository.Migrations
                 IsNew = false,
                 CreatedBy = providerWithoutVendor,
             };
+            var wheelChair1 = new Product
+            {
+                Category = healthCareCategory,
+                Name = "Інвалідний візок ",
+                Description = "Дуже зручний і сучасний візок",
+                Manufacturer = "Tesla 1",
+                Height = 1,
+                Width = 1,
+                Weight = 4,
+                IsActive = true,
+                IsDeleted = false,
+                Price = 1250,
+                StatusId = (int)ProductStatuses.Продукт,
+                IsGift = false,
+                IsNew = true,
+                CreatedBy = provider,
+                Length = 1,
+            };
+
+            var bones1 = new Product
+            {
+                Category = healthCareCategory,
+                Name = "Костилі 1",
+                Description = "2 шт.",
+                Manufacturer = "Tesla 1",
+                Height = 1,
+                IsActive = true,
+                IsDeleted = false,
+                Price = 50,
+                StatusId = (int)ProductStatuses.Продукт,
+                IsGift = false,
+                IsNew = false,
+                CreatedBy = providerWithoutVendor,
+            };
+
+            var wheelChair2 = new Product
+            {
+                Category = healthCareCategory,
+                Name = "Інвалідний візок 2",
+                Description = "Дуже зручний і сучасний візок",
+                Manufacturer = "Tesla 2",
+                Height = 1,
+                Width = 1,
+                Weight = 4,
+                IsActive = true,
+                IsDeleted = false,
+                Price = 1250,
+                StatusId = (int)ProductStatuses.Продукт,
+                IsGift = false,
+                IsNew = true,
+                CreatedBy = provider,
+                Length = 1,
+            };
+
+            var bones2 = new Product
+            {
+                Category = healthCareCategory,
+                Name = "Костилі 2",
+                Description = "2 шт.",
+                Manufacturer = "Tesla 2 ",
+                Height = 1,
+                IsActive = true,
+                IsDeleted = false,
+                Price = 50,
+                StatusId = (int)ProductStatuses.Продукт,
+                IsGift = false,
+                IsNew = false,
+                CreatedBy = providerWithoutVendor,
+            };
+
+            var wheelChair3 = new Product
+            {
+                Category = healthCareCategory,
+                Name = "Інвалідний візок 3",
+                Description = "Дуже зручний і сучасний візок",
+                Manufacturer = "Tesla 3",
+                Height = 1,
+                Width = 1,
+                Weight = 4,
+                IsActive = true,
+                IsDeleted = false,
+                Price = 1250,
+                StatusId = (int)ProductStatuses.Продукт,
+                IsGift = false,
+                IsNew = true,
+                CreatedBy = provider,
+                Length = 1,
+            };
+
+            var bones3 = new Product
+            {
+                Category = healthCareCategory,
+                Name = "Костилі 3",
+                Description = "2 шт.",
+                Manufacturer = "Tesla 3",
+                Height = 1,
+                IsActive = true,
+                IsDeleted = false,
+                Price = 50,
+                StatusId = (int)ProductStatuses.Продукт,
+                IsGift = false,
+                IsNew = false,
+                CreatedBy = providerWithoutVendor,
+            };
+
 
             context.Products.AddOrUpdate(bones);
             context.Products.AddOrUpdate(wheelChair);
+            context.Products.AddOrUpdate(bones1);
+            context.Products.AddOrUpdate(wheelChair1);
+            context.Products.AddOrUpdate(bones2);
+            context.Products.AddOrUpdate(wheelChair2);
+            context.Products.AddOrUpdate(bones3);
+            context.Products.AddOrUpdate(wheelChair3);
+
+
 
             #endregion
 

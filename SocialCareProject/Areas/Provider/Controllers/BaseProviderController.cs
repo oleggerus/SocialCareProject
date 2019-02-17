@@ -8,6 +8,12 @@ namespace SocialCareProject.Areas.Provider.Controllers
     [CustomAuthorize(Roles = "VendorRole")]
     public abstract partial class BaseProviderController : Controller
     {
+        protected virtual JsonResult CreateJsonResult(bool success, string redirect = null, object data = null,
+            string message = null, string returnUrl = null)
+        {
+            return Json(new { success, redirect, data, message, returnUrl });
+        }
+
         /// <summary>
         /// On exception
         /// </summary>

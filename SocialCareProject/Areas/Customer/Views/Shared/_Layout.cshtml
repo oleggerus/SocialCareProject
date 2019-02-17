@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string title = ViewBag.Title;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,7 +10,13 @@
     <title>@ViewBag.Title - Social Carer</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/customer_styles")
+    @Scripts.Render("~/bundles/knockout")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/common")
+    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/moment")
 </head>
 <body>
     <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
@@ -19,10 +29,10 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">
                         <i class="fa fa-home"></i>
-                        </a>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href='@Url.Action("Index", "Product")'>
                         <i class="fa fa-envelope-o">
                             <span class="badge badge-primary">11</span>
                         </i>
@@ -80,7 +90,7 @@
                         <i class="fa fa-sign-out"></i>
                         Вихід
                     </a>
-                </li>                
+                </li>
             </ul>
         </div>
     </nav>
@@ -103,20 +113,30 @@
                 </div>
             </div>
         </div>*@
-<div class="container body-content">
-    <div class="card-body">    
-        @RenderBody()
+    <div class="page-header">
+        <div class="container">
+            <h1 class="pull-left page-title">
+                @title
+
+        </h1>
+        <div class="pull-right">@RenderSection("Buttons", false)</div>
+        <div class="clearfix"></div>
+        <div id="button-section" class="row">
+            <div class="col-lg-12">
+                @RenderSection("Description", false)
+            </div>
         </div>
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
+    </div>
 </div>
+<div class="container body-content">
+    <div class="card-body">
+        @RenderBody()
+    </div>
+</div>
+<footer>
+    <p>&copy; Provided by Oleh Gerus</p>
+</footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/knockout")
 
-    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -40,13 +40,24 @@ namespace DataRepository.Entities.Orders
         public double Height { get; set; }
         public int? ScheduleId { get; set; }
         public int StatusId { get; set; }
+        public byte[] Picture{ get; set; }
+        [Required]
+        public int CategoryId { get; set; }
+
+        [Required]
+        public int CreatedById { get; set; }
+
+
 
         [Required]
         public DateTime CreatedOnUtc { get; set; }
-        [Required]
+
+        [ForeignKey("CreatedById")]
         public virtual Provider CreatedBy { get; set; }
+
         public virtual ProductSchedule Schedule { get; set; }
-        [Required]
+        
+        [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
         [InverseProperty("Product")]

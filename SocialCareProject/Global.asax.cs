@@ -32,7 +32,7 @@ namespace SocialCareProject
 
                 var serializeModel = JsonConvert.DeserializeObject<UserModel>(authTicket.UserData);
 
-                var principal = new CustomPrincipal(authTicket.Name)
+                var principal = new CustomUser(authTicket.Name)
                 {
                     UserId = serializeModel.UserId,
                     FirstName = serializeModel.FirstName,

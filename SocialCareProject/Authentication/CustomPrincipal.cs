@@ -3,7 +3,7 @@ using System.Security.Principal;
 
 namespace SocialCareProject.Authentication
 {
-    public class CustomPrincipal : IPrincipal
+    public class CustomUser: IPrincipal
     {
         #region Identity Properties
 
@@ -24,7 +24,7 @@ namespace SocialCareProject.Authentication
             return Roles.Any(role.Contains);
         }
 
-        public CustomPrincipal(string username)
+        public CustomUser(string username)
         {
             Identity = new GenericIdentity(username);
         }

@@ -1,39 +1,96 @@
-﻿function PagerViewModel() {
-    var self = this;
+﻿var DateFormat =
+{
+    LongDateTimeString: "ddd D MMM YY HH:mm",
+    LongDateString: "ddd D MMM YY",
+    ShortDateString: "D MMM YY",
+    ShortDateStringUS: "dd/MM/yyyy",
+    DateString: "dd-MM-yyyy",
+    ShortTimeString: "HH:mm"
+};
 
-    self.PageSize = ko.observable(0);
-    self.PageIndex = ko.observable(0);
-    self.TotalPages = ko.observable(0);
-    self.HasNextPage = ko.observable(0);
-    self.HasPreviousPage = ko.observable(0);
-    self.TotalCount = ko.observable(0);
+var Strings = {
+    GeneralErrorMessage: "Error occured. Please try again"
+};
 
-    self.PageSlide = ko.observable(1);
+function getLocalDate(date) {
+    return moment.utc(date, DateFormat.LongDateTimeString).local().format(DateFormat.LongDateString);
+}
 
-    self.Load = null;
-    self.PageClickHandler = null;
+function getLocalTime(date) {
+    return moment.utc(date, DateFormat.LongDateTimeString).local().format(DateFormat.ShortTimeString);
+}
 
-    self.Pages = ko.computed(function () {
-        var pageNum = self.PageIndex() + 1;
-        var pageFrom = Math.max(1, pageNum - self.PageSlide());
-        var pageTo = Math.min(self.TotalPages(), pageNum + self.PageSlide());
-        pageFrom = Math.max(1, Math.min(pageTo - self.PageSlide(), pageFrom));
-        pageTo = Math.min(self.TotalPages(), Math.max(pageFrom + self.PageSlide(), pageNum == 1 ? pageTo + self.PageSlide() : pageTo));
+function parseStringToLocalDateTime(date) {
+    return getLocalDate(date) + " " + getLocalTime(date);
+}
 
-        var result = [];
-        for (var i = pageFrom; i <= pageTo; i++) {
-            result.push(i);
+function getFullLocalDateTime(date) {
+    return parseStringToLocalDateTime(moment(date).format('ddd d MMM YY HH:mm'));
+}
+
+
+
+//############ Bootstrap Notify ############
+if ($.notifyDefaults) {
+    $.notifyDefaults({
+        delay: 2500,
+        timer: 500,
+        placement: {
+            align: "center"
+        },
+        template:
+            '<div class="notify text-center" style="pointer-events: none;">' +
+            '<div data-notify="container" class="text-left alert alert-{0}" style="padding-right: 30px;max-width: 90%; width: auto; display: inline-block; position: relative; pointer-events: auto;" role="alert">' +
+            '	<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+            '	<span data-notify="icon"></span>' +
+            '	<span data-notify="title">{1}</span>' +
+            '	<span data-notify="message">{2}</span>' +
+            '	<div class="progress" data-notify="progressbar">' +
+            '		<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+            "	</div>" +
+            '	<a href="{3}" target="{4}" data-notify="url"></a>' +
+            "</div>" +
+            "</div>"
+    });
+}
+
+var notify = {
+    ok: function (msg) {
+        $.notify({ icon: "glyphicon glyphicon-ok", message: msg },
+            { type: "success", delay: 3000, z_index: 1080, placement: { align: "center" } });
+    },
+    info: function (msg) {
+        $.notify({ message: msg }, { type: "info" });
+    },
+    fail: function (msg, keepOpen) {
+        var delay = (keepOpen) ? 0 : 4000;
+        var message = '<ul style="list-style-type: disc; padding-left: 20px; margin: 0;">';
+
+        if ($.isArray(msg) && msg.length > 1) {
+            for (var i = 0; i < msg.length; i++) {
+                message += "<li>" + msg[i] + "</li>";
+            }
+            message += "</ul>";
+
+        } else {
+            message = $.isArray(msg) && msg[0] ? msg[0] : msg;
         }
 
-        return result;
-    });
+        $.notify({ message: message }, { type: "danger", delay: delay, z_index: 1080, placement: { align: "center" } });
+    },
+    failModelState: function (modelState) {
+        notify.close();
+        var errors = [];
 
-    self.StartRecord = ko.pureComputed(function () {
-        return (self.PageIndex() * self.PageSize()) + 1;
-    });
+        $.each(modelState, function (key, value) {
+            $.each(modelState[key], function (item, val) {
+                errors.push(val);
+            });
+        });
 
-    self.EndRecord = ko.pureComputed(function () {
-        var end = ((self.PageIndex() + 1) * self.PageSize());
-        return (end > self.TotalCount()) ? self.TotalCount() : end;
-    });
+        notify.fail(errors, true);
+    },
+    close: function () {
+        $.notifyClose();
+    }
 };

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataRepository;
 
 namespace Services.Product
 {
     public interface IProductService
     {
-        IList<DataRepository.Entities.Orders.Product> GetAllProducts();
+        IPagedList<DataRepository.Entities.Orders.Product> GetAllProducts(int pageIndex = default(int), int pageSize = int.MaxValue);
 
     }
 }

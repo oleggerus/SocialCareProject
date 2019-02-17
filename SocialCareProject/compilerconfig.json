@@ -26,5 +26,9 @@
   {
     "outputFile": "Content/custom/worker_styles.css",
     "inputFile": "Content/custom/worker_styles.scss"
+  },
+  {
+    "outputFile": "Content/variables.css",
+    "inputFile": "Content/variables.scss"
   }
 ]

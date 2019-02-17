@@ -9,7 +9,9 @@ namespace SocialCareProject
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-{version}.min.js"
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -27,9 +29,13 @@ namespace SocialCareProject
                       "~/Content/general_styles.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
-                "~/Scripts/knockout-{version}.js"));
+                "~/Scripts/knockout-{version}.js",
+                "~/Scripts/knockout.mapping-latest.js"));
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                 "~/Scripts/common.js"));
+            bundles.Add(new ScriptBundle("~/bundles/moment").Include(
+                "~/Scripts/moment.js",
+                "~/Scripts/moment-with-locales.js"));
 
             //sass
             bundles.Add(new StyleBundle("~/Content/customer_styles").Include(
