@@ -25,6 +25,7 @@ namespace SocialCareProject
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-datepicker.css",
                       "~/Content/general_styles.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
@@ -35,7 +36,7 @@ namespace SocialCareProject
             bundles.Add(new ScriptBundle("~/bundles/moment").Include(
                 "~/Scripts/moment.js",
                 "~/Scripts/moment-with-locales.js",
-            "~/Scripts/bootstrap-datepicker"));
+            "~/Scripts/bootstrap-datepicker.js"));
 
             //sass
             bundles.Add(new StyleBundle("~/Content/customer_styles").Include(
