@@ -32,7 +32,7 @@ namespace DataRepository.Entities
         public virtual User UpdatedBy { get; set; }
         [Required]
         public virtual Address Address { get; set; }
-        public virtual Worker Contact { get; set; }
+        public virtual User Contact { get; set; }
 
         [InverseProperty("Administration")]
         public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();

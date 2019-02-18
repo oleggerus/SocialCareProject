@@ -35,6 +35,8 @@ namespace SocialCareProject.Areas.Customer.Controllers
                 return RedirectToAction("Index", "Home", new { area = "" });
             }
 
+            var ad = customer.Administration;
+            var contact = ad.Contact;
             var customerModel = _customerModelFactory.PrepareCustomerModel(customer);
 
             return View("CustomerDetails", customerModel);

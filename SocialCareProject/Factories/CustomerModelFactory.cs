@@ -15,6 +15,9 @@ namespace SocialCareProject.Factories
             {
                 Id = customer.UserId,
                 Administration = customer.Administration.Name,
+                AdministrationContactName = customer.Administration.Contact.FirstName +
+                                            " " + customer.Administration.Contact.LastName,
+                AdministrationPhone = customer.Administration.Phone,
                 StatusId = customer.StatusId,
                 Email = customer.User.Email,
                 Phone = customer.User.Phone,

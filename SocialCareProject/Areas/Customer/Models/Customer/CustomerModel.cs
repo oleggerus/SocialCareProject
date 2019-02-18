@@ -9,6 +9,10 @@ namespace SocialCareProject.Areas.Customer.Models.Customer
     {
         public int Id { get; set; }
         public string Administration { get; set; }
+        public string AdministrationPhone { get; set; }
+        public string AdministrationContactName { get; set; }
+
+
 
         public string Info { get; set; }
         public bool? IsSelfPaid { get; set; }

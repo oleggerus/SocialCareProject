@@ -108,29 +108,13 @@
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\EnumHelpers.cs" />
     <Compile Include="IPagedList.cs" />
-    <Compile Include="Migrations\201902102022422_ChangedDb.cs" />
-    <Compile Include="Migrations\201902102022422_ChangedDb.Designer.cs">
-      <DependentUpon>201902102022422_ChangedDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902121831004_ModifiedUser.cs" />
-    <Compile Include="Migrations\201902121831004_ModifiedUser.Designer.cs">
-      <DependentUpon>201902121831004_ModifiedUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902122024218_ModifiedCustomerAndvendor.cs" />
-    <Compile Include="Migrations\201902122024218_ModifiedCustomerAndvendor.Designer.cs">
-      <DependentUpon>201902122024218_ModifiedCustomerAndvendor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902161705134_add_picture_for_product.cs" />
-    <Compile Include="Migrations\201902161705134_add_picture_for_product.Designer.cs">
-      <DependentUpon>201902161705134_add_picture_for_product.cs</DependentUpon>
+    <Compile Include="Migrations\201902182052539_Initial.cs" />
+    <Compile Include="Migrations\201902182052539_Initial.Designer.cs">
+      <DependentUpon>201902182052539_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="PagedList.cs" />
     <Compile Include="RepositoryPattern\EfRepository.cs" />
     <Compile Include="RepositoryPattern\IRepository.cs" />
-    <Compile Include="Migrations\201902091658126_Initial.cs" />
-    <Compile Include="Migrations\201902091658126_Initial.Designer.cs">
-      <DependentUpon>201902091658126_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -139,22 +123,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902091658126_Initial.resx">
-      <DependentUpon>201902091658126_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902102022422_ChangedDb.resx">
-      <DependentUpon>201902102022422_ChangedDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902121831004_ModifiedUser.resx">
-      <DependentUpon>201902121831004_ModifiedUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902122024218_ModifiedCustomerAndvendor.resx">
-      <DependentUpon>201902122024218_ModifiedCustomerAndvendor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902161705134_add_picture_for_product.resx">
-      <DependentUpon>201902161705134_add_picture_for_product.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902182052539_Initial.resx">
+      <DependentUpon>201902182052539_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

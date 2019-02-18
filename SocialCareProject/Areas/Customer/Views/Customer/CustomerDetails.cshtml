@@ -16,11 +16,6 @@
                 <div class="col-xs-3" style="height: 200px; background: cadetblue">
                 </div>
                 <div class="col-xs-9">
-                    @*<div class="form-group">
-                        <div class="form-control">
-                            <label class="control-label"></label>
-                        </div>
-                    </div>*@
                     <div class="row">
                         <div class="form-group col-xs-4">
                             <label class="control-label ">Ім'я</label>
@@ -43,7 +38,7 @@
                         <div class="form-group col-xs-4">
                             <label class="control-label ">Дата народження</label>
                             <div>
-                                <input data-bind="datePicker: DateOfBirth" />
+                                <input class="form-control" data-bind="datePicker: DateOfBirth" />
                                 @*<input class="form-control datepicker" maxlength="60" data-bind="value:  DateOfBirth" />*@
                             </div>
                         </div>
@@ -70,16 +65,117 @@
             </div>
         </div>
 
+        <div class="card">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group col-xs-4">
+                        <label class="control-label ">Область</label>
+                        <select class="form-control" data-bind="value: RegionId,
+                                        options: CustomerDetails.Regions,
+                                        optionsValue: 'Key' , optionsText: 'Value' , optionsCaption: 'Область'"></select>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label ">Населений пункт</label>
+                        <div>
+                            <input class="form-control" data-bind="value:  City" />
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label ">Вулиця</label>
+                        <div>
+                            <input class="form-control" data-bind="value:Street" />
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label ">Номер буд./кв.</label>
+                        <div>
+                            <input class="form-control" data-bind="value:HouseNameRoomNumber" />
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label ">Індекс</label>
+                        <div>
+                            <input class="form-control" data-bind="value:  ZipPostalCode" />
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label ">Домашній телефон</label>
+                        <div>
+                            <input class="form-control" data-bind="value:  HomePhoneNumber" />
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label ">Мобільний телефон</label>
+                        <div>
+                            <input class="form-control" maxlength="60" data-bind="value:  Phone" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group col-xs-4">
+                        <label class="control-label">Адміністрація</label>
+                        <div>
+                            <input class="form-control disabled" readonly="readonly" data-bind="value:  Administration" />
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label">Контактна особа</label>
+                        <div>
+                            <input class="form-control disabled"  readonly="readonly" data-bind="value:  AdministrationContactName" />
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label">Контактний телефон</label>
+                        <div>
+                            <input class="form-control disabled"  readonly="readonly"  data-bind="value:AdministrationPhone" />
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label">Статус догляду</label>
+                        <div  readonly="readonly">
+                            <select class="form-control" disabled="disabled" readonly="readonly" data-bind="value: StatusId,
+                                        options: CustomerDetails.CustomerStatuses,
+                                        optionsValue: 'Key' , optionsText: 'Value' , optionsCaption: 'Статус'"></select>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4" style="margin-top: 30px;">
+                        <span class="checkbox">
+                            <label>
+                                <input type="checkbox" disabled="disabled"  readonly="readonly" data-bind="checked: IsSelfPaid">
+                                Самозабезпечений
+                            </label>
+                        </span>
+                    </div>
+                   
+                    
+                    <div class="form-group col-xs-4" style="margin-top: 30px;">
+                        <span class="checkbox">
+                            <label>
+                                <input type="checkbox" disabled="disabled"  readonly="readonly" data-bind="checked: IsInvalid">
+                                Проблеми зі здоров'ям
+                            </label>
+                        </span>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        
+
     </div>
+
 </div>
 
 <script type="text/javascript">
-    @*offers.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
-    @*CustomerDetails.GetOffers = '@Html.Raw(Url.Action("GetFilteredOffers", "Offer"))';*@
     CustomerDetails.Details = @Html.Raw(Json.Encode(Model));
-    @*CustomerDetails.Pager = @Html.Raw();*@
     CustomerDetails.ContainerId = 'customerDetails';
-    @*CustomerDetails.Statuses =  @Html.Raw(Json.Encode(EnumHelpers.GetEnumKeyValuePairList<OfferStatuses>()));*@
+    CustomerDetails.Regions =  @Html.Raw(Json.Encode(EnumHelpers.GetEnumKeyValuePairList<Regions>()));
+    CustomerDetails.CustomerStatuses =  @Html.Raw(Json.Encode(EnumHelpers.ToList<CustomerCareStatuses>()));
+
 
     CustomerDetails.Statuses = {
         Created: @((int)OfferStatuses.Створений),

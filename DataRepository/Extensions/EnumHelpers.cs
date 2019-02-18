@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -75,6 +77,45 @@ namespace DataRepository.Extensions
         /// <typeparam name="TEnum">Enum type</typeparam>
         /// <param name="exclude">Arrays of TEnum values to exclude</param>
         /// <returns></returns>
+
+        public static IList<KeyValuePair<Enum, string>> ToList<T>() where T : struct
+        {
+            var type = typeof(T);
+
+            if (!type.IsEnum)
+            {
+                throw new ArgumentException("T must be an enum");
+            }
+
+            return (IList<KeyValuePair<Enum, string>>)
+                Enum.GetValues(type)
+                    .OfType<Enum>()
+                    .Select(e => new KeyValuePair<Enum, string>(e, e.Description()))
+                    .ToArray();
+        }
+
+        public static string Description(this Enum value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            string description = value.ToString();
+            FieldInfo fieldInfo = value.GetType().GetField(description);
+            DescriptionAttribute[] attributes =
+                (DescriptionAttribute[])
+                fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+            if (attributes.Length > 0)
+            {
+                description = attributes[0].Description;
+            }
+
+            return description;
+        }
+
+
         public static IList<SelectListItem> GetEnumSelectListItemList<TEnum>(params TEnum[] exclude)
             where TEnum : struct, IConvertible
         {

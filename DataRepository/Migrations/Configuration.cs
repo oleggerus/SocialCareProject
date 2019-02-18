@@ -1,3 +1,6 @@
+using DataRepository.Entities;
+using DataRepository.Entities.Orders;
+using DataRepository.Entities.People;
 using DataRepository.Enums;
 using System;
 using System.Collections.Generic;
@@ -5,9 +8,6 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Text;
-using DataRepository.Entities;
-using DataRepository.Entities.Orders;
-using DataRepository.Entities.People;
 
 namespace DataRepository.Migrations
 {
@@ -132,6 +132,22 @@ namespace DataRepository.Migrations
                 Phone = "09090909990",
                 Username = "administration"
             };
+            var administrationUserContact = new User
+            {
+                Role = administrationRole,
+                FirstName = "Контакт",
+                LastName = "Контакт",
+                DateOfBirth = new DateTime(1943, 11, 11),
+                Email = "workercontact@mail.com",
+                IsActive = true,
+                IsDeleted = false,
+                Gender = (int)GenderEnum.Чоловік,
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
+                Phone = "1212112120",
+                Username = "administration"
+            };
+
             var administrationLeadUser = new User
             {
                 Role = administrationLeadRole,
@@ -216,6 +232,7 @@ namespace DataRepository.Migrations
             context.Users.AddOrUpdate(custUser2);
             context.Users.AddOrUpdate(administrationUser);
             context.Users.AddOrUpdate(administrationLeadUser);
+            context.Users.AddOrUpdate(administrationUserContact);
             context.Users.AddOrUpdate(vendorUser);
             context.Users.AddOrUpdate(adminUser);
             context.Users.AddOrUpdate(providerUser);
@@ -318,6 +335,7 @@ namespace DataRepository.Migrations
             {
                 Address = administrationAddress,
                 CreatedBy = adminUser,
+                Contact = administrationUserContact,
                 Description = "Міська адміністрація Львівського району",
                 Name = "Львівська адміністрація",
                 Email = "lviv@mail.com",
@@ -636,6 +654,8 @@ namespace DataRepository.Migrations
 
             context.WorkerPersonAssignments.AddOrUpdate(assignment);
             #endregion
+
+
 
             //SaveChanges(context);
             base.Seed(context);

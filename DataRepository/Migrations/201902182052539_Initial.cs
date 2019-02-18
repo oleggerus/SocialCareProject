@@ -42,20 +42,21 @@ namespace DataRepository.Migrations
                         Email = c.String(nullable: false),
                         Username = c.String(),
                         Password = c.String(nullable: false),
+                        PasswordSalt = c.String(nullable: false),
                         NoAttempts = c.Int(),
                         IsActive = c.Boolean(nullable: false),
                         IsDeleted = c.Boolean(nullable: false),
                         Phone = c.String(nullable: false),
                         DateOfBirth = c.DateTime(nullable: false),
-                        IsMale = c.Boolean(nullable: false),
+                        Gender = c.Int(nullable: false),
                         Avatar = c.Binary(),
                         CreatedOnUtc = c.DateTime(nullable: false),
                         UpdatedOnUtc = c.DateTime(),
-                        Role_Id = c.Int(nullable: false),
+                        RoleId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Roles", t => t.Role_Id)
-                .Index(t => t.Role_Id);
+                .ForeignKey("dbo.Roles", t => t.RoleId)
+                .Index(t => t.RoleId);
             
             CreateTable(
                 "dbo.Roles",
@@ -99,11 +100,40 @@ namespace DataRepository.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Addresses", t => t.Address_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Workers", t => t.Contact_Id)
+                .ForeignKey("dbo.Users", t => t.Contact_Id)
                 .ForeignKey("dbo.Users", t => t.CreatedBy_Id)
                 .ForeignKey("dbo.Users", t => t.UpdatedBy_Id)
                 .Index(t => t.Address_Id)
                 .Index(t => t.Contact_Id)
+                .Index(t => t.CreatedBy_Id)
+                .Index(t => t.UpdatedBy_Id);
+            
+            CreateTable(
+                "dbo.Customers",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        AdministrationId = c.Int(nullable: false),
+                        AddressId = c.Int(nullable: false),
+                        UserId = c.Int(nullable: false),
+                        Info = c.String(),
+                        IsSelfPaid = c.Boolean(nullable: false),
+                        IsInvalid = c.Boolean(nullable: false),
+                        StatusId = c.Int(),
+                        CreatedOnUtc = c.DateTime(nullable: false),
+                        UpdatedOnUtc = c.DateTime(),
+                        CreatedBy_Id = c.Int(),
+                        UpdatedBy_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Addresses", t => t.AddressId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.CreatedBy_Id)
+                .ForeignKey("dbo.Users", t => t.UpdatedBy_Id)
+                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.Administrations", t => t.AdministrationId)
+                .Index(t => t.AdministrationId)
+                .Index(t => t.AddressId)
+                .Index(t => t.UserId)
                 .Index(t => t.CreatedBy_Id)
                 .Index(t => t.UpdatedBy_Id);
             
@@ -123,35 +153,6 @@ namespace DataRepository.Migrations
                 .ForeignKey("dbo.Administrations", t => t.Administration_Id)
                 .Index(t => t.User_Id)
                 .Index(t => t.Administration_Id);
-            
-            CreateTable(
-                "dbo.Customers",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        AdministrationId = c.Int(nullable: false),
-                        Info = c.String(),
-                        IsSelfPaid = c.Boolean(nullable: false),
-                        IsInvalid = c.Boolean(nullable: false),
-                        StatusId = c.Int(),
-                        CreatedOnUtc = c.DateTime(nullable: false),
-                        UpdatedOnUtc = c.DateTime(),
-                        Address_Id = c.Int(nullable: false),
-                        CreatedBy_Id = c.Int(),
-                        UpdatedBy_Id = c.Int(),
-                        User_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Addresses", t => t.Address_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.CreatedBy_Id)
-                .ForeignKey("dbo.Users", t => t.UpdatedBy_Id)
-                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Administrations", t => t.AdministrationId)
-                .Index(t => t.AdministrationId)
-                .Index(t => t.Address_Id)
-                .Index(t => t.CreatedBy_Id)
-                .Index(t => t.UpdatedBy_Id)
-                .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.Categories",
@@ -183,17 +184,18 @@ namespace DataRepository.Migrations
                         Height = c.Double(nullable: false),
                         ScheduleId = c.Int(),
                         StatusId = c.Int(nullable: false),
+                        Picture = c.Binary(),
+                        CategoryId = c.Int(nullable: false),
+                        CreatedById = c.Int(nullable: false),
                         CreatedOnUtc = c.DateTime(nullable: false),
-                        CreatedBy_Id = c.Int(nullable: false),
-                        Category_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Providers", t => t.CreatedBy_Id)
+                .ForeignKey("dbo.Providers", t => t.CreatedById)
                 .ForeignKey("dbo.ProductSchedules", t => t.ScheduleId)
-                .ForeignKey("dbo.Categories", t => t.Category_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
                 .Index(t => t.ScheduleId)
-                .Index(t => t.CreatedBy_Id)
-                .Index(t => t.Category_Id);
+                .Index(t => t.CategoryId)
+                .Index(t => t.CreatedById);
             
             CreateTable(
                 "dbo.Providers",
@@ -203,23 +205,23 @@ namespace DataRepository.Migrations
                         CreatedOnUtc = c.DateTime(nullable: false),
                         UpdatedOnUtc = c.DateTime(),
                         PositionId = c.Int(),
+                        UserId = c.Int(nullable: false),
+                        VendorId = c.Int(),
                         Address_Id = c.Int(),
                         CreatedBy_Id = c.Int(),
                         UpdatedBy_Id = c.Int(),
-                        User_Id = c.Int(nullable: false),
-                        Vendor_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Addresses", t => t.Address_Id)
                 .ForeignKey("dbo.Users", t => t.CreatedBy_Id)
                 .ForeignKey("dbo.Users", t => t.UpdatedBy_Id)
-                .ForeignKey("dbo.Users", t => t.User_Id)
-                .ForeignKey("dbo.Vendors", t => t.Vendor_Id)
+                .ForeignKey("dbo.Users", t => t.UserId)
+                .ForeignKey("dbo.Vendors", t => t.VendorId)
+                .Index(t => t.UserId)
+                .Index(t => t.VendorId)
                 .Index(t => t.Address_Id)
                 .Index(t => t.CreatedBy_Id)
-                .Index(t => t.UpdatedBy_Id)
-                .Index(t => t.User_Id)
-                .Index(t => t.Vendor_Id);
+                .Index(t => t.UpdatedBy_Id);
             
             CreateTable(
                 "dbo.Vendors",
@@ -359,36 +361,36 @@ namespace DataRepository.Migrations
             DropForeignKey("dbo.ReturnRequests", "CreatedById", "dbo.Users");
             DropForeignKey("dbo.PersonRequests", "Customer_Id", "dbo.Customers");
             DropForeignKey("dbo.PersonRequests", "Category_Id", "dbo.Categories");
-            DropForeignKey("dbo.Products", "Category_Id", "dbo.Categories");
+            DropForeignKey("dbo.Products", "CategoryId", "dbo.Categories");
             DropForeignKey("dbo.Products", "ScheduleId", "dbo.ProductSchedules");
             DropForeignKey("dbo.Offers", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.Offers", "ReviewedBy_Id", "dbo.Users");
             DropForeignKey("dbo.Offers", "Customer_Id", "dbo.Customers");
             DropForeignKey("dbo.Offers", "CreatedById", "dbo.Providers");
-            DropForeignKey("dbo.Products", "CreatedBy_Id", "dbo.Providers");
+            DropForeignKey("dbo.Products", "CreatedById", "dbo.Providers");
             DropForeignKey("dbo.Vendors", "UpdatedBy_Id", "dbo.Users");
-            DropForeignKey("dbo.Providers", "Vendor_Id", "dbo.Vendors");
+            DropForeignKey("dbo.Providers", "VendorId", "dbo.Vendors");
             DropForeignKey("dbo.Vendors", "CreatedBy_Id", "dbo.Users");
             DropForeignKey("dbo.Vendors", "Contact_Id", "dbo.Providers");
             DropForeignKey("dbo.Vendors", "Address_Id", "dbo.Addresses");
-            DropForeignKey("dbo.Providers", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.Providers", "UserId", "dbo.Users");
             DropForeignKey("dbo.Providers", "UpdatedBy_Id", "dbo.Users");
             DropForeignKey("dbo.Providers", "CreatedBy_Id", "dbo.Users");
             DropForeignKey("dbo.Providers", "Address_Id", "dbo.Addresses");
             DropForeignKey("dbo.Workers", "Administration_Id", "dbo.Administrations");
+            DropForeignKey("dbo.Workers", "User_Id", "dbo.Users");
             DropForeignKey("dbo.Administrations", "UpdatedBy_Id", "dbo.Users");
             DropForeignKey("dbo.Customers", "AdministrationId", "dbo.Administrations");
-            DropForeignKey("dbo.Customers", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.Customers", "UserId", "dbo.Users");
             DropForeignKey("dbo.Customers", "UpdatedBy_Id", "dbo.Users");
             DropForeignKey("dbo.Customers", "CreatedBy_Id", "dbo.Users");
-            DropForeignKey("dbo.Customers", "Address_Id", "dbo.Addresses");
+            DropForeignKey("dbo.Customers", "AddressId", "dbo.Addresses");
             DropForeignKey("dbo.Administrations", "CreatedBy_Id", "dbo.Users");
-            DropForeignKey("dbo.Administrations", "Contact_Id", "dbo.Workers");
-            DropForeignKey("dbo.Workers", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.Administrations", "Contact_Id", "dbo.Users");
             DropForeignKey("dbo.Administrations", "Address_Id", "dbo.Addresses");
             DropForeignKey("dbo.Addresses", "UpdatedBy_Id", "dbo.Users");
             DropForeignKey("dbo.Addresses", "CreatedBy_Id", "dbo.Users");
-            DropForeignKey("dbo.Users", "Role_Id", "dbo.Roles");
+            DropForeignKey("dbo.Users", "RoleId", "dbo.Roles");
             DropForeignKey("dbo.Permissions", "Role_Id", "dbo.Roles");
             DropIndex("dbo.WorkerPersonAssignments", new[] { "Worker_Id" });
             DropIndex("dbo.WorkerPersonAssignments", new[] { "Customer_Id" });
@@ -405,27 +407,27 @@ namespace DataRepository.Migrations
             DropIndex("dbo.Vendors", new[] { "CreatedBy_Id" });
             DropIndex("dbo.Vendors", new[] { "Contact_Id" });
             DropIndex("dbo.Vendors", new[] { "Address_Id" });
-            DropIndex("dbo.Providers", new[] { "Vendor_Id" });
-            DropIndex("dbo.Providers", new[] { "User_Id" });
             DropIndex("dbo.Providers", new[] { "UpdatedBy_Id" });
             DropIndex("dbo.Providers", new[] { "CreatedBy_Id" });
             DropIndex("dbo.Providers", new[] { "Address_Id" });
-            DropIndex("dbo.Products", new[] { "Category_Id" });
-            DropIndex("dbo.Products", new[] { "CreatedBy_Id" });
+            DropIndex("dbo.Providers", new[] { "VendorId" });
+            DropIndex("dbo.Providers", new[] { "UserId" });
+            DropIndex("dbo.Products", new[] { "CreatedById" });
+            DropIndex("dbo.Products", new[] { "CategoryId" });
             DropIndex("dbo.Products", new[] { "ScheduleId" });
-            DropIndex("dbo.Customers", new[] { "User_Id" });
-            DropIndex("dbo.Customers", new[] { "UpdatedBy_Id" });
-            DropIndex("dbo.Customers", new[] { "CreatedBy_Id" });
-            DropIndex("dbo.Customers", new[] { "Address_Id" });
-            DropIndex("dbo.Customers", new[] { "AdministrationId" });
             DropIndex("dbo.Workers", new[] { "Administration_Id" });
             DropIndex("dbo.Workers", new[] { "User_Id" });
+            DropIndex("dbo.Customers", new[] { "UpdatedBy_Id" });
+            DropIndex("dbo.Customers", new[] { "CreatedBy_Id" });
+            DropIndex("dbo.Customers", new[] { "UserId" });
+            DropIndex("dbo.Customers", new[] { "AddressId" });
+            DropIndex("dbo.Customers", new[] { "AdministrationId" });
             DropIndex("dbo.Administrations", new[] { "UpdatedBy_Id" });
             DropIndex("dbo.Administrations", new[] { "CreatedBy_Id" });
             DropIndex("dbo.Administrations", new[] { "Contact_Id" });
             DropIndex("dbo.Administrations", new[] { "Address_Id" });
             DropIndex("dbo.Permissions", new[] { "Role_Id" });
-            DropIndex("dbo.Users", new[] { "Role_Id" });
+            DropIndex("dbo.Users", new[] { "RoleId" });
             DropIndex("dbo.Addresses", new[] { "UpdatedBy_Id" });
             DropIndex("dbo.Addresses", new[] { "CreatedBy_Id" });
             DropTable("dbo.WorkerPersonAssignments");
@@ -437,8 +439,8 @@ namespace DataRepository.Migrations
             DropTable("dbo.Providers");
             DropTable("dbo.Products");
             DropTable("dbo.Categories");
-            DropTable("dbo.Customers");
             DropTable("dbo.Workers");
+            DropTable("dbo.Customers");
             DropTable("dbo.Administrations");
             DropTable("dbo.Permissions");
             DropTable("dbo.Roles");

@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace DataRepository.Enums
 {
     public enum CustomerCareStatuses
     {
+        [Description("Потребує догляду")]
         ПотребуєДогляду = 1,
+
+        [Description("Не потребує догляду")]
         НеПотребуєДогляду = 2,
-        ПідДоглядом = 3 
+
+        [Description("Під доглядом")]
+        ПідДоглядом = 3
     }
 }
