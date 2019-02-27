@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using DataRepository;
+﻿using DataRepository;
 using DataRepository.Entities.Orders;
 using DataRepository.Enums;
 using DataRepository.Extensions;
 using SocialCareProject.Areas.Customer.Models.Offer;
+using System;
+using System.Linq;
 
 namespace SocialCareProject.Factories
 {
@@ -41,6 +39,30 @@ namespace SocialCareProject.Factories
             {
                 Offers = offers.Select(PrepareOfferItemModel).ToList(),
                 Pager = Extensions.Extensions.ToSimplePagerModel(offers)
+            };
+        }
+
+        public PersonRequestItemModel PreparePersonRequestItemModel(PersonRequest request)
+        {
+            return new PersonRequestItemModel
+            {
+                CreatedOnUtc = request.CreatedOnUtc.ToString(Constants.DateFormat.ShortDateString),
+                ClosedOnUtc = request.StatusId == (int)PersonRequestStatuses.Closed? new DateTime(2019, 02, 01).ToString(Constants.DateFormat.ShortDateString) : new DateTime().ToString(Constants.DateFormat.ShortDateString), 
+                Description = request.Description,
+                Category = request.Category.Name,
+                Id =  request.Id,
+                StatusId = request.StatusId,
+                Name = request.Name,
+                Status = ((PersonRequestStatuses)request.StatusId).Description(),
+            };
+        }
+
+        public PersonRequestListModel PreparePersonRequestsListModel(IPagedList<PersonRequest> requests)
+        {
+            return new PersonRequestListModel
+            {
+                Items = requests.Select(PreparePersonRequestItemModel).ToList(),
+                Pager = Extensions.Extensions.ToSimplePagerModel(requests)
             };
         }
     }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Services.Offer;
+﻿using Services.Offer;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
 using SocialCareProject.Models;
+using System.Web.Mvc;
 
 namespace SocialCareProject.Areas.Customer.Controllers
 {
@@ -24,7 +20,9 @@ namespace SocialCareProject.Areas.Customer.Controllers
 
         public ActionResult Index(SimplePagerModel pager)
         {
-            var offers = _offerService.GetFilteredOffers(pager.PageIndex, pager.PageSize);
+            var currentUser = HttpContext.User as CustomUser;
+
+            var offers = _offerService.GetFilteredOffers(currentUser?.UserId ?? default(int), pager.PageIndex, pager.PageSize);
 
             var model = _offerModelFactory.PrepareProductListModel(offers);
 
@@ -33,22 +31,59 @@ namespace SocialCareProject.Areas.Customer.Controllers
 
         public JsonResult GetFilteredOffers(SimplePagerModel pager)
         {
-            var offers = _offerService.GetFilteredOffers(pager.PageIndex, pager.PageSize);
+            var currentUser = HttpContext.User as CustomUser;
+            var id = currentUser?.UserId ?? default(int);
+
+            var offers = _offerService.GetFilteredOffers(id, pager.PageIndex, pager.PageSize);
             var model = _offerModelFactory.PrepareProductListModel(offers);
-            var url = GetUrlWithFilters(pager);
+            var url = GetUrlWithFilters(pager, id);
 
             return CreateJsonResult(true, url, model);
         }
 
-        private string GetUrlWithFilters(SimplePagerModel pager)
+        public ActionResult PersonRequestList(SimplePagerModel pager)
+        {
+            var currentUser = HttpContext.User as CustomUser;
+
+            var personRequests = _offerService.GetFilteredPersonRequests(currentUser?.UserId ?? default(int), pager.PageIndex, pager.PageSize);
+            var model = _offerModelFactory.PreparePersonRequestsListModel(personRequests);
+            return View("PersonRequestList", model);
+        }
+
+        public JsonResult GetFilteredPersonRequests(SimplePagerModel pager)
+        {
+            var currentUser = HttpContext.User as CustomUser;
+            var id = currentUser?.UserId ?? default(int);
+            var personRequests = _offerService.GetFilteredPersonRequests(id, pager.PageIndex, pager.PageSize);
+            var model = _offerModelFactory.PreparePersonRequestsListModel(personRequests);
+            var url = GetUrlWithFiltersForRequests(pager, id);
+
+            return CreateJsonResult(true, url, model);
+        }
+
+        private string GetUrlWithFilters(SimplePagerModel pager, int customerId)
         {
             var urlParams = new
             {
+                customerId,
                 pageIndex = pager.PageIndex,
                 pageSize = pager.PageSize
             };
 
             return Url.Action("Index", urlParams);
         }
+
+        private string GetUrlWithFiltersForRequests(SimplePagerModel pager, int customerId)
+        {
+            var urlParams = new
+            {
+                customerId,
+                pageIndex = pager.PageIndex,
+                pageSize = pager.PageSize
+            };
+
+            return Url.Action("PersonRequestList", urlParams);
+        }
+
     }
 }

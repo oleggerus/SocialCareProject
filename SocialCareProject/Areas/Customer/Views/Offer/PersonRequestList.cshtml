@@ -1,0 +1,90 @@
+﻿@using DataRepository.Enums
+@model SocialCareProject.Areas.Customer.Models.Offer.PersonRequestListModel
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    @Scripts.Render("~/Scripts/app/customer/personRequests.js")
+    ViewBag.Title = "Мої запити";
+}
+
+<div id="personRequestsList">
+    <div class="container inner-container">
+        <div class="panel">
+            <div class="panel-body paged-list-in-tab">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-group results-table" data-bind="foreach: Items">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <label class="control-label" data-bind="text: Name"></label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <span data-bind="text: Category"></span>
+                                    </div>
+                                    <div class="col-xs-3 ">
+                                        <!--ko if: StatusId()==PersonRequests.Statuses.Opened -->
+                                        <span class="label label-success text-uppercase" data-bind="text:Status"></span>
+                                        <br>
+                                        <span class="text-muted">Створено: </span>
+                                        <span class="text-muted" data-bind="text: CreatedOnUtc"></span>
+                                        <!--/ko-->
+                                        <!--ko if: StatusId()==PersonRequests.Statuses.PendingReview -->
+                                        <span class="label label-danger text-uppercase" data-bind="text:Status"></span>
+                                        <br>
+                                        <span class="text-muted">Створено: </span>
+                                        <span class="text-muted" data-bind="text: CreatedOnUtc"></span>
+                                        <!--/ko-->
+                                        <!--ko if: StatusId()== PersonRequests.Statuses.Closed -->
+                                        <span class="label label-primary text-uppercase" data-bind="text:Status"></span>
+                                        <br>
+                                        <span class="text-muted">Закрито: </span>
+                                        <span class="text-muted" data-bind="text: ClosedOnUtc"></span>
+                                        <!--/ko-->
+
+                                    </div>
+
+                                    <div class="col-xs-3 text-center">
+                                        <button type="button" data-bind="click:$root.Details.bind(this,Id())" class="btn btn-primary">Деталі</button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-xs-12 ">
+                                        <span>Опис: </span>
+                                        <span data-bind="text: Description"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-2 col-xs-8 text-center" data-bind="with: Pager">
+                        @Html.Partial("_Pager")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    PersonRequests.GetPersonRequests = '@Html.Raw(Url.Action("PersonRequestList", "Offer"))';
+    PersonRequests.GeneralErrorMessage = 'An error occured';
+    PersonRequests.Items = @Html.Raw(Json.Encode(Model.Items));
+    PersonRequests.Pager = @Html.Raw(Json.Encode(Model.Pager));
+    PersonRequests.ContainerId = 'personRequestsList';
+
+    PersonRequests.Statuses = {
+        Opened: @((int)PersonRequestStatuses.Opened),
+        PendingReview: @((int)PersonRequestStatuses.PendingReview),
+        Closed: @((int)PersonRequestStatuses.Closed)
+    };
+
+    $(document).ready(function() {
+        PersonRequests.Init();
+    });
+
+</script>

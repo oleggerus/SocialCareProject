@@ -15,5 +15,11 @@ namespace SocialCareProject.Factories
         OfferModel PrepareOfferModel(Offer offer);
 
         OfferListModel PrepareProductListModel(IPagedList<Offer> offers);
+
+        PersonRequestItemModel PreparePersonRequestItemModel(PersonRequest request);
+
+        PersonRequestListModel PreparePersonRequestsListModel(IPagedList<PersonRequest> requests);
+
+        
     }
 }
