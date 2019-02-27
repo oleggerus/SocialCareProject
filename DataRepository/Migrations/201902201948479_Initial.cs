@@ -306,14 +306,17 @@ namespace DataRepository.Migrations
                         Description = c.String(nullable: false),
                         StatusId = c.Int(nullable: false),
                         IsDeleted = c.Boolean(nullable: false),
+                        CreatedById = c.Int(nullable: false),
+                        CustomerId = c.Int(nullable: false),
                         Category_Id = c.Int(nullable: false),
-                        Customer_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.Category_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Customers", t => t.Customer_Id, cascadeDelete: true)
-                .Index(t => t.Category_Id)
-                .Index(t => t.Customer_Id);
+                .ForeignKey("dbo.Customers", t => t.CreatedById)
+                .ForeignKey("dbo.Customers", t => t.CustomerId)
+                .Index(t => t.CreatedById)
+                .Index(t => t.CustomerId)
+                .Index(t => t.Category_Id);
             
             CreateTable(
                 "dbo.ReturnRequests",
@@ -359,7 +362,8 @@ namespace DataRepository.Migrations
             DropForeignKey("dbo.WorkerPersonAssignments", "ApprovedBy_Id", "dbo.Workers");
             DropForeignKey("dbo.ReturnRequests", "Offer_Id", "dbo.Offers");
             DropForeignKey("dbo.ReturnRequests", "CreatedById", "dbo.Users");
-            DropForeignKey("dbo.PersonRequests", "Customer_Id", "dbo.Customers");
+            DropForeignKey("dbo.PersonRequests", "CustomerId", "dbo.Customers");
+            DropForeignKey("dbo.PersonRequests", "CreatedById", "dbo.Customers");
             DropForeignKey("dbo.PersonRequests", "Category_Id", "dbo.Categories");
             DropForeignKey("dbo.Products", "CategoryId", "dbo.Categories");
             DropForeignKey("dbo.Products", "ScheduleId", "dbo.ProductSchedules");
@@ -397,8 +401,9 @@ namespace DataRepository.Migrations
             DropIndex("dbo.WorkerPersonAssignments", new[] { "ApprovedBy_Id" });
             DropIndex("dbo.ReturnRequests", new[] { "Offer_Id" });
             DropIndex("dbo.ReturnRequests", new[] { "CreatedById" });
-            DropIndex("dbo.PersonRequests", new[] { "Customer_Id" });
             DropIndex("dbo.PersonRequests", new[] { "Category_Id" });
+            DropIndex("dbo.PersonRequests", new[] { "CustomerId" });
+            DropIndex("dbo.PersonRequests", new[] { "CreatedById" });
             DropIndex("dbo.Offers", new[] { "Product_Id" });
             DropIndex("dbo.Offers", new[] { "ReviewedBy_Id" });
             DropIndex("dbo.Offers", new[] { "Customer_Id" });

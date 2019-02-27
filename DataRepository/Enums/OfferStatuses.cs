@@ -1,10 +1,19 @@
-﻿namespace DataRepository.Enums
+﻿using System.ComponentModel;
+
+namespace DataRepository.Enums
 {
     public enum OfferStatuses
     {
-        Створений = 1,
-        Підтверджений = 2,
-        Відхилений = 3,
-        Неактуальний = 4
+        [Description("Потребує розгляду")]
+        PendingReview = 1,
+
+        [Description("Підтвердежено")]
+        Approved = 2,
+
+        [Description("Відхилено")]
+        Declined = 3,
+
+        [Description("Не актуально")]
+        NotActual = 4
     }
 }

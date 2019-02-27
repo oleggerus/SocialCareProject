@@ -58,6 +58,14 @@ namespace DataRepository
                 .HasRequired(c => c.Customer)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+            modelBuilder.Entity<PersonRequest>()
+                .HasRequired(c => c.Customer)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<PersonRequest>()
+                .HasRequired(c => c.CreatedBy)
+                .WithMany()
+                .WillCascadeOnDelete(false);
         }
 
         public DbSet<Address> Addresses { get; set; }

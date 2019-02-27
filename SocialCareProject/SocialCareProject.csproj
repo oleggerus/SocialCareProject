@@ -166,6 +166,7 @@
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Areas\Customer\Models\Customer\CustomerModel.cs" />
     <Compile Include="Areas\Customer\Models\Offer\OfferModel.cs" />
+    <Compile Include="Areas\Customer\Models\Offer\PersonRequestModel.cs" />
     <Compile Include="Areas\Customer\Models\Product\ProductModel.cs" />
     <Compile Include="Areas\Provider\Controllers\BaseProviderController.cs" />
     <Compile Include="Areas\Provider\Controllers\ErrorController.cs" />
@@ -188,9 +189,11 @@
     <Compile Include="Factories\ICustomerModelFactory.cs" />
     <Compile Include="Factories\IOfferModelFactory.cs" />
     <Compile Include="Factories\IPeopleFactory.cs" />
+    <Compile Include="Factories\IPersonRequestModelFactory.cs" />
     <Compile Include="Factories\IProductFactory.cs" />
     <Compile Include="Factories\OfferModelFactory.cs" />
     <Compile Include="Factories\PeopleModelFactory.cs" />
+    <Compile Include="Factories\PersonRequestModelFactory.cs" />
     <Compile Include="Factories\ProductFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

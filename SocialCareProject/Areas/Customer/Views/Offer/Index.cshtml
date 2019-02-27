@@ -84,19 +84,18 @@
 </div>
 
 <script type="text/javascript">
-    @*offers.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
+    
     Offers.GetOffers = '@Html.Raw(Url.Action("GetFilteredOffers", "Offer"))';
     Offers.GeneralErrorMessage = 'An error occured';
     Offers.Offers = @Html.Raw(Json.Encode(Model.Offers));
     Offers.Pager = @Html.Raw(Json.Encode(Model.Pager));
     Offers.ContainerId = 'offersList';
-    Offers.Statuses =  @Html.Raw(Json.Encode(EnumHelpers.GetEnumKeyValuePairList<OfferStatuses>()));
 
     Offers.Statuses = {
-        Created: @((int)OfferStatuses.Створений),
-        Rejected: @((int)OfferStatuses.Відхилений),
-        Closed: @((int)OfferStatuses.Неактуальний),
-        Approved: @((int)OfferStatuses.Підтверджений)
+        Created: @((int)OfferStatuses.PendingReview),
+        Rejected: @((int)OfferStatuses.Declined),
+        Closed: @((int)OfferStatuses.NotActual),
+        Approved: @((int)OfferStatuses.Approved)
     };
 
     $(document).ready(function() {

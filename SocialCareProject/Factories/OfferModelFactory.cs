@@ -5,6 +5,7 @@ using System.Web;
 using DataRepository;
 using DataRepository.Entities.Orders;
 using DataRepository.Enums;
+using DataRepository.Extensions;
 using SocialCareProject.Areas.Customer.Models.Offer;
 
 namespace SocialCareProject.Factories
@@ -18,13 +19,13 @@ namespace SocialCareProject.Factories
                 Id = offer.Id,
                 Category = offer.Product.Category.Name,
                 Name = offer.Product.Name,
-                ModifiedOnUtc = offer.StatusId == (int)OfferStatuses.Створений ? offer.CreatedOnUtc.ToString(Constants.DateFormat.ShortDateString) :
+                ModifiedOnUtc = offer.StatusId == (int)OfferStatuses.PendingReview ? offer.CreatedOnUtc.ToString(Constants.DateFormat.ShortDateString) :
                    (offer.ReviewedOnUtc.HasValue ? offer.ReviewedOnUtc.Value.ToString(Constants.DateFormat.ShortDateString) : offer.CreatedOnUtc.ToString(Constants.DateFormat.ShortDateString)),
                 Manufacturer = offer.Product.Manufacturer,
                 Price = offer.Product.Price,
                 Picture = offer.Product.Picture,
                 Description = offer.Description,
-                Status = ((OfferStatuses)offer.StatusId).ToString(),
+                Status = ((OfferStatuses)offer.StatusId).Description(),
                 StatusId = offer.StatusId
             };
         }

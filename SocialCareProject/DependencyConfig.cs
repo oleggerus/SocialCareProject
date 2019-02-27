@@ -58,15 +58,17 @@ namespace SocialCareProject
             builder.RegisterType<WorkerPersonAssignmentService>().As<IWorkerPersonAssignmentService>().InstancePerLifetimeScope();
             builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
             builder.RegisterType<RoleService>().As<IRoleService>().InstancePerLifetimeScope();
-            
+            builder.RegisterType<PersonRequestService>().As<IPersonRequestService>().InstancePerLifetimeScope();
+
 
             builder.RegisterType<PeopleModelFactory>().As<IPeopleFactory>().InstancePerLifetimeScope();
             builder.RegisterType<AddressModelFactory>().As<IAddressModelFactory>().InstancePerLifetimeScope();
             builder.RegisterType<ProductFactory>().As<IProductFactory>().InstancePerLifetimeScope();
             builder.RegisterType<OfferModelFactory>().As<IOfferModelFactory>().InstancePerLifetimeScope();
             builder.RegisterType<CustomerModelFactory>().As<ICustomerModelFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<PersonRequestModelFactory>().As<IPersonRequestModelFactory>().InstancePerLifetimeScope();
 
-
+            
             // создаем новый контейнер с теми зависимостями, которые определены выше
             var container = builder.Build();
 

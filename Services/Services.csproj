@@ -79,7 +79,9 @@
     <Compile Include="IAuthenticationService.cs" />
     <Compile Include="IRoleService.cs" />
     <Compile Include="Offer\IOfferService.cs" />
+    <Compile Include="Offer\IPersonRequestService.cs" />
     <Compile Include="Offer\OfferService.cs" />
+    <Compile Include="Offer\PersonRequestService.cs" />
     <Compile Include="People\CustomerService.cs" />
     <Compile Include="People\ICustomerService.cs" />
     <Compile Include="People\IProviderService.cs" />

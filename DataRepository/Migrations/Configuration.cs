@@ -609,7 +609,7 @@ namespace DataRepository.Migrations
                 CreatedBy = provider,
                 Description = "Найкращий вибір",
                 IsDeleted = false,
-                StatusId = (int)OfferStatuses.Створений,
+                StatusId = (int)OfferStatuses.PendingReview,
                 Customer = customer
             };
 
@@ -620,7 +620,7 @@ namespace DataRepository.Migrations
                 Description = "Думаю, це те що Вам потрібно",
                 IsDeleted = false,
                 ReviewedOnUtc = DateTime.UtcNow,
-                StatusId = (int)OfferStatuses.Відхилений,
+                StatusId = (int)OfferStatuses.Declined,
                 ReviewedBy = administrationLeadUser,
                 Customer = customer
             };
@@ -647,7 +647,7 @@ namespace DataRepository.Migrations
             var assignment = new WorkerPersonAssignment
             {
                 Customer = customer,
-                Worker = worker,
+                Worker = worker,                
                 ApprovedBy = lead,
                 AssignmentStatusId = (int)WorkerPersonAssignmentStatuses.Активно
             };
@@ -655,6 +655,21 @@ namespace DataRepository.Migrations
             context.WorkerPersonAssignments.AddOrUpdate(assignment);
             #endregion
 
+            #region PersonRequest
+
+            var personRequest1 = new PersonRequest
+            {
+                IsDeleted = false,
+                Category = healthCareCategory,
+                StatusId = (int)PersonRequestStatuses.Opened,
+                Name = "Шукаю масажиста",
+                Description = "я хотів би знайти масажиста",
+                Customer = customer,
+                CreatedBy = customer,
+            };
+
+            context.PersonRequests.AddOrUpdate(personRequest1);
+            #endregion
 
 
             //SaveChanges(context);
