@@ -13,5 +13,9 @@ namespace Services.People
         Customer GetCustomerById(int id);
         Customer GetCustomerByUserId(int id);
 
+        CareRequest InsertCareRequest(CareRequest careRequest);
+        CareRequest GetCareRequestById(int id);
+        CareRequest UpdateCareRequest(CareRequest careRequest);
+        bool CanCreateCareRequest(int personId);
     }
 }

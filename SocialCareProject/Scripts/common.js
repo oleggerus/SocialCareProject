@@ -71,42 +71,29 @@ ko.bindingHandlers.datePicker = {
 };
 
 
-require('bootstrap-notify');
-
-//############ Bootstrap Notify ############
-if ($.notifyDefaults) {
-    $.notifyDefaults({
-        delay: 2500,
-        timer: 500,
-        placement: {
-            align: "center"
-        },
-        template:
-            '<div class="notify text-center" style="pointer-events: none;">' +
-            '<div data-notify="container" class="text-left alert alert-{0}" style="padding-right: 30px;max-width: 90%; width: auto; display: inline-block; position: relative; pointer-events: auto;" role="alert">' +
-            '	<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-            '	<span data-notify="icon"></span>' +
-            '	<span data-notify="title">{1}</span>' +
-            '	<span data-notify="message">{2}</span>' +
-            '	<div class="progress" data-notify="progressbar">' +
-            '		<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-            "	</div>" +
-            '	<a href="{3}" target="{4}" data-notify="url"></a>' +
-            "</div>" +
-            "</div>"
-    });
-}
+//############ Bootstrap Notify Template ############
+var notifyTemplate =
+    '<div data-notify="container" class="col-xs-10 col-sm-6 col-md-5 col-lg-3 alert alert-{0}" role="alert">' +
+    '   <button type="button" aria-hidden="true" class="close" data-notify="dismiss">&times;</button>' +
+    '   <span data-notify="icon"></span>' +
+    '   <span data-notify="title">{1}</span>' +
+    '   <span data-notify="message">{2}</span>' +
+    '   <div class="progress" data-notify="progressbar">' +
+    '       <div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+    '   </div> ' +
+    '   <a href="{3}" target="{4}" data-notify="url"></a>' +
+    '</div>';
 
 var notify = {
     ok: function (msg) {
         $.notify({ icon: "glyphicon glyphicon-ok", message: msg },
-            { type: "success", delay: 3000, z_index: 1080, placement: { align: "center" } });
+            { type: "success", delay: 3000, z_index: 1080, placement: { align: "center" }, template: notifyTemplate });
     },
     info: function (msg) {
-        $.notify({ message: msg }, { type: "info" });
+        $.notify({ message: msg }, { type: "info", placement: { align: "center" }, template: notifyTemplate });
     },
     fail: function (msg, keepOpen) {
-        var delay = (keepOpen) ? 0 : 4000;
+        var delay = keepOpen ? 0 : 4000;
         var message = '<ul style="list-style-type: disc; padding-left: 20px; margin: 0;">';
 
         if ($.isArray(msg) && msg.length > 1) {
@@ -119,13 +106,13 @@ var notify = {
             message = $.isArray(msg) && msg[0] ? msg[0] : msg;
         }
 
-        $.notify({ message: message }, { type: "danger", delay: delay, z_index: 1080, placement: { align: "center" } });
+        $.notify({ message: message }, { type: "danger", delay: delay, z_index: 1080, placement: { align: "center" }, template: notifyTemplate });
     },
     failModelState: function (modelState) {
         notify.close();
         var errors = [];
 
-        $.each(modelState, function (key, value) {
+        $.each(modelState, function (key) {
             $.each(modelState[key], function (item, val) {
                 errors.push(val);
             });
@@ -140,14 +127,15 @@ var notify = {
 
 
 
+
 //Bootbox defaults
 $(function () {
     if (window.bootbox) {
         bootbox.addLocale('en',
             {
                 OK: "OK",
-                CANCEL: "Cancel",
-                CONFIRM: "Confirm"
+                CANCEL: "Відмінити",
+                CONFIRM: "Підтвердити"
             });
         $(document).on("show.bs.modal", function (e) {
             if (window.notify) {

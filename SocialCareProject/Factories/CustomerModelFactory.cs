@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DataRepository.Entities.People;
+using Services.People;
 using SocialCareProject.Areas.Customer.Models.Customer;
 
 namespace SocialCareProject.Factories
 {
     public class CustomerModelFactory:ICustomerModelFactory
     {
+        private readonly ICustomerService _customerService;
+
+        public CustomerModelFactory(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
+
         public CustomerModel PrepareCustomerModel(Customer customer)
         {
             var model = new CustomerModel
             {
                 Id = customer.UserId,
+                CustomerId = customer.Id,
                 Administration = customer.Administration.Name,
                 AdministrationContactName = customer.Administration.Contact.FirstName +
                                             " " + customer.Administration.Contact.LastName,
@@ -35,9 +44,9 @@ namespace SocialCareProject.Factories
                 Avatar = customer.User.Avatar,
                 Gender = customer.User.Gender,
                 HomePhoneNumber = customer.Address.PhoneNumber,
-                Info = customer.Info
-            };
+                Info = customer.Info,
 
+            };
             return model;
         }
     }

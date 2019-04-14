@@ -82,6 +82,7 @@
     <Compile Include="Entities\Administration.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Orders\Category.cs" />
+    <Compile Include="Entities\People\CareRequest.cs" />
     <Compile Include="Entities\People\Customer.cs" />
     <Compile Include="Entities\Orders\Offer.cs" />
     <Compile Include="Entities\Permission.cs" />
@@ -125,6 +126,14 @@
     <Compile Include="Migrations\201902202012295_Add status id to PersonRequestEntity.Designer.cs">
       <DependentUpon>201902202012295_Add status id to PersonRequestEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904141059535_Add CareRequst table.cs" />
+    <Compile Include="Migrations\201904141059535_Add CareRequst table.Designer.cs">
+      <DependentUpon>201904141059535_Add CareRequst table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904141104542_Add CareRequst table 2.cs" />
+    <Compile Include="Migrations\201904141104542_Add CareRequst table 2.Designer.cs">
+      <DependentUpon>201904141104542_Add CareRequst table 2.cs</DependentUpon>
+    </Compile>
     <Compile Include="PagedList.cs" />
     <Compile Include="RepositoryPattern\EfRepository.cs" />
     <Compile Include="RepositoryPattern\IRepository.cs" />
@@ -147,6 +156,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902202012295_Add status id to PersonRequestEntity.resx">
       <DependentUpon>201902202012295_Add status id to PersonRequestEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904141059535_Add CareRequst table.resx">
+      <DependentUpon>201904141059535_Add CareRequst table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904141104542_Add CareRequst table 2.resx">
+      <DependentUpon>201904141104542_Add CareRequst table 2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

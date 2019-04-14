@@ -38,6 +38,8 @@ namespace DataRepository.Migrations
             context.Addresses.RemoveRange(context.Addresses);
             context.Users.RemoveRange(context.Users);
             context.Roles.RemoveRange(context.Roles);
+            context.CareRequests.RemoveRange(context.CareRequests);
+
 
             #region roles
 
@@ -86,7 +88,7 @@ namespace DataRepository.Migrations
             #endregion
 
 
-            ///"password"  - "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo"
+            //"password"  - "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo"
 
             #region users
 
@@ -673,7 +675,6 @@ namespace DataRepository.Migrations
 
             context.PersonRequests.AddOrUpdate(personRequest1);
             #endregion
-
 
             //SaveChanges(context);
             base.Seed(context);

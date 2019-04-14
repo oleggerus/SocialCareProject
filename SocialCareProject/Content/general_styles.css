@@ -124,6 +124,11 @@ textarea {
   font-size: 18px;
   color: inherit; }
 
+.btn-default {
+  color: #fff;
+  background-color: darkgray;
+  border-color: #ccc; }
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

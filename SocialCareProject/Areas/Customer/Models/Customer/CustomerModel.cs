@@ -8,6 +8,7 @@ namespace SocialCareProject.Areas.Customer.Models.Customer
     public class CustomerModel
     {
         public int Id { get; set; }
+        public int CustomerId { get; set; }
         public string Administration { get; set; }
         public string AdministrationPhone { get; set; }
         public string AdministrationContactName { get; set; }

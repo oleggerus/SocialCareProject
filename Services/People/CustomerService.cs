@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Linq;
 using DataRepository.Entities.People;
+using DataRepository.Enums;
 using DataRepository.RepositoryPattern;
 
 namespace Services.People
 {
     public class CustomerService : ICustomerService
     {
+        private readonly IRepository<CareRequest> _careRequestRepository;
         private readonly IRepository<Customer> _customerRepository;
-        public CustomerService(IRepository<Customer> customerRepository)
+
+        public CustomerService(IRepository<Customer> customerRepository, IRepository<CareRequest> careRequestRepository)
         {
             _customerRepository = customerRepository;
+            _careRequestRepository = careRequestRepository;
         }
 
         public Customer Create(Customer customer)
@@ -33,5 +37,46 @@ namespace Services.People
         {
             return _customerRepository.TableNoTracking.SingleOrDefault(x => x.UserId == id);
         }
+
+        public CareRequest GetCareRequestById(int id)
+        {
+            return _careRequestRepository.GetById(id);
+        }
+
+        public CareRequest InsertCareRequest(CareRequest careRequest)
+        {
+            if (careRequest == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _careRequestRepository.Insert(careRequest);
+
+            return careRequest;
+        }
+
+        public CareRequest UpdateCareRequest(CareRequest careRequest)
+        {
+            _careRequestRepository.Update(careRequest);
+
+            return careRequest;
+        }
+
+        public bool CanCreateCareRequest(int personId)
+        {
+            var customer = GetCustomerById(personId);
+
+            if (customer.StatusId != (int) CustomerCareStatuses.НеПотребуєДогляду)
+            {
+                return false;
+            }
+
+            if (_careRequestRepository.TableNoTracking.Any(x => x.CustomerId == personId))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }

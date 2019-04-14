@@ -10,6 +10,33 @@
 }
 <div id="customerDetails">
     <div class="container inner-container" data-bind="with: Details">
+        <div class="modal fade" id="careRequestModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-bind="with: CareRequestModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      
+                        <h4 class="modal-title">
+                            <span>Створити запит щодо необхідності догляду</span>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        Чи впевнені Ви у тому, що бажаєте створити запит щодо необхідності у Вашому догляді?
+                        <br /><br />
+                        Якщо так, вкажіть причину необхідності у догляді або іншу інформацію, яку вважаєте необхідною.
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" maxlength="500" data-bind="textInput: Reason"  style="margin-left: 20px; width: 450px; max-width: 600px;"></textarea>
+                    </div>
+
+                        <div class="modal-footer">
+                            <div class="form-group text-right">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Відмінити</button>
+                                <button type="button" class="btn btn-primary" data-bind="click: SendRequest">Підтвердити</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
 
         <div class="card">
             <div class="row">
@@ -60,9 +87,9 @@
                                 <input class="form-control" maxlength="60" data-bind="value:  Phone" />
                             </div>
                         </div>
-                        <!--ko if: StatusId()== @((int)CustomerCareStatuses.НеПотребуєДогляду) -->
+                        <!--ko if: CustomerDetails.CanCreateCareRequest == true -->
                         <div class="form-group col-xs-8 martop-20 pull-right text-right">
-                                <button type="button" data-bind="click: MakeCareRequest" class="btn btn-warning control-label">Потребую догляду</button>
+                            <button type="button" data-bind="click: MakeCareRequest" class="btn btn-warning control-label">Потребую догляду</button>
                         </div>
                         <!--/ko-->
                     </div>
@@ -131,18 +158,18 @@
                     <div class="form-group col-xs-4">
                         <label class="control-label">Контактна особа</label>
                         <div>
-                            <input class="form-control disabled"  readonly="readonly" data-bind="value:  AdministrationContactName" />
+                            <input class="form-control disabled" readonly="readonly" data-bind="value:  AdministrationContactName" />
                         </div>
                     </div>
                     <div class="form-group col-xs-4">
                         <label class="control-label">Контактний телефон</label>
                         <div>
-                            <input class="form-control disabled"  readonly="readonly"  data-bind="value:AdministrationPhone" />
+                            <input class="form-control disabled" readonly="readonly" data-bind="value:AdministrationPhone" />
                         </div>
                     </div>
                     <div class="form-group col-xs-4">
                         <label class="control-label">Статус догляду</label>
-                        <div  readonly="readonly">
+                        <div readonly="readonly">
                             <select class="form-control" disabled="disabled" readonly="readonly" data-bind="value: StatusId,
                                         options: CustomerDetails.CustomerStatuses,
                                         optionsValue: 'Key' , optionsText: 'Value' , optionsCaption: 'Статус'"></select>
@@ -151,28 +178,27 @@
                     <div class="form-group col-xs-4" style=" margin-top: 30px;">
                         <span class="checkbox">
                             <label>
-                                <input type="checkbox" disabled="disabled"  readonly="readonly" data-bind="checked: IsSelfPaid">
+                                <input type="checkbox" disabled="disabled" readonly="readonly" data-bind="checked: IsSelfPaid">
                                 Самозабезпечений
                             </label>
                         </span>
                     </div>
-                   
-                    
+
+
                     <div class="form-group col-xs-4" style="margin-top: 30px;">
                         <span class="checkbox">
                             <label>
-                                <input type="checkbox" disabled="disabled"  readonly="readonly" data-bind="checked: IsInvalid">
+                                <input type="checkbox" disabled="disabled" readonly="readonly" data-bind="checked: IsInvalid">
                                 Проблеми зі здоров'ям
                             </label>
                         </span>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
-        
-
     </div>
-
+    
+    
 </div>
 
 <script type="text/javascript">
@@ -181,10 +207,10 @@
     CustomerDetails.Regions =  @Html.Raw(Json.Encode(EnumHelpers.GetEnumKeyValuePairList<Regions>()));
     CustomerDetails.CustomerStatuses =  @Html.Raw(Json.Encode(EnumHelpers.ToList<CustomerCareStatuses>()));
 
-    
-    CustomerDetails.GeneralErrorMessage = 'An error occured';
 
+    CustomerDetails.GeneralErrorMessage = 'An error occured';
+    CustomerDetails.CanCreateCareRequest = '@ViewBag.CanCreateCareRequest';
     CustomerDetails.Init();
 
-
+    CustomerDetails.SendRequestUrl = '@Url.Action("MakeCareRequest", "Customer")';
 </script>

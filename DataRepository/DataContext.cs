@@ -84,6 +84,7 @@ namespace DataRepository
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Worker> Workers { get; set; }
         public DbSet<WorkerPersonAssignment> WorkerPersonAssignments { get; set; }
-        
+        public DbSet<CareRequest> CareRequests { get; set; }
+
     }
 }

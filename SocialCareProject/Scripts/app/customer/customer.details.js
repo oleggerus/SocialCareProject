@@ -4,6 +4,39 @@ CustomerDetails.FilterMapping = {
 };
 
 
+CustomerDetails.CareRequsetModal = function(id) {
+    var self = this;
+
+    self.Reason = ko.observable();
+    self.CustomerId = ko.observable(id);
+
+    self.ShowModal = function () {
+        $("#careRequestModal").appendTo("#page");
+        $("#careRequestModal").modal('show');
+    };
+
+    self.SendRequest = function() {
+        var url = CustomerDetails.SendRequestUrl;
+        $.ajax({
+            url: url,
+            dataType: "json",
+            data: {
+                customerId: self.CustomerId(),
+                reason: self.Reason()
+            }
+        }).done(function(result) {
+            if (result && result.success) {
+                $("#careRequestModal").modal('hide');
+                CustomerDetails.CanCreateCareRequest = false;
+                notify.ok(result.message);
+            } else if (result && !result.success) {
+                notify.fail(result.message);
+            }
+        }).fail(function() {
+            notify.fail("Щось пішло не так. Спробуйте ще раз");
+        });
+    };
+};
 
 CustomerDetails.CustomerViewModel = function () {
     var self = this;
@@ -30,36 +63,40 @@ CustomerDetails.CustomerViewModel = function () {
     self.City = ko.observable();
     self.ZipPostalCode = ko.observable();
     self.HomePhoneNumber = ko.observable();
+    self.CustomerId = ko.observable();
 
+    self.CareRequestModal = new CustomerDetails.CareRequsetModal(CustomerDetails.Details.CustomerId);
     self.MakeCareRequest = function () {
-        bootbox.confirm({
-                title: "Заява щодо необхідності догляду",
-                message: "Будь ласка, вкажіть причину необхідності у догляді або іншу інформацію, яку вважаєте необхідною",
-                callback: function (isOkClicked) {
-                    if (isOkClicked) {
-                        console.log("yee");
-                        //$.ajax({
-                        //    method: "POST",
-                        //    url: YounifiAdminDomainElementCreateEdit.RemoveAttachmentUrl,
-                        //    dataType: "json",
-                        //    data: {
-                        //        downloadId: id,
-                        //        domainElementId: self.Id()
-                        //    }
-                        //}).done(function (response) {
-                        //    if (response.success) {
-                        //        self.FileAttachments.remove(function (attachment) {
-                        //            return ko.utils.unwrapObservable(attachment.Id) === id;
-                        //        });
-                        //        notify.ok(response.message);
-                        //    }
-                        //}).fail(function () {
-                        //    notify.fail(YounifiAdminDomainElementCreateEdit.GeneralErrorMessage);
-                        //});
-                    }
-                }
-            }
-        );
+        self.CareRequestModal.ShowModal();
+        //bootbox.confirm({
+        //        title: "Заява щодо необхідності догляду",
+        //        message: "Будь ласка, вкажіть причину необхідності у догляді або іншу інформацію, яку вважаєте необхідною",
+        //        callback: function (isOkClicked) {
+        //            if (isOkClicked) {
+        //                console.log("yee");
+        //                //$.ajax({
+        //                //    method: "POST",
+        //                //    url: YounifiAdminDomainElementCreateEdit.RemoveAttachmentUrl,
+        //                //    dataType: "json",
+        //                //    data: {
+        //                //        downloadId: id,
+        //                //        domainElementId: self.Id()
+        //                //    }
+        //                //}).done(function (response) {
+        //                //    if (response.success) {
+        //                //        self.FileAttachments.remove(function (attachment) {
+        //                //            return ko.utils.unwrapObservable(attachment.Id) === id;
+        //                //        });
+        //                //        notify.ok(response.message);
+        //                //    }
+        //                //}).fail(function () {
+        //                //    notify.fail(YounifiAdminDomainElementCreateEdit.GeneralErrorMessage);
+        //                //});
+        //            }
+        //        }
+        //    }
+
+        //);
     };
 
    };
