@@ -16,6 +16,9 @@ namespace DataRepository.Enums
         [Description("Постачальник послуг")]
         Vendor = 3,
         [Description("Адмін")]
-        Admin = 4
+        Admin = 4,
+        [Description("Соціальний працівник")]
+        Worker = 5,
+
     }
 }

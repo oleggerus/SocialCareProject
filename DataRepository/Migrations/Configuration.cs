@@ -78,12 +78,19 @@ namespace DataRepository.Migrations
                 Permissions = new List<Permission>()
 
             };
+            var workerRole = new Role
+            {
+                Name = "WorkerRole",
+                AreaId = (int)AreaTypes.Worker,
+                Permissions = new List<Permission>()
 
+            };
             context.Roles.AddOrUpdate(customerRole);
             context.Roles.AddOrUpdate(vendorRole);
             context.Roles.AddOrUpdate(administrationLeadRole);
             context.Roles.AddOrUpdate(administrationRole);
             context.Roles.AddOrUpdate(adminRole);
+            context.Roles.AddOrUpdate(workerRole);
 
             #endregion
 
@@ -168,6 +175,23 @@ namespace DataRepository.Migrations
                 Phone = "09090909990",
                 Username = "administrationLead"
             };
+
+            var workerUser = new User
+            {
+                Role = workerRole,
+                FirstName = "Андрій",
+                LastName = "Шевченко",
+                DateOfBirth = new DateTime(1952, 12, 02),
+                Email = "worker@mail.com",
+                IsActive = true,
+                IsDeleted = false,
+                Gender = (int)GenderEnum.Чоловік,
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
+                Phone = "09090909990",
+                Username = "administrationLead"
+            };
+
             var vendorUser = new User
             {
                 Role = vendorRole,
@@ -408,8 +432,16 @@ namespace DataRepository.Migrations
                 IsLead = true,
                 PositionId = (int)WorkerPositions.Джуніор,
             };
+
+            var socWorker = new Worker
+            {
+                User = workerUser,
+                Administration = administration,
+                IsLead = false
+            };
             context.Workers.AddOrUpdate(worker);
             context.Workers.AddOrUpdate(lead);
+            context.Workers.AddOrUpdate(socWorker);
 
             var provider = new Provider
             {

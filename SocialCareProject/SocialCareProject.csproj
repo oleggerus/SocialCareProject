@@ -157,6 +157,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\BaseAdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\ErrorController.cs" />
+    <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\Controllers\BaseCustomerController.cs" />
     <Compile Include="Areas\Customer\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Customer\Controllers\ErrorController.cs" />
@@ -228,6 +232,12 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom\administration_styles.css">
+      <DependentUpon>administration_styles.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\custom\administration_styles.min.css">
+      <DependentUpon>administration_styles.css</DependentUpon>
+    </Content>
     <Content Include="Content\custom\customer_styles.css">
       <DependentUpon>customer_styles.scss</DependentUpon>
     </Content>
@@ -369,6 +379,11 @@
     <Content Include="Areas\Customer\Views\Offer\Index.cshtml" />
     <Content Include="Areas\Customer\Views\Customer\CustomerDetails.cshtml" />
     <Content Include="Areas\Customer\Views\Offer\PersonRequestList.cshtml" />
+    <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Worker\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Error\AccessDenied.cshtml" />
+    <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -399,6 +414,7 @@
     <Content Include="Content\bootstrap-datepicker3.css.map" />
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <Content Include="Content\custom\administration_styles.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap\affix.js" />
     <Content Include="Scripts\bootstrap\alert.js" />
@@ -553,11 +569,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Provider\Models\" />
     <Folder Include="Areas\Provider\Views\Errror\" />
     <Folder Include="Areas\Provider\Views\Home\" />
     <Folder Include="Areas\Worker\Models\" />
-    <Folder Include="Areas\Worker\Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

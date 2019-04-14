@@ -47,6 +47,8 @@ namespace SocialCareProject
                 "~/Content/custom/provider_styles.css"));
             bundles.Add(new StyleBundle("~/Content/worker_styles").Include(
                 "~/Content/custom/worker_styles.css"));
+            bundles.Add(new StyleBundle("~/Content/administration_styles").Include(
+                "~/Content/custom/administration_styles.css"));
 
             bundles.Add(new StyleBundle("~/Content/accessdenied").Include(
                 "~/Content/accessdenied.css"));

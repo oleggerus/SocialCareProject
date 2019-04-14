@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Social Carer</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/customer_styles")
+    @Styles.Render("~/Content/administration_styles")
+
     @Scripts.Render("~/bundles/knockout")
 
     @Scripts.Render("~/bundles/jquery")
@@ -19,8 +20,8 @@
     @Scripts.Render("~/bundles/moment")
 
 </head>
-<body>
-    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-light bg-info">
+<body class="body-lightcyan">
+    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Social carer</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,23 +41,29 @@
                         Каталог
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href='@Url.Action("Index", "Product")'>
-                        <i class="fa fa-users">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-shopping-basket">
+
                         </i>
-                        Особи під доглядом
+                        Особи
                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <a class="dropdown-item" href='@Url.Action("PersonRequestList", "Offer")'>Жителі</a>
+                        <a class="dropdown-item" href='@Url.Action("Index", "Offer")'>Соціальні робітники</a>
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-shopping-basket">
-                            
+
                         </i>
-                        Замовлення
+                        Заяви
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        <a class="dropdown-item" href='@Url.Action("PersonRequestList", "Offer")'>Потребують розгляду</a>
-                        <a class="dropdown-item" href='@Url.Action("Index", "Offer")'>Надані та пропоновані послуги</a>
+                        <a class="dropdown-item" href='@Url.Action("PersonRequestList", "Offer")'>Щодо необхідності догляду</a>
+                        <a class="dropdown-item" href='@Url.Action("Index", "Offer")'>Щодо товарів та сервісів</a>
                     </div>
                 </li>
 
@@ -68,7 +75,6 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href='@Url.Action("Index", "Customer")'>Мій профіль</a>
-                        <a class="dropdown-item" href="#">Мій соціальний працівник</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Моя організація</a>
                     </div>
@@ -106,25 +112,7 @@
             </ul>
         </div>
     </nav>
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Social carer", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                </div>
-            </div>
-        </div>*@
+   
     <div class="page-header">
         <div class="container">
             <h1 class="pull-left page-title">

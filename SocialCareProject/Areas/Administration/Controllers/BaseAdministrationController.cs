@@ -3,14 +3,11 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using SocialCareProject.Authentication;
 
-namespace SocialCareProject.Areas.Worker.Controllers
+namespace SocialCareProject.Areas.Administration.Controllers
 {
-
-
-    [CustomAuthorize(Roles = "WorkerRole")]
-    public abstract partial class BaseWorkerController : Controller
+    [CustomAuthorize(Roles = "AdministrationRole, AdministrationLeadRole")]
+    public abstract partial class BaseAdministrationController : Controller
     {
-
         protected virtual JsonResult CreateJsonResult(bool success, string redirect = null, object data = null,
             string message = null, string returnUrl = null)
         {
@@ -29,7 +26,6 @@ namespace SocialCareProject.Areas.Worker.Controllers
                 return;
             }
 
-            
             filterContext.ExceptionHandled = true;
             //var Result = RedirectToAction("Error", "Common");
 
@@ -44,7 +40,7 @@ namespace SocialCareProject.Areas.Worker.Controllers
             base.OnException(filterContext);
         }
 
-      
+
         protected ActionResult AccessDeniedView()
         {
             return RedirectToAction("AccessDenied", "Error", new { pageUrl = Request.RawUrl });
@@ -52,7 +48,7 @@ namespace SocialCareProject.Areas.Worker.Controllers
 
         protected override void HandleUnknownAction(string actionName)
         {
-            RedirectToAction("AccessDenied", "Error").ExecuteResult(ControllerContext);
+            RedirectToAction("PageNotFound", "Error").ExecuteResult(ControllerContext);
         }
 
     }

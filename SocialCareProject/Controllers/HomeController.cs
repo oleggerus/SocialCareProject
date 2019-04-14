@@ -74,8 +74,10 @@ namespace SocialCareProject.Controllers
                     return RedirectToAction("Index", "Home", new { area = "Customer" });
                 case (int)AreaTypes.Vendor:
                     return RedirectToAction("Index", "Home", new { area = "Provider" });
-                case (int)AreaTypes.Administration:
+                case (int)AreaTypes.Worker:
                     return RedirectToAction("Index", "Home", new { area = "Worker" });
+                case (int)AreaTypes.Administration:
+                    return RedirectToAction("Index", "Home", new { area = "Administration" });
             }
             return View();
         }
@@ -131,8 +133,10 @@ namespace SocialCareProject.Controllers
                         return RedirectToAction("Index", "Home", new { area = "Customer" });
                     case (int)AreaTypes.Vendor:
                         return RedirectToAction("Index", "Home", new { area = "Provider" });
-                    case (int)AreaTypes.Administration:
+                    case (int)AreaTypes.Worker:
                         return RedirectToAction("Index", "Home", new { area = "Worker" });
+                    case (int)AreaTypes.Administration:
+                        return RedirectToAction("Index", "Home", new { area = "Administration" });
                 }
             }
 
