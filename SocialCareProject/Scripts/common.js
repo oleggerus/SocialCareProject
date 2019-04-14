@@ -71,6 +71,7 @@ ko.bindingHandlers.datePicker = {
 };
 
 
+require('bootstrap-notify');
 
 //############ Bootstrap Notify ############
 if ($.notifyDefaults) {
@@ -136,3 +137,22 @@ var notify = {
         $.notifyClose();
     }
 };
+
+
+
+//Bootbox defaults
+$(function () {
+    if (window.bootbox) {
+        bootbox.addLocale('en',
+            {
+                OK: "OK",
+                CANCEL: "Cancel",
+                CONFIRM: "Confirm"
+            });
+        $(document).on("show.bs.modal", function (e) {
+            if (window.notify) {
+                notify.close();
+            }
+        });
+    }
+});

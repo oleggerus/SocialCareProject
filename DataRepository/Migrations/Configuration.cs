@@ -85,6 +85,9 @@ namespace DataRepository.Migrations
 
             #endregion
 
+
+            ///"password"  - "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo"
+
             #region users
 
             var custUser1 = new User

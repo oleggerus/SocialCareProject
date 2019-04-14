@@ -31,7 +31,38 @@ CustomerDetails.CustomerViewModel = function () {
     self.ZipPostalCode = ko.observable();
     self.HomePhoneNumber = ko.observable();
 
-};
+    self.MakeCareRequest = function () {
+        bootbox.confirm({
+                title: "Заява щодо необхідності догляду",
+                message: "Будь ласка, вкажіть причину необхідності у догляді або іншу інформацію, яку вважаєте необхідною",
+                callback: function (isOkClicked) {
+                    if (isOkClicked) {
+                        console.log("yee");
+                        //$.ajax({
+                        //    method: "POST",
+                        //    url: YounifiAdminDomainElementCreateEdit.RemoveAttachmentUrl,
+                        //    dataType: "json",
+                        //    data: {
+                        //        downloadId: id,
+                        //        domainElementId: self.Id()
+                        //    }
+                        //}).done(function (response) {
+                        //    if (response.success) {
+                        //        self.FileAttachments.remove(function (attachment) {
+                        //            return ko.utils.unwrapObservable(attachment.Id) === id;
+                        //        });
+                        //        notify.ok(response.message);
+                        //    }
+                        //}).fail(function () {
+                        //    notify.fail(YounifiAdminDomainElementCreateEdit.GeneralErrorMessage);
+                        //});
+                    }
+                }
+            }
+        );
+    };
+
+   };
 
 CustomerDetails.CustomerDetailsViewModel = function () {
     var self = this;
@@ -42,7 +73,7 @@ CustomerDetails.CustomerDetailsViewModel = function () {
         ko.mapping.fromJS(CustomerDetails.Details, {}, self.Details);
     };
 
-
+   
     self.Load = function () {
         self.Loading(true);
         var data = {

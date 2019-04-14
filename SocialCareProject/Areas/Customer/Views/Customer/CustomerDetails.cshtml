@@ -5,9 +5,9 @@
 @{
     Layout = "../Shared/_Layout.cshtml";
     @Scripts.Render("~/Scripts/app/customer/customer.details.js")
+    @Scripts.Render("~/Scripts/bootbox.min.js");
     ViewBag.Title = "Мій профіль";
 }
-
 <div id="customerDetails">
     <div class="container inner-container" data-bind="with: Details">
 
@@ -60,6 +60,11 @@
                                 <input class="form-control" maxlength="60" data-bind="value:  Phone" />
                             </div>
                         </div>
+                        <!--ko if: StatusId()== @((int)CustomerCareStatuses.НеПотребуєДогляду) -->
+                        <div class="form-group col-xs-8 martop-20 pull-right text-right">
+                                <button type="button" data-bind="click: MakeCareRequest" class="btn btn-warning control-label">Потребую догляду</button>
+                        </div>
+                        <!--/ko-->
                     </div>
                 </div>
             </div>
