@@ -11,5 +11,7 @@ namespace Services.People
 
         string GetSaltByEmail(string email);
 
+        int GetAdministrationIdByUserId(int userId);
+
     }
 }

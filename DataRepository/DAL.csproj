@@ -109,6 +109,7 @@
     <Compile Include="Enums\WorkerPositions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\EnumHelpers.cs" />
+    <Compile Include="Extensions\UserExtensions.cs" />
     <Compile Include="IPagedList.cs" />
     <Compile Include="Migrations\201902201948479_Initial.cs" />
     <Compile Include="Migrations\201902201948479_Initial.Designer.cs">

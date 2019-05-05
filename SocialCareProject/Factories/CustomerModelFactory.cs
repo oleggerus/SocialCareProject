@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using DataRepository;
 using DataRepository.Entities.People;
+using DataRepository.Enums;
+using DataRepository.Extensions;
 using Services.People;
+using SocialCareProject.Areas.Administration.Models;
 using SocialCareProject.Areas.Customer.Models.Customer;
 
 namespace SocialCareProject.Factories
 {
-    public class CustomerModelFactory:ICustomerModelFactory
+    public class CustomerModelFactory : ICustomerModelFactory
     {
         private readonly ICustomerService _customerService;
 
@@ -36,6 +38,7 @@ namespace SocialCareProject.Factories
                 FirstName = customer.User.FirstName,
                 Street = customer.Address.Street,
                 LastName = customer.User.LastName,
+                FullName = customer.User.GetFullName(),
                 IsSelfPaid = customer.IsSelfPaid,
                 RegionId = customer.Address.RegionId,
                 ZipPostalCode = customer.Address.ZipPostalCode,
@@ -43,11 +46,21 @@ namespace SocialCareProject.Factories
                 IsInvalid = customer.IsInvalid,
                 Avatar = customer.User.Avatar,
                 Gender = customer.User.Gender,
+                GenderName = Enum.GetName(typeof(GenderEnum), customer.User.Gender),
                 HomePhoneNumber = customer.Address.PhoneNumber,
                 Info = customer.Info,
 
             };
             return model;
+        }
+
+        public PeopleListViewModel PreparePeopleListViewModel(IPagedList<Customer> customers)
+        {
+            return new PeopleListViewModel
+            {
+                People = customers.Select(PrepareCustomerModel).ToList(),
+                Pager = Extensions.Extensions.ToSimplePagerModel(customers)
+            };
         }
     }
 }

@@ -22,11 +22,14 @@ namespace SocialCareProject.Areas.Customer.Models.Customer
         public int? StatusId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FullName { get; set; }
         public string MiddleName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int Gender { get; set; }
+        public string GenderName { get; set; }
+
         public byte[] Avatar { get; set; }
 
         public string HouseNameRoomNumber { get; set; }

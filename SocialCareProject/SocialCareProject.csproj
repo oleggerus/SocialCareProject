@@ -162,6 +162,8 @@
     <Compile Include="Areas\Administration\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\CatalogueAdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\PeopleController.cs" />
+    <Compile Include="Areas\Administration\Models\PeopleListViewModel.cs" />
     <Compile Include="Areas\Customer\Controllers\BaseCustomerController.cs" />
     <Compile Include="Areas\Customer\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Customer\Controllers\ErrorController.cs" />
@@ -273,6 +275,7 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\administration\people.js" />
     <Content Include="Scripts\app\administration\productList.js" />
     <Content Include="Scripts\app\customer\customer.details.js" />
     <Content Include="Scripts\app\customer\offerList.js" />
@@ -388,6 +391,7 @@
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\CatalogueAdministration\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\People\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -573,7 +577,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Provider\Models\" />
     <Folder Include="Areas\Provider\Views\Errror\" />
     <Folder Include="Areas\Provider\Views\Home\" />

@@ -106,13 +106,13 @@ namespace SocialCareProject.Controllers
             {
                 var user = _userService.GetUserByEmail(model.Username);
 
-                var userModel = new Models.UserModel
+                var userModel = new UserModel
                 {
                     UserId = user.Id,
                     AreaId = user.Role.AreaId,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
-                    RoleName = new List<string>() { user.Role.Name }
+                    RoleName = new List<string> { user.Role.Name }
                 };
 
                 var userData = JsonConvert.SerializeObject(userModel);

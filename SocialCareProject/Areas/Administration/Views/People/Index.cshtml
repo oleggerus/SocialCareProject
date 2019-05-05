@@ -1,0 +1,68 @@
+﻿@using DataRepository.Enums
+@using DataRepository.Extensions
+@model SocialCareProject.Areas.Administration.Models.PeopleListViewModel
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    @Scripts.Render("~/Scripts/app/administration/people.js")
+    ViewBag.Title = "Список усіх жителів";
+}
+
+    <div id="peopleList">
+        <div class="container inner-container">
+            <div class="panel body-lightgrey">
+                <div class="panel-body paged-list-in-tab">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="list-group results-table" data-bind="foreach: People">
+                                <li class="list-group-item-lightgrey">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <label class="control-label" data-bind="text: FullName"></label>
+                                            <br />
+                                            <span data-bind="text: GenderName"></span>
+                                        </div>
+                                        <div class="col-xs-3 ">
+                                            <span data-bind="text: Email"></span>
+                                            <br/>
+                                            <span data-bind="text: Phone"></span>
+                                        </div>
+
+                                        <div class="col-xs-3 ">
+                                            <span data-bind="text: CareStatus, attr: {class: GetCssStylesByStatus}"></span>
+                                        </div>
+                                        <div class="col-xs-3 text-center">
+                                            <button type="button" data-bind="click:$root.Details.bind(this, Id())" class="btn btn-primary">Деталі</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="offset-2 col-xs-8 text-center" data-bind="with: Pager">
+                            @Html.Partial("_Pager")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    @*People.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
+    People.GetPeople = '@Html.Raw(Url.Action("GetFilteredPeople", "People"))';
+    People.GeneralErrorMessage = 'An error occured';
+    People.People = @Html.Raw(Json.Encode(Model.People));
+    People.Pager = @Html.Raw(Json.Encode(Model.Pager));
+    People.CustomerStatuses =  @Html.Raw(Json.Encode(EnumHelpers.ToList<CustomerCareStatuses>()));
+
+
+    People.ContainerId = 'peopleList';
+
+
+    $(document).ready(function() {
+        People.Init();
+    });
+
+</script>

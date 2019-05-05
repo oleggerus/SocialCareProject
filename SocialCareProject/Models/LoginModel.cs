@@ -18,7 +18,6 @@ namespace SocialCareProject.Models
     {
         public int UserId { get; set; }
         public int AreaId { get; set; }
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<string> RoleName { get; set; }

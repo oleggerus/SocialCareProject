@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DataRepository;
 using DataRepository.Entities.People;
 using DataRepository.Enums;
 using DataRepository.RepositoryPattern;
@@ -17,6 +18,16 @@ namespace Services.People
             _careRequestRepository = careRequestRepository;
         }
 
+        public IPagedList<Customer> GetFilteredCustomers(int administrationId, int pageIndex = default(int),
+            int pageSize = int.MaxValue)
+        {
+            var query = _customerRepository.TableNoTracking.Where(x => x.AdministrationId == administrationId );
+
+            return new PagedList<Customer>(query.OrderBy(x => x.User.LastName), pageIndex,
+                pageSize);
+        }
+
+        
         public Customer Create(Customer customer)
         {
             if (customer == null)
