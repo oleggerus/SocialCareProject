@@ -87,7 +87,7 @@
                                 <input class="form-control" maxlength="60" data-bind="value:  Phone" />
                             </div>
                         </div>
-                        <!--ko if: CustomerDetails.CanCreateCareRequest == true -->
+                        <!--ko if: CustomerDetails.CanCreateCareRequest == 'True' -->
                         <div class="form-group col-xs-8 martop-20 pull-right text-right">
                             <button type="button" data-bind="click: MakeCareRequest" class="btn btn-warning control-label">Потребую догляду</button>
                         </div>
@@ -209,7 +209,7 @@
 
 
     CustomerDetails.GeneralErrorMessage = 'An error occured';
-    CustomerDetails.CanCreateCareRequest = '@ViewBag.CanCreateCareRequest';
+    CustomerDetails.CanCreateCareRequest = '@Convert.ToBoolean(ViewBag.CanCreateCareRequest)';
     CustomerDetails.Init();
 
     CustomerDetails.SendRequestUrl = '@Url.Action("MakeCareRequest", "Customer")';

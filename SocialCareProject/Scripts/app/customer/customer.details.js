@@ -28,6 +28,7 @@ CustomerDetails.CareRequsetModal = function(id) {
             if (result && result.success) {
                 $("#careRequestModal").modal('hide');
                 CustomerDetails.CanCreateCareRequest = false;
+
                 notify.ok(result.message);
             } else if (result && !result.success) {
                 notify.fail(result.message);
