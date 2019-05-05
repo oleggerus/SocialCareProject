@@ -10,5 +10,6 @@ namespace Services.People
     public interface IWorkerService
     {
         Worker GetWorkerByUserId(int userId);
+        Worker GetWorkerById(int workerId);
     }
 }

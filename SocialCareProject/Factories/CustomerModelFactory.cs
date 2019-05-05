@@ -13,10 +13,14 @@ namespace SocialCareProject.Factories
     public class CustomerModelFactory : ICustomerModelFactory
     {
         private readonly ICustomerService _customerService;
+        private readonly IWorkerService _workerService;
 
-        public CustomerModelFactory(ICustomerService customerService)
+
+        public CustomerModelFactory(ICustomerService customerService, IWorkerService workerService
+        )
         {
             _customerService = customerService;
+            _workerService = workerService;
         }
 
         public CustomerModel PrepareCustomerModel(Customer customer)
@@ -54,12 +58,42 @@ namespace SocialCareProject.Factories
             return model;
         }
 
+        public CareRequestModel PrepareCareRequestModel(CareRequest request)
+        {
+            var model = new CareRequestModel
+            {
+                Id = request.Id,
+                CustomerId = request.CustomerId,
+                CreatedOnUtc = request.CreatedOnUtc.ToString(Constants.DateFormat.ShortDateString),
+                CustomerFullName = _customerService.GetCustomerById(request.CustomerId).User.GetFullName(),
+                Reason = request.Reason,
+                Answer = request.Answer,
+                ReviewedOn = request.ReviewedOn.GetValueOrDefault().ToString(Constants.DateFormat.ShortDateString),
+                StatusId = request.StatusId
+            };
+            if (request.ReviewedById.HasValue)
+            {
+                model.ReviewedBy = _workerService.GetWorkerById(request.ReviewedById.Value).User.GetFullName();
+            }
+
+            return model;
+        }
+
         public PeopleListViewModel PreparePeopleListViewModel(IPagedList<Customer> customers)
         {
             return new PeopleListViewModel
             {
                 People = customers.Select(PrepareCustomerModel).ToList(),
                 Pager = Extensions.Extensions.ToSimplePagerModel(customers)
+            };
+        }
+
+        public CareRequestsListModel PrepareCareRequestsListModel(IPagedList<CareRequest> requests)
+        {
+            return new CareRequestsListModel
+            {
+                Requests = requests.Select(PrepareCareRequestModel).ToList(),
+                Pager = Extensions.Extensions.ToSimplePagerModel(requests)
             };
         }
     }

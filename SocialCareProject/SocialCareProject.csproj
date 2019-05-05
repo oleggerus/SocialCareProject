@@ -159,10 +159,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\BaseAdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CareRequestController.cs" />
     <Compile Include="Areas\Administration\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\CatalogueAdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\PeopleController.cs" />
+    <Compile Include="Areas\Administration\Models\CareRequestsListModel.cs" />
     <Compile Include="Areas\Administration\Models\PeopleListViewModel.cs" />
     <Compile Include="Areas\Customer\Controllers\BaseCustomerController.cs" />
     <Compile Include="Areas\Customer\Controllers\CustomerController.cs" />
@@ -275,6 +277,7 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\administration\careRequests.js" />
     <Content Include="Scripts\app\administration\people.js" />
     <Content Include="Scripts\app\administration\productList.js" />
     <Content Include="Scripts\app\customer\customer.details.js" />
@@ -392,6 +395,7 @@
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\CatalogueAdministration\Index.cshtml" />
     <Content Include="Areas\Administration\Views\People\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\CareRequest\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

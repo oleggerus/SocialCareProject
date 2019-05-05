@@ -97,6 +97,7 @@
     <Compile Include="Entities\People\Worker.cs" />
     <Compile Include="Entities\WorkerPersonAssignment.cs" />
     <Compile Include="Enums\AreaTypes.cs" />
+    <Compile Include="Enums\CareRequestStatuses.cs" />
     <Compile Include="Enums\CustomerCareStatuses.cs" />
     <Compile Include="Enums\GenderEnum.cs" />
     <Compile Include="Enums\OfferStatuses.cs" />
@@ -135,6 +136,14 @@
     <Compile Include="Migrations\201904141104542_Add CareRequst table 2.Designer.cs">
       <DependentUpon>201904141104542_Add CareRequst table 2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905051503106_Updated_CareRequest_table.cs" />
+    <Compile Include="Migrations\201905051503106_Updated_CareRequest_table.Designer.cs">
+      <DependentUpon>201905051503106_Updated_CareRequest_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905051514350_Updated_CareRequest_table_added_status.cs" />
+    <Compile Include="Migrations\201905051514350_Updated_CareRequest_table_added_status.Designer.cs">
+      <DependentUpon>201905051514350_Updated_CareRequest_table_added_status.cs</DependentUpon>
+    </Compile>
     <Compile Include="PagedList.cs" />
     <Compile Include="RepositoryPattern\EfRepository.cs" />
     <Compile Include="RepositoryPattern\IRepository.cs" />
@@ -163,6 +172,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904141104542_Add CareRequst table 2.resx">
       <DependentUpon>201904141104542_Add CareRequst table 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905051503106_Updated_CareRequest_table.resx">
+      <DependentUpon>201905051503106_Updated_CareRequest_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905051514350_Updated_CareRequest_table_added_status.resx">
+      <DependentUpon>201905051514350_Updated_CareRequest_table_added_status.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataRepository.Entities.People;
+using DataRepository.Enums;
 using Services.People;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
@@ -62,8 +63,11 @@ namespace SocialCareProject.Areas.Customer.Controllers
             var careRequest = new CareRequest
             {
                 CustomerId = customerId,
-                Reason = reason
+                Reason = reason,
+                StatusId = (int)CareRequestStatuses.Opened
             };
+
+            
             _customerService.InsertCareRequest(careRequest);
             return Json(new { success = true, message = "Ваш запит був успішно створений" }, JsonRequestBehavior.AllowGet);
         }

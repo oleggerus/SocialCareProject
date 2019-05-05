@@ -1,0 +1,103 @@
+﻿@using DataRepository.Enums
+@using DataRepository.Extensions
+@model SocialCareProject.Areas.Administration.Models.CareRequestsListModel
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    @Scripts.Render("~/Scripts/app/administration/careRequests.js")
+    ViewBag.Title = "Запити на необхідність догляду";
+}
+
+<div id="requestsList">
+    <div class="container inner-container">
+        <div class="panel body-lightgrey">
+            <div class="panel-body paged-list-in-tab">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-group results-table" data-bind="foreach: Requests">
+                            <li class="list-group-item-lightgrey">
+                                <div class="row " data-bind="style: { cursor: 'pointer' }">
+                                    <div class="col-xs-12" style="border: 0">
+                                        <div class="" style="border: 0">
+                                            <div class="panel-heading body-lightgrey" data-bind="click: function(){ DetailsPanelExpanded(!DetailsPanelExpanded());}">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <span class="fa" data-bind="css:{ 'fa-angle-right' : !DetailsPanelExpanded(), 'fa-angle-down': DetailsPanelExpanded() }"></span>
+                                                        <span style="padding-left: 15px;" data-bind="text: CustomerFullName"></span>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <span class="control-label">Створено:</span>&nbsp;<span data-bind="text: CreatedOnUtc"></span>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <span data-bind="text: RequestStatus, attr: {class: GetCssStylesByStatus}"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body body-lightgrey" data-bind="slideVisible: DetailsPanelExpanded()">
+                                                <div class="row">
+                                                    <div class="col-xs-3">
+                                                        <span class="control-label">Причина звернення:</span>&nbsp;
+                                                    </div>
+                                                    <div class="col-xs-7">
+                                                        <span data-bind="text: Reason"></span>
+                                                    </div>
+                                                    <!--ko if:Answer()-->
+                                                    <div class="col-xs-3">
+                                                        <span class="control-label">Коментар:</span>&nbsp;
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <span data-bind="text: Answer"></span>
+                                                    </div>
+                                                    <!-- /ko -->
+                                                    <div class="col-xs-2">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                Розглянути <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="#">Action</a></li>
+                                                                <li><a href="#">Another action</a></li>
+                                                                <li><a href="#">Something else here</a></li>
+                                                                <li role="separator" class="divider"></li>
+                                                                <li><a href="#">Separated link</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-2 col-xs-8 text-center" data-bind="with: Pager">
+                        @Html.Partial("_Pager")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    @*Requests.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
+    Requests.GetRequests = '@Html.Raw(Url.Action("GetFilteredRequests", "CareRequest"))';
+    Requests.GeneralErrorMessage = 'An error occured';
+    Requests.Requests = @Html.Raw(Json.Encode(Model.Requests));
+    Requests.Pager = @Html.Raw(Json.Encode(Model.Pager));
+    Requests.CareRequestStatuses =  @Html.Raw(Json.Encode(EnumHelpers.ToList<CareRequestStatuses>()));
+
+
+    Requests.ContainerId = 'requestsList';
+
+
+    $(document).ready(function() {
+        Requests.Init();
+    });
+
+</script>

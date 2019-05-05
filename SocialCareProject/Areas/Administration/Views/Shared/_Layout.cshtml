@@ -10,7 +10,6 @@
     <title>@ViewBag.Title - Social Carer</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/administration_styles")
-
     @Scripts.Render("~/bundles/knockout")
 
     @Scripts.Render("~/bundles/jquery")
@@ -18,6 +17,8 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/moment")
+
+
 
 </head>
 <body class="body-lightgrey">
@@ -62,7 +63,7 @@
                         Заяви
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        <a class="dropdown-item" href='@Url.Action("PersonRequestList", "Offer")'>Щодо необхідності догляду</a>
+                        <a class="dropdown-item" href='@Url.Action("Index", "CareRequest")'>Щодо необхідності догляду</a>
                         <a class="dropdown-item" href='@Url.Action("Index", "Offer")'>Щодо товарів та сервісів</a>
                     </div>
                 </li>

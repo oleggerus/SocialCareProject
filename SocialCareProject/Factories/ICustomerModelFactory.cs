@@ -15,5 +15,8 @@ namespace SocialCareProject.Factories
         CustomerModel PrepareCustomerModel(Customer customer);
 
         PeopleListViewModel PreparePeopleListViewModel(IPagedList<Customer> customers);
+
+        CareRequestModel PrepareCareRequestModel(CareRequest request);
+        CareRequestsListModel PrepareCareRequestsListModel(IPagedList<CareRequest> requests);
     }
 }

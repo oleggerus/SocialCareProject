@@ -21,5 +21,10 @@ namespace Services.People
         {
             return _workerRepository.TableNoTracking.Single(x => x.User.Id == userId);
         }
+
+        public Worker GetWorkerById(int workerId)
+        {
+            return _workerRepository.GetById(workerId);
+        }
     }
 }

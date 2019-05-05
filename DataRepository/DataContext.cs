@@ -51,7 +51,7 @@ namespace DataRepository
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<WorkerPersonAssignment>()
-                .HasRequired(c=> c.Worker)
+                .HasRequired(c => c.Worker)
                 .WithMany()
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<WorkerPersonAssignment>()

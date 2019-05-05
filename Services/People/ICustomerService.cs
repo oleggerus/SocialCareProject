@@ -13,12 +13,18 @@ namespace Services.People
         Customer Create(Customer customer);
         Customer GetCustomerById(int id);
         Customer GetCustomerByUserId(int id);
+       IPagedList<Customer> GetFilteredCustomers(int customerId, int pageIndex = default, int pageSize = int.MaxValue);
+
+
+        #region Care Requests
+
         CareRequest InsertCareRequest(CareRequest careRequest);
         CareRequest GetCareRequestById(int id);
         CareRequest UpdateCareRequest(CareRequest careRequest);
         bool CanCreateCareRequest(int personId);
 
-        IPagedList<Customer> GetFilteredCustomers(int administrationId, int pageIndex = default(int), int pageSize = int.MaxValue);
+        IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, int pageIndex = default, int pageSize = int.MaxValue);
 
+        #endregion
     }
 }

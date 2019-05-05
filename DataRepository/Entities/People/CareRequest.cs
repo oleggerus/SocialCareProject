@@ -26,5 +26,17 @@ namespace DataRepository.Entities.People
 
         [ForeignKey("CustomerId")]
         public Customer Customer{ get; set; }
+
+
+        public string Answer { get; set; }
+        public int?  ReviewedById { get; set; }
+
+        [ForeignKey("ReviewedById")]
+
+        public Customer ReviewedBy { get; set; }
+
+        public DateTime? ReviewedOn { get; set; }
+
+        public int StatusId { get; set; }
     }
 }

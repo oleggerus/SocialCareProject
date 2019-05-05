@@ -18,16 +18,19 @@ namespace Services.People
             _careRequestRepository = careRequestRepository;
         }
 
+        #region CRUD
+
+
         public IPagedList<Customer> GetFilteredCustomers(int administrationId, int pageIndex = default(int),
             int pageSize = int.MaxValue)
         {
-            var query = _customerRepository.TableNoTracking.Where(x => x.AdministrationId == administrationId );
+            var query = _customerRepository.TableNoTracking.Where(x => x.AdministrationId == administrationId);
 
             return new PagedList<Customer>(query.OrderBy(x => x.User.LastName), pageIndex,
                 pageSize);
         }
 
-        
+
         public Customer Create(Customer customer)
         {
             if (customer == null)
@@ -48,6 +51,11 @@ namespace Services.People
         {
             return _customerRepository.TableNoTracking.SingleOrDefault(x => x.UserId == id);
         }
+
+        #endregion
+
+
+        #region Care requests
 
         public CareRequest GetCareRequestById(int id)
         {
@@ -76,18 +84,30 @@ namespace Services.People
         {
             var customer = GetCustomerById(personId);
 
-            if (customer.StatusId != (int) CustomerCareStatuses.НеПотребуєДогляду)
+            if (customer.StatusId != (int)CustomerCareStatuses.НеПотребуєДогляду)
             {
                 return false;
             }
 
-            if (_careRequestRepository.TableNoTracking.Any(x => x.CustomerId == personId))
+            if (_careRequestRepository.TableNoTracking.Any(x => x.CustomerId == personId && x.StatusId == (int)CareRequestStatuses.Opened))
             {
                 return false;
             }
 
             return true;
         }
+
+        public IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, int pageIndex = default,
+            int pageSize = int.MaxValue)
+        {
+            var query = _careRequestRepository.TableNoTracking.Where(x => x.Customer.AdministrationId == administrationId);
+
+            return new PagedList<CareRequest>(query.OrderBy(x => x.CreatedOnUtc), pageIndex,
+                pageSize);
+        }
+
+
+        #endregion
 
     }
 }
