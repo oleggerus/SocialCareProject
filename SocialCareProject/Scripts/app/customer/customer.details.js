@@ -28,7 +28,8 @@ CustomerDetails.CareRequsetModal = function(id) {
             if (result && result.success) {
                 $("#careRequestModal").modal('hide');
                 CustomerDetails.CanCreateCareRequest = false;
-
+                var btn = document.getElementById('careRequestBtnId');
+                btn.style.visibility = 'hidden';
                 notify.ok(result.message);
             } else if (result && !result.success) {
                 notify.fail(result.message);

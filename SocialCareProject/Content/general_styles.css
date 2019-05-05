@@ -169,7 +169,7 @@ html {
   background-size: 100%; }
 
 .list-in-tab .list-group {
-  border-top: solid 1px #E5E7E9; }
+  border-top: solid 1px lightgrey; }
 
 .list-in-tab .list-group-item:last-child {
   border-bottom: 4px solid #fff; }
@@ -226,7 +226,7 @@ html {
 
 /*Common styles move to separate file*/
 .form-grey {
-  background-color: #E5E7E9;
+  background-color: lightgrey;
   padding: 20px 0; }
 
 .list-group-item {
@@ -235,6 +235,14 @@ html {
   padding: 10px 15px;
   margin-bottom: -1px;
   background-color: #fff;
+  border: 1px solid #ddd; }
+
+.list-group-item-lightgrey {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: lightgrey;
   border: 1px solid #ddd; }
 
 a.list-group-item,
@@ -256,12 +264,12 @@ button.list-group-item {
 
 .list-group-item.disabled, .list-group-item.disabled:hover, .list-group-item.disabled:focus {
   background-color: #c8c8c9;
-  color: #E5E7E9;
+  color: lightgrey;
   cursor: not-allowed; }
   .list-group-item.disabled .list-group-item-heading, .list-group-item.disabled:hover .list-group-item-heading, .list-group-item.disabled:focus .list-group-item-heading {
     color: inherit; }
   .list-group-item.disabled .list-group-item-text, .list-group-item.disabled:hover .list-group-item-text, .list-group-item.disabled:focus .list-group-item-text {
-    color: #E5E7E9; }
+    color: lightgrey; }
 
 .list-group.results-table .list-group-item:first-child, .list-group.results-table .list-group-item:last-child {
   border-radius: 0; }
@@ -269,7 +277,7 @@ button.list-group-item {
 .list-group.results-table .list-group-item {
   padding: 20px;
   border: none;
-  border-top: 4px solid #E5E7E9; }
+  border-top: 4px solid lightgrey; }
 
 .inner-container {
   padding-top: 20px;
@@ -629,7 +637,7 @@ a.text-success:focus {
   .pagination > .disabled > a,
   .pagination > .disabled > a:hover,
   .pagination > .disabled > a:focus {
-    color: #E5E7E9;
+    color: lightgrey;
     background-color: #fff;
     border-color: #ddd;
     cursor: not-allowed; }
@@ -663,6 +671,6 @@ a.text-success:focus {
   .pager .disabled > a:hover,
   .pager .disabled > a:focus,
   .pager .disabled > span {
-    color: #E5E7E9;
+    color: lightgrey;
     background-color: #fff;
     cursor: not-allowed; }

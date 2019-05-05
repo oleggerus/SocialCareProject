@@ -161,6 +161,7 @@
     <Compile Include="Areas\Administration\Controllers\BaseAdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CatalogueAdministrationController.cs" />
     <Compile Include="Areas\Customer\Controllers\BaseCustomerController.cs" />
     <Compile Include="Areas\Customer\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Customer\Controllers\ErrorController.cs" />
@@ -272,6 +273,7 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\administration\productList.js" />
     <Content Include="Scripts\app\customer\customer.details.js" />
     <Content Include="Scripts\app\customer\offerList.js" />
     <Content Include="Scripts\app\customer\personRequests.js" />
@@ -384,6 +386,8 @@
     <Content Include="Areas\Administration\Views\Error\AccessDenied.cshtml" />
     <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\CatalogueAdministration\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

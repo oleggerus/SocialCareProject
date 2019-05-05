@@ -320,6 +320,17 @@ html {
     // Round the first and last items
 }
 
+.list-group-item-lightgrey {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    // Place the border on the list items and negative margin up for better styling
+    margin-bottom: -1px;
+    background-color: $gray-light;
+    border: 1px solid $list-group-border;
+    // Round the first and last items
+}
+
 
 // Interactive list items
 //

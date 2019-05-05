@@ -1,0 +1,65 @@
+﻿@model SocialCareProject.Areas.Customer.Models.Product.ProductListModel
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    @Scripts.Render("~/Scripts/app/administration/productList.js")
+    ViewBag.Title = "Список усіх пропозицій";
+}
+
+<div id="productsList">
+    <div class="container inner-container">
+        <div class="panel body-lightgrey">
+            <div class="panel-body paged-list-in-tab">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-group results-table" data-bind="foreach: Products">
+                            <li class="list-group-item-lightgrey">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <label class="control-label" data-bind="text: Name"></label>
+                                        <br />
+                                        <span data-bind="text: Category"></span>
+                                    </div>
+                                    <div class="col-xs-3 ">
+                                        <span class="text-muted">Створено: </span>
+                                        <span class="text-muted" data-bind="text: CreatedOnUtc"></span>
+                                    </div>
+
+                                    <div class="col-xs-3 ">
+                                        <span>Ціна: </span>
+                                        <span data-bind="text: Price"></span>
+                                    </div>
+                                    <div class="col-xs-3 text-center">
+                                        <button type="button" data-bind="click:$root.Details.bind(this, Id())" class="btn btn-primary">Деталі</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-2 col-xs-8 text-center" data-bind="with: Pager">
+                        @Html.Partial("_Pager")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    @*Products.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
+    Products.GetProducts = '@Html.Raw(Url.Action("GetFilteredProducts", "CatalogueAdministration"))';
+    Products.GeneralErrorMessage = 'An error occured';
+    Products.Products = @Html.Raw(Json.Encode(Model.Products));
+    Products.Pager = @Html.Raw(Json.Encode(Model.Pager));
+
+
+    Products.ContainerId = 'productsList';
+
+
+    $(document).ready(function() {
+        Products.Init();
+    });
+
+</script>
