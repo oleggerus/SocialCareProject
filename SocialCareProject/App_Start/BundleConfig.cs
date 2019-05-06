@@ -22,9 +22,6 @@ namespace SocialCareProject
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/popper.min.js",
-                      "~/Scripts/popper.js",
-                      "~/Scripts/popper-utils.min.js",
                       "~/Scripts/bootstrap-notify.min.js"
                       ));
 

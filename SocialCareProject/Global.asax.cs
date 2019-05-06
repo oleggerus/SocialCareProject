@@ -3,6 +3,7 @@ using SocialCareProject.Authentication;
 using SocialCareProject.Models;
 using System;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -28,20 +29,30 @@ namespace SocialCareProject
             var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie != null)
             {
-                var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-
-                var serializeModel = JsonConvert.DeserializeObject<UserModel>(authTicket.UserData);
-
-                var principal = new CustomUser(authTicket.Name)
+                try
                 {
-                    UserId = serializeModel.UserId,
-                    FirstName = serializeModel.FirstName,
-                    LastName = serializeModel.LastName,
-                    AreaId = serializeModel.AreaId,
-                    Roles = serializeModel.RoleName.ToArray<string>()
-                };
+                    var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-                HttpContext.Current.User = principal;
+
+                    var serializeModel = JsonConvert.DeserializeObject<UserModel>(authTicket.UserData);
+
+                    var principal = new CustomUser(authTicket.Name)
+                    {
+                        UserId = serializeModel.UserId,
+                        FirstName = serializeModel.FirstName,
+                        LastName = serializeModel.LastName,
+                        AreaId = serializeModel.AreaId,
+                        Roles = serializeModel.RoleName.ToArray<string>()
+                    };
+
+                    HttpContext.Current.User = principal;
+                }
+                catch (CryptographicException cex)
+                {
+                    FormsAuthentication.SignOut();
+                }
+
+
             }
 
         }
