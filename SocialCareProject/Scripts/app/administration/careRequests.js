@@ -10,13 +10,7 @@ Requests.RequestsMapping = {
 
 Requests.RequestViewModel = function (data) {
     var self = this;
-    //self.Id = ko.observable(null);
-    //self.FullName = ko.observable(null);
-    //self.Email = ko.observable(null);
-    //self.Phone = ko.observable(null);
-    //self.GenderName = ko.observable(null);
-    //self.StatusId = ko.observable(null);
-    //self.IsInvalid = ko.observable(null);
+ 
     self.DetailsPanelExpanded = ko.observable(false);
 
 
@@ -45,6 +39,12 @@ Requests.RequestViewModel = function (data) {
                 return "label text-uppercase label-default";
         }
     });
+
+
+    self.AssignWorkerToUser = function() {
+
+    };
+
 };
 
 Requests.ListViewModel = function () {
