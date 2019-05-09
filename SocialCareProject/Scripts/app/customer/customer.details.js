@@ -70,35 +70,6 @@ CustomerDetails.CustomerViewModel = function () {
     self.CareRequestModal = new CustomerDetails.CareRequsetModal(CustomerDetails.Details.CustomerId);
     self.MakeCareRequest = function () {
         self.CareRequestModal.ShowModal();
-        //bootbox.confirm({
-        //        title: "Заява щодо необхідності догляду",
-        //        message: "Будь ласка, вкажіть причину необхідності у догляді або іншу інформацію, яку вважаєте необхідною",
-        //        callback: function (isOkClicked) {
-        //            if (isOkClicked) {
-        //                console.log("yee");
-        //                //$.ajax({
-        //                //    method: "POST",
-        //                //    url: YounifiAdminDomainElementCreateEdit.RemoveAttachmentUrl,
-        //                //    dataType: "json",
-        //                //    data: {
-        //                //        downloadId: id,
-        //                //        domainElementId: self.Id()
-        //                //    }
-        //                //}).done(function (response) {
-        //                //    if (response.success) {
-        //                //        self.FileAttachments.remove(function (attachment) {
-        //                //            return ko.utils.unwrapObservable(attachment.Id) === id;
-        //                //        });
-        //                //        notify.ok(response.message);
-        //                //    }
-        //                //}).fail(function () {
-        //                //    notify.fail(YounifiAdminDomainElementCreateEdit.GeneralErrorMessage);
-        //                //});
-        //            }
-        //        }
-        //    }
-
-        //);
     };
 
    };

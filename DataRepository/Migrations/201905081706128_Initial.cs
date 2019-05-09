@@ -145,14 +145,34 @@ namespace DataRepository.Migrations
                         PositionId = c.Int(nullable: false),
                         IsLead = c.Boolean(nullable: false),
                         StatusId = c.Int(),
-                        User_Id = c.Int(nullable: false),
+                        UserId = c.Int(nullable: false),
                         Administration_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
                 .ForeignKey("dbo.Administrations", t => t.Administration_Id)
-                .Index(t => t.User_Id)
+                .Index(t => t.UserId)
                 .Index(t => t.Administration_Id);
+            
+            CreateTable(
+                "dbo.CareRequests",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Reason = c.String(nullable: false),
+                        CustomerId = c.Int(nullable: false),
+                        CreatedOnUtc = c.DateTime(nullable: false),
+                        Answer = c.String(),
+                        ReviewedById = c.Int(),
+                        ReviewedOn = c.DateTime(),
+                        StatusId = c.Int(nullable: false),
+                        Deleted = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)
+                .ForeignKey("dbo.Workers", t => t.ReviewedById)
+                .Index(t => t.CustomerId)
+                .Index(t => t.ReviewedById);
             
             CreateTable(
                 "dbo.Categories",
@@ -304,9 +324,11 @@ namespace DataRepository.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Description = c.String(nullable: false),
+                        Name = c.String(nullable: false),
                         StatusId = c.Int(nullable: false),
                         IsDeleted = c.Boolean(nullable: false),
                         CreatedById = c.Int(nullable: false),
+                        CreatedOnUtc = c.DateTime(nullable: false),
                         CustomerId = c.Int(nullable: false),
                         Category_Id = c.Int(nullable: false),
                     })
@@ -381,8 +403,10 @@ namespace DataRepository.Migrations
             DropForeignKey("dbo.Providers", "UpdatedBy_Id", "dbo.Users");
             DropForeignKey("dbo.Providers", "CreatedBy_Id", "dbo.Users");
             DropForeignKey("dbo.Providers", "Address_Id", "dbo.Addresses");
+            DropForeignKey("dbo.CareRequests", "ReviewedById", "dbo.Workers");
+            DropForeignKey("dbo.CareRequests", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.Workers", "Administration_Id", "dbo.Administrations");
-            DropForeignKey("dbo.Workers", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.Workers", "UserId", "dbo.Users");
             DropForeignKey("dbo.Administrations", "UpdatedBy_Id", "dbo.Users");
             DropForeignKey("dbo.Customers", "AdministrationId", "dbo.Administrations");
             DropForeignKey("dbo.Customers", "UserId", "dbo.Users");
@@ -420,8 +444,10 @@ namespace DataRepository.Migrations
             DropIndex("dbo.Products", new[] { "CreatedById" });
             DropIndex("dbo.Products", new[] { "CategoryId" });
             DropIndex("dbo.Products", new[] { "ScheduleId" });
+            DropIndex("dbo.CareRequests", new[] { "ReviewedById" });
+            DropIndex("dbo.CareRequests", new[] { "CustomerId" });
             DropIndex("dbo.Workers", new[] { "Administration_Id" });
-            DropIndex("dbo.Workers", new[] { "User_Id" });
+            DropIndex("dbo.Workers", new[] { "UserId" });
             DropIndex("dbo.Customers", new[] { "UpdatedBy_Id" });
             DropIndex("dbo.Customers", new[] { "CreatedBy_Id" });
             DropIndex("dbo.Customers", new[] { "UserId" });
@@ -444,6 +470,7 @@ namespace DataRepository.Migrations
             DropTable("dbo.Providers");
             DropTable("dbo.Products");
             DropTable("dbo.Categories");
+            DropTable("dbo.CareRequests");
             DropTable("dbo.Workers");
             DropTable("dbo.Customers");
             DropTable("dbo.Administrations");

@@ -112,37 +112,9 @@
     <Compile Include="Extensions\EnumHelpers.cs" />
     <Compile Include="Extensions\UserExtensions.cs" />
     <Compile Include="IPagedList.cs" />
-    <Compile Include="Migrations\201902201948479_Initial.cs" />
-    <Compile Include="Migrations\201902201948479_Initial.Designer.cs">
-      <DependentUpon>201902201948479_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902201957481_Add name to PersonRequestEntity.cs" />
-    <Compile Include="Migrations\201902201957481_Add name to PersonRequestEntity.Designer.cs">
-      <DependentUpon>201902201957481_Add name to PersonRequestEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902202006245_Add date to PersonRequestEntity.cs" />
-    <Compile Include="Migrations\201902202006245_Add date to PersonRequestEntity.Designer.cs">
-      <DependentUpon>201902202006245_Add date to PersonRequestEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902202012295_Add status id to PersonRequestEntity.cs" />
-    <Compile Include="Migrations\201902202012295_Add status id to PersonRequestEntity.Designer.cs">
-      <DependentUpon>201902202012295_Add status id to PersonRequestEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904141059535_Add CareRequst table.cs" />
-    <Compile Include="Migrations\201904141059535_Add CareRequst table.Designer.cs">
-      <DependentUpon>201904141059535_Add CareRequst table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904141104542_Add CareRequst table 2.cs" />
-    <Compile Include="Migrations\201904141104542_Add CareRequst table 2.Designer.cs">
-      <DependentUpon>201904141104542_Add CareRequst table 2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905051503106_Updated_CareRequest_table.cs" />
-    <Compile Include="Migrations\201905051503106_Updated_CareRequest_table.Designer.cs">
-      <DependentUpon>201905051503106_Updated_CareRequest_table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905051514350_Updated_CareRequest_table_added_status.cs" />
-    <Compile Include="Migrations\201905051514350_Updated_CareRequest_table_added_status.Designer.cs">
-      <DependentUpon>201905051514350_Updated_CareRequest_table_added_status.cs</DependentUpon>
+    <Compile Include="Migrations\201905081706128_Initial.cs" />
+    <Compile Include="Migrations\201905081706128_Initial.Designer.cs">
+      <DependentUpon>201905081706128_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="PagedList.cs" />
     <Compile Include="RepositoryPattern\EfRepository.cs" />
@@ -155,29 +127,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902201948479_Initial.resx">
-      <DependentUpon>201902201948479_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902201957481_Add name to PersonRequestEntity.resx">
-      <DependentUpon>201902201957481_Add name to PersonRequestEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902202006245_Add date to PersonRequestEntity.resx">
-      <DependentUpon>201902202006245_Add date to PersonRequestEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902202012295_Add status id to PersonRequestEntity.resx">
-      <DependentUpon>201902202012295_Add status id to PersonRequestEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904141059535_Add CareRequst table.resx">
-      <DependentUpon>201904141059535_Add CareRequst table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904141104542_Add CareRequst table 2.resx">
-      <DependentUpon>201904141104542_Add CareRequst table 2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905051503106_Updated_CareRequest_table.resx">
-      <DependentUpon>201905051503106_Updated_CareRequest_table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905051514350_Updated_CareRequest_table_added_status.resx">
-      <DependentUpon>201905051514350_Updated_CareRequest_table_added_status.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905081706128_Initial.resx">
+      <DependentUpon>201905081706128_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

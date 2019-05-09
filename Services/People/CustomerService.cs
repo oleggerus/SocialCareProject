@@ -11,10 +11,14 @@ namespace Services.People
     {
         private readonly IRepository<CareRequest> _careRequestRepository;
         private readonly IRepository<Customer> _customerRepository;
+        private readonly IRepository<Worker> _workerRepository;
 
-        public CustomerService(IRepository<Customer> customerRepository, IRepository<CareRequest> careRequestRepository)
+        public CustomerService(IRepository<Customer> customerRepository,
+            IRepository<CareRequest> careRequestRepository,
+            IRepository<Worker> workerRepository)
         {
             _customerRepository = customerRepository;
+            _workerRepository = workerRepository;
             _careRequestRepository = careRequestRepository;
         }
 
@@ -52,6 +56,10 @@ namespace Services.People
             return _customerRepository.TableNoTracking.SingleOrDefault(x => x.UserId == id);
         }
 
+        public Worker GetWorkerByUserId(int id)
+        {
+            return _workerRepository.TableNoTracking.SingleOrDefault(x => x.UserId == id);
+        }
         #endregion
 
 

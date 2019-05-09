@@ -33,10 +33,11 @@ namespace DataRepository.Entities.People
 
         [ForeignKey("ReviewedById")]
 
-        public Customer ReviewedBy { get; set; }
+        public Worker ReviewedBy { get; set; }
 
         public DateTime? ReviewedOn { get; set; }
 
         public int StatusId { get; set; }
+        public int Deleted { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace Services.People
         Customer Create(Customer customer);
         Customer GetCustomerById(int id);
         Customer GetCustomerByUserId(int id);
+        Worker GetWorkerByUserId(int id);
        IPagedList<Customer> GetFilteredCustomers(int customerId, int pageIndex = default, int pageSize = int.MaxValue);
 
 

@@ -7,13 +7,13 @@ namespace DataRepository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddstatusidtoPersonRequestEntity : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddstatusidtoPersonRequestEntity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902202012295_Add status id to PersonRequestEntity"; }
+            get { return "201905081706128_Initial"; }
         }
         
         string IMigrationMetadata.Source

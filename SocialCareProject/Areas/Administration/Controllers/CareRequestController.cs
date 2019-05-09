@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataRepository.Enums;
 using Services.People;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
@@ -49,6 +50,29 @@ namespace SocialCareProject.Areas.Administration.Controllers
             var url = GetUrlWithFilters(pager, currentUser.AreaId);
             return CreateJsonResult(true, url, model);
         }
+
+
+        public JsonResult AssignWorkerToCustomer(int customerId, int workerId)
+        {
+
+            return CreateJsonResult(true);
+        }
+
+        public JsonResult RejectCareRequest(int requestId, string answer)
+        {
+            var careRequest = _customerService.GetCareRequestById(requestId);
+
+            var currentUser = HttpContext.User as CustomUser;
+            careRequest.ReviewedById = _customerService.GetWorkerByUserId(currentUser.UserId).Id;
+            careRequest.ReviewedOn = DateTime.UtcNow;
+            careRequest.Answer = answer;
+            careRequest.StatusId = (int) CareRequestStatuses.Rejected;
+
+            _customerService.UpdateCareRequest(careRequest);
+
+            return CreateJsonResult(true);
+        }
+
 
         private string GetUrlWithFilters(SimplePagerModel pager, int administrationId)
         {

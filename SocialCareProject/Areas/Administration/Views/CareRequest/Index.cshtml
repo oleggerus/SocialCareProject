@@ -11,10 +11,70 @@
 <div id="requestsList">
     <div class="container inner-container">
         <div class="panel body-lightgrey">
+
             <div class="panel-body paged-list-in-tab">
                 <div class="row">
                     <div class="col-xs-12">
                         <ul class="list-group results-table" data-bind="foreach: Requests">
+                            <div class="modal fade" id="assignWorkerModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-bind="with: AssignWorkerModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <h4 class="modal-title">
+                                                <span>Надати персоні соціального робітника</span>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Чи впевнені Ви у тому, що <span class="control-label" data-bind="text: CustomerFullName"></span> потребує соціального робітника?
+                                            <br /><br />
+                                            Якщо так, оберіть доступного робітника зі списку.
+                                        </div>
+                                        @*<div class="form-group">
+                        <textarea class="form-control" maxlength="500" data-bind="textInput: Reason"  style="margin-left: 20px; width: 450px; max-width: 600px;"></textarea>
+                    </div>*@
+
+                                        <div class="modal-footer">
+                                            <div class="form-group text-right">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Відмінити</button>
+                                                <button type="button" class="btn btn-primary" data-bind="click: SendRequest">Підтвердити</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="modal fade" id="rejectRequest" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-bind="with: RejectRequestModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <h4 class="modal-title">
+                                                <span>Відхилити запит на необхідність догляду</span>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Чи впевнені Ви у тому, що <span class="control-label" data-bind="text: CustomerFullName"></span> не потребує соціального робітника?
+                                            <br /><br />
+                                            Якщо так, додайте Ваше пояснення до цієї дії.
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" maxlength="500" data-bind="textInput: Answer" style="margin-left: 20px; width: 450px; max-width: 600px;"></textarea>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <div class="form-group text-right">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Відмінити</button>
+                                                <button type="button" class="btn btn-primary" data-bind="click: SendRequest">Підтвердити</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <li class="list-group-item-lightgrey">
                                 <div class="row " data-bind="style: { cursor: 'pointer' }">
                                     <div class="col-xs-12" style="border: 0">
@@ -55,15 +115,15 @@
                                                             <!-- /ko -->
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="col-xs-2">
                                                         <div class="btn-group">
                                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 Розглянути <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item"href="#">Прийняти запит</a></li>
-                                                                <li><a class="dropdown-item" href="#">Відхилити запит</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bind="click: OpenApproveModal.bind(self.CustomerId)">Прийняти запит</a></li>
+                                                                <li><a class="dropdown-item" href="#"data-bind="click: OpenRejectModal.bind(self.CustomerId)">Відхилити запит</a></li>
 
                                                             </ul>
                                                         </div>
@@ -90,6 +150,9 @@
 <script type="text/javascript">
     @*Requests.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
     Requests.GetRequests = '@Html.Raw(Url.Action("GetFilteredRequests", "CareRequest"))';
+    Requests.RejectUrl = '@Html.Raw(Url.Action("RejectCareRequest", "CareRequest"))';
+    Requests.AssignWorkerToCustomerUrl = '@Html.Raw(Url.Action("AssignWorkerToCustomer", "CareRequest"))';
+
     Requests.GeneralErrorMessage = 'An error occured';
     Requests.Requests = @Html.Raw(Json.Encode(Model.Requests));
     Requests.Pager = @Html.Raw(Json.Encode(Model.Pager));
