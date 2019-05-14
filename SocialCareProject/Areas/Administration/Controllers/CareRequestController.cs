@@ -4,7 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataRepository.Enums;
+using DataRepository.Extensions;
+using Services.Assignments;
 using Services.People;
+using SocialCareProject.Areas.Administration.Models;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
 using SocialCareProject.Models;
@@ -16,15 +19,18 @@ namespace SocialCareProject.Areas.Administration.Controllers
         private readonly ICustomerModelFactory _customerModelFactory;
         private readonly ICustomerService _customerService;
         private readonly IUserService _userService;
+        private readonly IWorkerPersonAssignmentService _assignmentService;
 
 
         public CareRequestController(ICustomerModelFactory customerModelFactory,
             ICustomerService customerService,
-            IUserService userService)
+            IUserService userService,
+            IWorkerPersonAssignmentService assignmentService)
         {
             _customerService = customerService;
             _customerModelFactory = customerModelFactory;
             _userService = userService;
+            _assignmentService = assignmentService;
         }
 
         // GET: Administration/CareRequest
@@ -35,6 +41,13 @@ namespace SocialCareProject.Areas.Administration.Controllers
 
             var requests = _customerService.GetFilteredCareRequests(currentAdministrationId, pager.PageIndex, pager.PageSize);
             var model = _customerModelFactory.PrepareCareRequestsListModel(requests);
+
+            var workers = _assignmentService.GetAllowedForAssignWorkers(currentAdministrationId);
+            model.Workers = workers.Select(x => new WorkerForAssignViewModel
+            {
+                Id = x.Id,
+                FullName = x.User.GetFullName()
+            }).ToList();
 
             return View(model);
         }
@@ -51,9 +64,17 @@ namespace SocialCareProject.Areas.Administration.Controllers
             return CreateJsonResult(true, url, model);
         }
 
-
-        public JsonResult AssignWorkerToCustomer(int customerId, int workerId)
+        public JsonResult AssignWorkerToCustomer(int customerId, int requestId, string answer)
         {
+            var careRequest = _customerService.GetCareRequestById(requestId);
+
+            var currentUser = HttpContext.User as CustomUser;
+            careRequest.ReviewedById = _customerService.GetWorkerByUserId(currentUser.UserId).Id;
+            careRequest.ReviewedOn = DateTime.UtcNow;
+            careRequest.Answer = answer;
+            careRequest.StatusId = (int)CareRequestStatuses.Approved;
+
+            _customerService.UpdateCareRequest(careRequest);
 
             return CreateJsonResult(true);
         }
@@ -69,8 +90,7 @@ namespace SocialCareProject.Areas.Administration.Controllers
             careRequest.StatusId = (int) CareRequestStatuses.Rejected;
 
             _customerService.UpdateCareRequest(careRequest);
-
-            return CreateJsonResult(true);
+            return Json(new { success = true, message = "Ваші зміни збережені" }, JsonRequestBehavior.AllowGet);            
         }
 
 

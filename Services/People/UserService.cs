@@ -51,7 +51,7 @@ namespace Services.People
                     break;
             }
 
-            return default;
+            return default(int);
         }
     }
 }

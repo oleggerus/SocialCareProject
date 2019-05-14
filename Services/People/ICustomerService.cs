@@ -14,7 +14,7 @@ namespace Services.People
         Customer GetCustomerById(int id);
         Customer GetCustomerByUserId(int id);
         Worker GetWorkerByUserId(int id);
-       IPagedList<Customer> GetFilteredCustomers(int customerId, int pageIndex = default, int pageSize = int.MaxValue);
+       IPagedList<Customer> GetFilteredCustomers(int customerId, int pageIndex = default(int), int pageSize = int.MaxValue);
 
 
         #region Care Requests
@@ -24,7 +24,7 @@ namespace Services.People
         CareRequest UpdateCareRequest(CareRequest careRequest);
         bool CanCreateCareRequest(int personId);
 
-        IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, int pageIndex = default, int pageSize = int.MaxValue);
+        IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, int pageIndex = default(int), int pageSize = int.MaxValue);
 
         #endregion
     }

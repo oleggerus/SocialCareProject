@@ -12,4 +12,5 @@ namespace SocialCareProject.Areas.Administration.Models
         public SimplePagerModel Pager { get; set; }
         public IList<CustomerModel> People { get; set; } = new List<CustomerModel>();
     }
+
 }

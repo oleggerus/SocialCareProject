@@ -105,7 +105,7 @@ namespace Services.People
             return true;
         }
 
-        public IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, int pageIndex = default,
+        public IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, int pageIndex = default(int),
             int pageSize = int.MaxValue)
         {
             var query = _careRequestRepository.TableNoTracking.Where(x => x.Customer.AdministrationId == administrationId);

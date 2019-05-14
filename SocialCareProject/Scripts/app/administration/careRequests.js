@@ -13,8 +13,7 @@ Requests.AllRequests = null;
 Requests.AssignWorkerModal = function (requestId) {
     var self = this;
 
-    self.AssignedPerson = ko.observable();
-    self.CustomerId = ko.observable();
+    self.AssignedPersonId = ko.observable();
     self.CustomerFullName = ko.observable();
     self.RequestId = ko.observable(requestId);
 
@@ -48,9 +47,8 @@ Requests.AssignWorkerModal = function (requestId) {
         //    }
         //}).done(function (result) {
         //    if (result && result.success) {
-        //        $("#careRequestModal").modal('hide');
-        //        CustomerDetails.CanCreateCareRequest = false;
-        //        var btn = document.getElementById('assignWorkerModal');
+        //        $("#assignWorkerModal").modal('hide');
+        //        var btn = document.getElementById('actionButton');
         //        btn.style.visibility = 'hidden';
         //        notify.ok(result.message);
         //    } else if (result && !result.success) {
@@ -99,9 +97,8 @@ Requests.RejectRequestModal = function (requestId) {
             }
         }).done(function (result) {
             if (result && result.success) {
-                $("#careRequestModal").modal('hide');
-                CustomerDetails.CanCreateCareRequest = false;
-                var btn = document.getElementById('assignWorkerModal');
+                $("#rejectRequest").modal('hide');
+                var btn = document.getElementById('actionButton');
                 btn.style.visibility = 'hidden';
                 notify.ok(result.message);
             } else if (result && !result.success) {
