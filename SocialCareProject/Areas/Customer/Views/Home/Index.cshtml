@@ -1,7 +1,32 @@
-﻿
+﻿@model SocialCareProject.Areas.Customer.Models.Home.HomeCustomerModel
+
 @{
-    ViewBag.Title = "Customer";
+    ViewBag.Title = "Домашня сторінка";
 }
 
-<h2>Index</h2>
-
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-ms-6">
+        <div class="panel panel-default form-panel">
+            <div class="panel-body">
+                <h3>Ласкова просимо, @Model.Name</h3>
+                <p>            </p><div class="section-content">
+    <p>Звертайтеся за порадою та підтримкою. </p>
+    <p>Також Ви можете прибдати необхідні товари та послуги на нашому сайті</p>
+</div>
+                <p></p>
+                <div class="hidden-xs">
+                    <a class="button-2 btn btn-primary btn-block" href="@Url.Action("Index", "Product")">Переглянути каталог</a>
+                    <a class="button-2 btn btn-primary btn-block" href="@Url.Action("Index", "Offer")">Переглянути замовлення</a>
+                    <a class="button-2 btn btn-primary btn-block" href="@Url.Action("PersonRequestList", "Offer")">Переглянути побажання</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-ms-6">
+        <div class="">
+            <div class="panel-body inverse card">
+                <p>"Not only is the Younifi website easy to use, it gave just the right amount of information to help me make a decision on my new wheelchair. I’d happily recommend the website."</p>
+            </div>
+        </div>
+    </div>
+</div>

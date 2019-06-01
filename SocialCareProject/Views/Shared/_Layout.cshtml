@@ -9,12 +9,13 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark" style="position: fixed; z-index:1;  width: 100%;">
+    <a class="navbar-brand" href="@Url.Action("Index", "Home")" >Social Carer</a>
+        @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </button>*@
+        @*<div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">
@@ -76,7 +77,7 @@
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-        </div>
+        </div>*@
     </nav>
 @*<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -99,9 +100,8 @@
 </div>*@
 <div class="container body-content">
     @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    <footer style="left: 0px">
+        <p>&copy; Provided by Oleh Gerus</p>
     </footer>
 </div>
 

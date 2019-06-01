@@ -1,5 +1,4 @@
 ﻿@model SocialCareProject.Models.LoginModel
-
 @{
     ViewBag.Title = "Index";
 }
@@ -7,32 +6,44 @@
 @using (Html.BeginForm("Login", "Home", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <div class="container">
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    @*<h2>Вітаємо на нашому сайті</h2>
+    <h4>Введіть свої дані для того, аби продовжити роботу з системою</h4>*@
+    <div class="container inner-container" style="display: flex; justify-content: center;">
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
-            </div>
+        <div class="card" style="margin-top: 100px">
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Увійти" class="btn btn-default" />
+            <div class="form-horizontal" style="width: 350px;     margin-left: 50px;
+                                                                                                                                             ">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-8">Електронна адреса</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                    </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-8">Пароль</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3" style="margin-left: 15px">
+                        <input type="submit" value="Увійти" class="btn btn-success" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="button" value="Реєстрація" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Registration") + "'");" />
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+
 
 }
 

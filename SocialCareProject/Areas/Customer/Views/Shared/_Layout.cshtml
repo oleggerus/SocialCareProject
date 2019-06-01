@@ -24,8 +24,8 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Social carer</a>
+    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark" style="position: fixed; z-index:1;  width: 100%; top:0">
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">Social carer</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,7 +45,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-shopping-basket">
-                            <span class="badge badge-primary">11</span>
+                            <span class="badge badge-primary">1</span>
                         </i>
                         Замовлення
                         </a>
@@ -78,19 +78,19 @@
                         Нотифікації
                     </a>
                 </li>
-                <li class="nav-item">
+                @*<li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa fa-envelope-o">
                             <span class="badge badge-success">1</span>
                         </i>
                         Повідомлення
                     </a>
-                </li>
+                </li>*@
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            @*<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Пошук" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пошук</button>
-            </form>
+            </form>*@
             <ul class="navbar-nav mx-5">
                 <li class="nav-item">
                     <a class="nav-link" href='@Url.Action("Logout", "Home", new{area=""})'>
@@ -120,7 +120,7 @@
                 </div>
             </div>
         </div>*@
-    <div class="page-header">
+    <div class="page-header" style="margin-top: 100px;">
         <div class="container">
             <h1 class="pull-left page-title">
                 @title
@@ -135,7 +135,7 @@
         </div>
     </div>
 </div>
-<div class="container body-content">
+<div class="container inner-container body-content">
     <div class="card-body">
         @RenderBody()
     </div>
