@@ -11,6 +11,10 @@
 }
 
 <div id="peopleList">
+    <div class="form-grey">
+        @Html.Partial("_Filter")
+    </div>
+
     <div class="container inner-container">
         <div class="panel body-lightgrey">
             <div class="panel-body paged-list-in-tab">
@@ -21,12 +25,12 @@
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <label class="control-label" data-bind="text: FullName"></label>
-                                        <br />
+                                        <br/>
                                         <span data-bind="text: GenderName"></span>
                                     </div>
                                     <div class="col-xs-3 ">
                                         <span data-bind="text: Email"></span>
-                                        <br />
+                                        <br/>
                                         <span data-bind="text: Phone"></span>
                                     </div>
 
@@ -58,6 +62,7 @@
     People.People = @Html.Raw(Json.Encode(Model.People));
     People.Pager = @Html.Raw(Json.Encode(Model.Pager));
     People.CustomerStatuses =  @Html.Raw(Json.Encode(EnumHelpers.ToList<CustomerCareStatuses>()));
+    People.Filter = @Html.Raw(Json.Encode(Model.Filter));
 
 
     People.ContainerId = 'peopleList';

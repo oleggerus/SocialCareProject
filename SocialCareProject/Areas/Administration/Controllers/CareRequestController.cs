@@ -80,7 +80,6 @@ namespace SocialCareProject.Areas.Administration.Controllers
 
             var person = _customerService.GetCustomerById(careRequest.CustomerId);
             person.StatusId = (int) CustomerCareStatuses.ПідДоглядом;
-            _customerService.Update(person);
 
             var assignment  = new WorkerPersonAssignment
             {
@@ -90,7 +89,9 @@ namespace SocialCareProject.Areas.Administration.Controllers
                 CreatedOnUtc = DateTime.UtcNow,
                 Worker = assignedWorker
             };
-            _assignmentService.Create(assignment);
+            //_assignmentService.Create(assignment);
+            _customerService.InsertAssignment(assignment);
+            _customerService.Update(person);
 
             return CreateJsonResult(true);
         }

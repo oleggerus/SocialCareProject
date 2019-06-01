@@ -32,7 +32,7 @@
                                             <div class="form-group">
                                                 <select class="form-control" style="width: 450px; max-width: 600px;" data-bind="value: WorkerId,
                                         options: Requests.Workers,
-                                        optionsValue: 'Key' , optionsText: 'Value' , optionsCaption: 'Оберіть соціального робітника'"></select>
+                                        optionsValue: 'Id' , optionsText: 'FullName' , optionsCaption: 'Оберіть соціального робітника'"></select>
                                             </div>
                                         </div>
 
@@ -162,7 +162,7 @@
 
     Requests.GeneralErrorMessage = 'An error occured';
     Requests.Requests = @Html.Raw(Json.Encode(Model.Requests));
-    Requests.Workers = '@Html.ViewBag.Workers';
+    Requests.Workers = @Html.Raw(Json.Encode(ViewBag.Workers));
     Requests.Pager = @Html.Raw(Json.Encode(Model.Pager));
     Requests.CareRequestStatuses =  @Html.Raw(Json.Encode(EnumHelpers.ToList<CareRequestStatuses>()));
     

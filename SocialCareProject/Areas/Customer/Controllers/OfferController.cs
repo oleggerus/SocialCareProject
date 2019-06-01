@@ -47,6 +47,8 @@ namespace SocialCareProject.Areas.Customer.Controllers
 
             var personRequests = _offerService.GetFilteredPersonRequests(currentUser?.UserId ?? default(int), pager.PageIndex, pager.PageSize);
             var model = _offerModelFactory.PreparePersonRequestsListModel(personRequests);
+
+            ViewBag.UserId = currentUser.UserId;
             return View("PersonRequestList", model);
         }
 

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Services.People;
+using SocialCareProject.Areas.Administration.Models;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
 using SocialCareProject.Models;
@@ -27,23 +24,26 @@ namespace SocialCareProject.Areas.Administration.Controllers
         }
 
         // GET: Administration/People
-        public ActionResult Index(SimplePagerModel pager)
+        public ActionResult Index(SimplePagerModel pager, PeopleFilterModel filter)
         {
             var currentUser = HttpContext.User as CustomUser;
             var currentAdministrationId = _userService.GetAdministrationIdByUserId(currentUser.UserId);
 
-            var people = _customerService.GetFilteredCustomers(currentAdministrationId, pager.PageIndex, pager.PageSize);
+            var people = _customerService.GetFilteredCustomers(currentAdministrationId, filter.Name, filter.Phone,
+                filter.Email, filter.StatusId, pager.PageIndex, pager.PageSize);
             var model = _customerModelFactory.PreparePeopleListViewModel(people);
+            model.Filter = filter;
             
             return View(model);
         }
 
-        public JsonResult GetFilteredPeople(SimplePagerModel pager)
+        public JsonResult GetFilteredPeople(SimplePagerModel pager, PeopleFilterModel filter)
         {
             var currentUser = HttpContext.User as CustomUser;
             var currentAdministrationId = _userService.GetAdministrationIdByUserId(currentUser.UserId);
 
-            var people = _customerService.GetFilteredCustomers(currentAdministrationId, pager.PageIndex, pager.PageSize);
+            var people = _customerService.GetFilteredCustomers(currentAdministrationId, filter.Name, filter.Phone,
+                filter.Email, filter.StatusId, pager.PageIndex, pager.PageSize);
             var model = _customerModelFactory.PreparePeopleListViewModel(people);
 
             var url = GetUrlWithFilters(pager, currentUser.AreaId);

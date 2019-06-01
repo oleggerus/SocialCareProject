@@ -6,9 +6,49 @@
     @Scripts.Render("~/Scripts/app/customer/personRequests.js")
     ViewBag.Title = "Мої запити";
 }
-
+@section Buttons
+{
+    <div id="buttonsection">
+        <button class="btn btn-success" data-bind="click:AddNewRequest">
+            <i class="glyphicon glyphicon-plus"></i>
+            &nbsp; Створити новий
+        </button>
+    </div>
+}
 <div id="personRequestsList">
     <div class="container inner-container">
+        <div class="modal fade" id="newItemModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-bind="with: NewItemModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">
+                            <span>Створити запит щодо бажаного продукту/послуги</span>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <b>Чи впевнені Ви у тому, що бажаєте новий запит?</b>
+                        <br /><br />
+                        Якщо так, вкажіть назву продукту/послуги.
+                        <div class="">
+                            <textarea class="form-control" maxlength="500" data-bind="textInput: Name" style="width: 450px; max-width: 600px;"></textarea>
+                        </div>
+                        <br />
+                        Додайте опис.
+                        <div class="">
+                            <textarea class="form-control" maxlength="500" data-bind="textInput: Name" style=" width: 450px; max-width: 600px;"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <div class="form-group text-right">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Відмінити</button>
+                            <button type="button" class="btn btn-primary" data-bind="click: SendRequest">Підтвердити</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="panel">
             <div class="panel-body paged-list-in-tab">
                 <div class="row">
@@ -48,7 +88,7 @@
                                         <button type="button" data-bind="click:$root.Details.bind(this,Id())" class="btn btn-primary">Деталі</button>
                                     </div>
                                 </div>
-                                <br />
+                                <br/>
                                 <div class="row">
                                     <div class="col-xs-12 ">
                                         <span>Опис: </span>
@@ -75,8 +115,10 @@
     PersonRequests.GeneralErrorMessage = 'An error occured';
     PersonRequests.Items = @Html.Raw(Json.Encode(Model.Items));
     PersonRequests.Pager = @Html.Raw(Json.Encode(Model.Pager));
+    PersonRequests.UserId = @Html.Raw(Json.Encode(ViewBag.UserId));
     PersonRequests.ContainerId = 'personRequestsList';
-
+    PersonRequests.ButtonsContainerId = 'buttonsection';
+    
     PersonRequests.Statuses = {
         Opened: @((int)PersonRequestStatuses.Opened),
         PendingReview: @((int)PersonRequestStatuses.PendingReview),

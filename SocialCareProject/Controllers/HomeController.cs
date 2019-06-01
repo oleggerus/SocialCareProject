@@ -136,7 +136,7 @@ namespace SocialCareProject.Controllers
                     case (int)AreaTypes.Worker:
                         return RedirectToAction("Index", "Home", new { area = "Worker" });
                     case (int)AreaTypes.Administration:
-                        return RedirectToAction("Index", "Home", new { area = "Administration" });
+                        return RedirectToAction("Index", "People", new { area = "Administration" });
                 }
             }
 
@@ -145,11 +145,12 @@ namespace SocialCareProject.Controllers
 
         public ActionResult Logout()
         {
-            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "")
+            if (FormsAuthentication.FormsCookieName != null)
             {
-                Expires = DateTime.Now.AddYears(-1)
-            };
-            Response.Cookies.Add(cookie);
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+                cookie.Expires = DateTime.Now.AddYears(-1);
+                Response.Cookies.Add(cookie);
+            }
 
             FormsAuthentication.SignOut();
             return RedirectToAction("Index");

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataRepository;
+using DataRepository.Entities;
 using DataRepository.Entities.People;
 
 namespace Services.People
@@ -17,9 +18,11 @@ namespace Services.People
         Customer GetCustomerById(int id);
         Customer GetCustomerByUserId(int id);
         Worker GetWorkerByUserId(int id);
-       IPagedList<Customer> GetFilteredCustomers(int customerId, int pageIndex = default(int), int pageSize = int.MaxValue);
 
-       IPagedList<Worker> GetFilteredWorkers(int customerId, int pageIndex = default(int), int pageSize = int.MaxValue);
+        WorkerPersonAssignment InsertAssignment(WorkerPersonAssignment assignment);
+        IPagedList<Customer> GetFilteredCustomers(int administrationId, string name, string phone, string email,  int? statusId = null, int pageIndex = default(int), int pageSize = int.MaxValue);
+
+       IPagedList<Worker> GetFilteredWorkers(int administrationId, int pageIndex = default(int), int pageSize = int.MaxValue);
 
 
         #region Care Requests

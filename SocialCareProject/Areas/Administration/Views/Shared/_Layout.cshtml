@@ -27,7 +27,7 @@
 </head>
 <body class="body-lightgrey">
     <nav class="navbar navbar-icon-top navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Social carer</a>
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">Social carer</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,7 +41,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href='@Url.Action("Index", "CatalogueAdministration")'>
                         <i class="fa fa-cart-plus">
-                            <span class="badge badge-primary">7</span>
                         </i>
                         Каталог
                     </a>
@@ -59,18 +58,27 @@
                         <a class="dropdown-item" href='@Url.Action("Index", "Worker")'>Соціальні робітники</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-shopping-basket">
+                <li class="nav-item">
 
+                    <a class="nav-link" href='@Url.Action("Index", "CareRequest")'>
+                        <i class="fa fa-cart-plus">
                         </i>
                         Заяви
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        <a class="dropdown-item" href='@Url.Action("Index", "CareRequest")'>Щодо необхідності догляду</a>
-                        <a class="dropdown-item" href='@Url.Action("Index", "Offer")'>Щодо товарів та сервісів</a>
-                    </div>
                 </li>
+
+                @*<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-shopping-basket">
+
+                            </i>
+                            Заяви
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href='@Url.Action("Index", "CareRequest")'>Щодо необхідності догляду</a>
+                            <a class="dropdown-item" href='@Url.Action("Index", "Offer")'>Щодо товарів та сервісів</a>
+                        </div>
+                    </li>*@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -85,15 +93,8 @@
                     </div>
                 </li>
             </ul>
-            <ul class="navbar-nav ">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-bell">
-                            <span class="badge badge-info">4</span>
-                        </i>
-                        Нотифікації
-                    </a>
-                </li>
+            @*<ul class="navbar-nav ">
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa fa-envelope-o">
@@ -102,11 +103,11 @@
                         Повідомлення
                     </a>
                 </li>
-            </ul>
+            </ul>*@
             @*<form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Пошук" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Пошук</button>
-            </form>*@
+                    <input class="form-control mr-sm-2" type="text" placeholder="Пошук" aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Пошук</button>
+                </form>*@
             <ul class="navbar-nav mx-5">
                 <li class="nav-item">
                     <a class="nav-link" href='@Url.Action("Logout", "Home", new{area=""})'>
@@ -117,7 +118,7 @@
             </ul>
         </div>
     </nav>
-   
+
     <div class="page-header">
         <div class="container">
             <h1 class="pull-left page-title">

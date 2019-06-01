@@ -1,0 +1,44 @@
+﻿
+    <div class="row">
+        <div class="col-lg-12">
+            @Html.AntiForgeryToken()
+            <form data-bind="with: Filter, submit: ApplyFilter">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label for="filter-council-name">Ім'я</label>
+                            <input class="form-control" type="text" id="filter-name" name="filter-name" data-bind="value: Name">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label for="filter-email">Електронна адреса</label>
+                            <input class="form-control" type="text" id="filter-email" name="filter-email" data-bind="value: Email">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label for="filter-company-number">Номер телефону</label>
+                            <input class="form-control" type="text" id="filter-company-number" name="filter-company-number" data-bind="value: Phone">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label> Статус догляду</label>
+                            <select class="form-control" data-bind="value: StatusId,
+                                        options: People.CustomerStatuses,
+                                        optionsValue: 'Key' , optionsText: 'Value' , optionsCaption: '-Оберіть статус-'"></select>        
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-default" data-bind="click: $root.ClearFilter">Очистити</button>
+                            <button type="submit" class="btn btn-primary" data-bind="click: $root.ApplyFilter">Пошук</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

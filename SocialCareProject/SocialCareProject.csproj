@@ -401,6 +401,7 @@
     <Content Include="Areas\Administration\Views\CareRequest\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Worker\Index.cshtml" />
     <Content Include="Areas\Customer\Views\Product\Details.cshtml" />
+    <Content Include="Areas\Administration\Views\People\_Filter.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

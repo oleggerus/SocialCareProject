@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DataRepository;
+using DataRepository.Entities;
 using DataRepository.Entities.People;
 using DataRepository.Enums;
 using DataRepository.RepositoryPattern;
@@ -12,22 +13,46 @@ namespace Services.People
         private readonly IRepository<CareRequest> _careRequestRepository;
         private readonly IRepository<Customer> _customerRepository;
         private readonly IRepository<Worker> _workerRepository;
+        private readonly IRepository<WorkerPersonAssignment> _assignmentRepository;
+
 
         public CustomerService(IRepository<Customer> customerRepository,
             IRepository<CareRequest> careRequestRepository,
-            IRepository<Worker> workerRepository)
+            IRepository<Worker> workerRepository,
+                IRepository<WorkerPersonAssignment> assignmentRepository)
         {
             _customerRepository = customerRepository;
             _workerRepository = workerRepository;
+            _assignmentRepository = assignmentRepository;
             _careRequestRepository = careRequestRepository;
         }
 
-        
 
-        public IPagedList<Customer> GetFilteredCustomers(int administrationId, int pageIndex = default(int),
+
+        public IPagedList<Customer> GetFilteredCustomers(int administrationId, string name, string phone, string email, int? statusId = null, int pageIndex = default(int),
             int pageSize = int.MaxValue)
         {
             var query = _customerRepository.TableNoTracking.Where(x => x.AdministrationId == administrationId);
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                var tName = name.Trim().ToLower();
+                query = query.Where(x => x.User.FirstName.ToLower().Contains(tName) || x.User.LastName.ToLower().Contains(tName));
+            }
+            if (!string.IsNullOrWhiteSpace(phone))
+            {
+                var tPhone = phone.Trim().ToLower();
+                query = query.Where(x => x.User.Phone.ToLower().Contains(tPhone));
+            }
+            if (!string.IsNullOrWhiteSpace(email))
+            {
+                var tEmail = email.Trim().ToLower();
+                query = query.Where(x => x.User.Email.ToLower().Contains(tEmail));
+            }
+            if (statusId.HasValue)
+            {
+                query = query.Where(x => x.StatusId == statusId.Value);
+            }
 
             return new PagedList<Customer>(query.OrderBy(x => x.User.LastName), pageIndex,
                 pageSize);
@@ -66,6 +91,19 @@ namespace Services.People
 
             return customer;
         }
+
+
+        public WorkerPersonAssignment InsertAssignment(WorkerPersonAssignment assignment)
+        {
+            if (assignment == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _assignmentRepository.Insert(assignment);
+
+            return assignment;
+        }
+
 
         public Customer GetCustomerById(int id)
         {

@@ -1,5 +1,6 @@
 ﻿var People = People || {};
 People.FilterMapping = {
+    'ignore': ["Clear"]
 };
 
 People.PeopleMapping = {
@@ -7,6 +8,23 @@ People.PeopleMapping = {
         return new People.CustomerViewModel(options.data);
     }
 };
+
+People.FilterViewModel = function () {
+    var self = this;
+    self.Name = ko.observable(null);
+    self.StatusId = ko.observable(null);
+    self.Email = ko.observable(null);
+    self.Phone = ko.observable(null);
+
+
+    self.Clear = function () {
+        self.Name(null);
+        self.Email(null);
+        self.StatusId(null);
+        self.Phone(null);
+    };
+};
+
 
 People.CustomerViewModel = function (data) {
     var self = this;
@@ -37,20 +55,19 @@ People.CustomerViewModel = function (data) {
                 return "label text-uppercase label-default";
         }
     });
-    //self.StoreId = ko.observable(null);
-    //self.SortById = ko.observable(null);
 };
 
 People.ListViewModel = function () {
     var self = this;
     self.Loading = ko.observable(false);
     self.Pager = new PagerViewModel();
-
+    self.Filter = new People.FilterViewModel();
     self.People = ko.observableArray([]);
 
     self.Init = function () {
         ko.mapping.fromJS(People.People, People.PeopleMapping, self.People);
         ko.mapping.fromJS(People.Pager, {}, self.Pager);
+        ko.mapping.fromJS(People.Filter, {}, self.Filter);
     };
 
     self.Details = function (referenceId) {
@@ -60,7 +77,8 @@ People.ListViewModel = function () {
     self.Load = function () {
         self.Loading(true);
         var data = {
-            pager: ko.mapping.toJS(self.Pager, {})
+            pager: ko.mapping.toJS(self.Pager, {}),
+            filter: ko.mapping.toJS(self.Filter, People.FilterMapping)
         };
 
         $.ajax({
@@ -85,6 +103,15 @@ People.ListViewModel = function () {
         });
     };
 
+    self.ClearFilter = function () {
+        self.Pager.PageIndex(0);
+        self.Filter.Clear();
+        self.Load();
+    };
+    self.ApplyFilter = function () {
+        self.Pager.PageIndex(0);
+        self.Load(true);
+    };
     self.Init();
 };
 
