@@ -120,6 +120,10 @@
     <Compile Include="Migrations\201905261910190_update_DB.Designer.cs">
       <DependentUpon>201905261910190_update_DB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906011314048_image type.cs" />
+    <Compile Include="Migrations\201906011314048_image type.Designer.cs">
+      <DependentUpon>201906011314048_image type.cs</DependentUpon>
+    </Compile>
     <Compile Include="PagedList.cs" />
     <Compile Include="RepositoryPattern\EfRepository.cs" />
     <Compile Include="RepositoryPattern\IRepository.cs" />
@@ -136,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905261910190_update_DB.resx">
       <DependentUpon>201905261910190_update_DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906011314048_image type.resx">
+      <DependentUpon>201906011314048_image type.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -54,6 +54,7 @@ namespace SocialCareProject.Factories
                 HouseNameRoomNumber = customer.Address.HouseNameRoomNumber,
                 IsInvalid = customer.IsInvalid,
                 Avatar = customer.User.Avatar,
+                ImageMimeType = customer.User.ImageMimeType,
                 Gender = customer.User.Gender,
                 GenderName = Enum.GetName(typeof(GenderEnum), customer.User.Gender),
                 HomePhoneNumber = customer.Address.PhoneNumber,

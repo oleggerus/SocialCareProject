@@ -12,6 +12,8 @@ namespace Services.People
         string GetSaltByEmail(string email);
 
         int GetAdministrationIdByUserId(int userId);
+        User UpdateUser(User user);
+        User GetUserById(int id);
 
     }
 }

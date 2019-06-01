@@ -14,7 +14,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                      
+
                         <h4 class="modal-title">
                             <span>Створити запит щодо необхідності догляду</span>
                         </h4>
@@ -25,23 +25,53 @@
                         Якщо так, вкажіть причину необхідності у догляді або іншу інформацію, яку вважаєте необхідною.
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" maxlength="500" data-bind="textInput: Reason"  style="margin-left: 20px; width: 450px; max-width: 600px;"></textarea>
+                        <textarea class="form-control" maxlength="500" data-bind="textInput: Reason" style="margin-left: 20px; width: 450px; max-width: 600px;"></textarea>
                     </div>
 
-                        <div class="modal-footer">
-                            <div class="form-group text-right">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Відмінити</button>
-                                <button type="button" class="btn btn-primary" data-bind="click: SendRequest">Підтвердити</button>
-                            </div>
+                    <div class="modal-footer">
+                        <div class="form-group text-right">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Відмінити</button>
+                            <button type="button" class="btn btn-primary" data-bind="click: SendRequest">Підтвердити</button>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="card">
             <div class="row">
-                <div class="col-xs-3" style="height: 200px; background: cadetblue">
+                <div class="col-xs-3" >
+                    @using (Html.BeginForm("EditAvatar", "Customer",
+                        FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                            @Html.HiddenFor(m => m.Id)
+
+                            <div class="form-group">
+                          
+                                @if (Model.Avatar == null)
+                                {
+                                    <div class="form-control-static">Немає зображення</div>
+                                }
+                                else
+                                {
+                                    <img class="img-thumbnail" width="150" height="150" src="@Url.Action("GetImage", "Customer")" alt=""/>
+                                }
+                                <div style="position:relative;">
+                                    <a class='' href='javascript:;'>Обрати файл
+                                        <input type="file" name="Image" size="40"
+                                               style="position:absolute;
+                                                left:0;filter: alpha(opacity=0); opacity:0;                                                                                                                                                                                                                                                                                  background-color:transparent;color:transparent;"
+                                               onchange='$("#upload-file-info").html($(this).val());'>
+                                    </a>
+                                </div>
+                            </div>
+                        <div class="panel-footer">
+                            <input type="submit" value="Зберегти" class="btn btn-primary" />
+
+                        </div>
+                    }
                 </div>
+  
                 <div class="col-xs-9">
                     <div class="row">
                         <div class="form-group col-xs-4">
@@ -72,7 +102,7 @@
                         <div class="form-group col-xs-4">
                             <label class="control-label ">Стать</label>
                             <div>
-                                <input class="form-control" maxlength="60" data-bind="value:  FirstName" />
+                                <input class="form-control" maxlength="60" data-bind="value:  GenderName" />
                             </div>
                         </div>
                         <div class="form-group col-xs-4">
@@ -195,8 +225,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 </div>
 
 <script type="text/javascript">

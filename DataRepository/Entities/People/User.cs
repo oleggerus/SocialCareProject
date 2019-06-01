@@ -35,6 +35,7 @@ namespace DataRepository.Entities.People
         [Required]
         public int Gender { get; set; }
         public byte[] Avatar { get; set; }
+        public string ImageMimeType { get; set; }
 
         public DateTime CreatedOnUtc { get; set; }
         public DateTime? UpdatedOnUtc { get; set; }

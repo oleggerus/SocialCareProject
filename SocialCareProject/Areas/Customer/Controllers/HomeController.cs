@@ -32,7 +32,7 @@ namespace SocialCareProject.Areas.Customer.Controllers
             var customer = _customerService.GetCustomerByUserId(currentUser.UserId);
             if (customer == null)
             {
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("Index", "Home", new {area=""});
             }
 
             var model = new HomeCustomerModel

@@ -66,6 +66,8 @@ CustomerDetails.CustomerViewModel = function () {
     self.ZipPostalCode = ko.observable();
     self.HomePhoneNumber = ko.observable();
     self.CustomerId = ko.observable();
+    self.ImageMimeType = ko.observable();
+    
 
     self.CareRequestModal = new CustomerDetails.CareRequsetModal(CustomerDetails.Details.CustomerId);
     self.MakeCareRequest = function () {

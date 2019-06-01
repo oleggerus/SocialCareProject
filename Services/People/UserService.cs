@@ -1,4 +1,5 @@
-﻿using DataRepository.RepositoryPattern;
+﻿using System;
+using DataRepository.RepositoryPattern;
 using System.Linq;
 using System.Web.Mvc;
 using DataRepository.Entities;
@@ -30,6 +31,21 @@ namespace Services.People
         public User GetUserByEmail(string email)
         {
             return _userRepository.Table.SingleOrDefault(x => Equals(x.Email, email));
+        }
+        public User GetUserById(int id)
+        {
+            return _userRepository.GetById(id);
+        }
+
+        public User UpdateUser(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _userRepository.Update(user);
+
+            return user;
         }
 
         public string GetSaltByEmail(string email)
