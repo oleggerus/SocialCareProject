@@ -69,7 +69,6 @@ namespace DataRepository.RepositoryPattern
                         msg += $"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage} {Environment.NewLine}";
 
                 var fail = new Exception(msg, dbEx);
-                //Debug.WriteLine(fail.Message, fail);
                 throw fail;
             }
         }

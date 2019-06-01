@@ -61,7 +61,6 @@ namespace Services.People
             {
                 case (int)AreaTypes.Administration:
                 return _workerService.GetWorkerByUserId(userId).Administration.Id;
-                    break;
 
                 case (int)AreaTypes.Customer:
                     break;

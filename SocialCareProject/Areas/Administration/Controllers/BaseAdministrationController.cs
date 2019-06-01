@@ -48,7 +48,7 @@ namespace SocialCareProject.Areas.Administration.Controllers
 
         protected override void HandleUnknownAction(string actionName)
         {
-            RedirectToAction("PageNotFound", "Error").ExecuteResult(ControllerContext);
+            RedirectToAction("AccessDenied", "Error").ExecuteResult(ControllerContext);
         }
 
     }

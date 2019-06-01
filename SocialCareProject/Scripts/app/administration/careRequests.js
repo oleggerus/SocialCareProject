@@ -44,7 +44,7 @@ Requests.AssignWorkerModal = function (requestId) {
             url: url,
             dataType: "json",
             data: {
-                workerId: 3,//self.WorkerId(),
+                workerId: self.WorkerId(),
                 answer: self.Answer(),
                 requestId: self.RequestId
             }

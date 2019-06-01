@@ -65,7 +65,7 @@ namespace SocialCareProject.Areas.Administration.Controllers
             return CreateJsonResult(true, url, model);
         }
 
-        public JsonResult AssignWorkerToCustomer(int workerId, int requestId, string answer)
+        public ActionResult AssignWorkerToCustomer(int workerId, int requestId, string answer)
         {
             var careRequest = _customerService.GetCareRequestById(requestId);
 
@@ -79,21 +79,21 @@ namespace SocialCareProject.Areas.Administration.Controllers
             _customerService.UpdateCareRequest(careRequest);
 
             var person = _customerService.GetCustomerById(careRequest.CustomerId);
-            person.StatusId = (int) CustomerCareStatuses.ПідДоглядом;
+            person.StatusId = (int)CustomerCareStatuses.ПідДоглядом;
 
-            var assignment  = new WorkerPersonAssignment
+            var assignment = new WorkerPersonAssignment
             {
-                Customer = person,
-                ApprovedBy = currentWorker,
+                CustomerId = person.Id,
                 AssignmentStatusId = (int)WorkerPersonAssignmentStatuses.Активно,
                 CreatedOnUtc = DateTime.UtcNow,
-                Worker = assignedWorker
+                WorkerId = assignedWorker.Id,
+                ReviewedByUserId = currentUser.UserId,
+
             };
-            //_assignmentService.Create(assignment);
             _customerService.InsertAssignment(assignment);
             _customerService.Update(person);
 
-            return CreateJsonResult(true);
+            return Json(new { success = true, message = "Ваші зміни збережені" }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult RejectCareRequest(int requestId, string answer)
@@ -104,10 +104,10 @@ namespace SocialCareProject.Areas.Administration.Controllers
             careRequest.ReviewedById = _customerService.GetWorkerByUserId(currentUser.UserId).Id;
             careRequest.ReviewedOn = DateTime.UtcNow;
             careRequest.Answer = answer;
-            careRequest.StatusId = (int) CareRequestStatuses.Rejected;
+            careRequest.StatusId = (int)CareRequestStatuses.Rejected;
 
             _customerService.UpdateCareRequest(careRequest);
-            return Json(new { success = true, message = "Ваші зміни збережені" }, JsonRequestBehavior.AllowGet);            
+            return Json(new { success = true, message = "Ваші зміни збережені" }, JsonRequestBehavior.AllowGet);
         }
 
 

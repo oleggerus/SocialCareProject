@@ -169,7 +169,7 @@ namespace Services.People
         {
             var query = _careRequestRepository.TableNoTracking.Where(x => x.Customer.AdministrationId == administrationId);
 
-            return new PagedList<CareRequest>(query.OrderBy(x => x.CreatedOnUtc), pageIndex,
+            return new PagedList<CareRequest>(query.OrderByDescending(x => x.CreatedOnUtc), pageIndex,
                 pageSize);
         }
 

@@ -77,7 +77,7 @@ namespace SocialCareProject.Controllers
                 case (int)AreaTypes.Worker:
                     return RedirectToAction("Index", "Home", new { area = "Worker" });
                 case (int)AreaTypes.Administration:
-                    return RedirectToAction("Index", "Home", new { area = "Administration" });
+                    return RedirectToAction("Index", "People", new { area = "Administration" });
             }
             return View();
         }

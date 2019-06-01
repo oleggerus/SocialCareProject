@@ -27,10 +27,10 @@ namespace Services.Assignments
             var excludedWorkers = _assignmentRepository.TableNoTracking
                 .Where(x => x.Worker.Administration.Id == administrationId)
                 .GroupBy(x => x.Worker)
-                .Where(x => x.Count() < 7)
+                .Where(x => x.Count() > 6)
                 .Select(x => x.Key.Id).ToList();
 
-            return _workerRepository.TableNoTracking.Where(x => excludedWorkers.Contains(x.Id)).ToList();
+            return _workerRepository.TableNoTracking.Where(x =>x.Administration.Id == administrationId && !excludedWorkers.Contains(x.Id)).ToList();
         }
 
         public WorkerPersonAssignment Create(WorkerPersonAssignment assignment)

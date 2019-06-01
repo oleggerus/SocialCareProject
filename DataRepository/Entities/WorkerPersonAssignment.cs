@@ -16,17 +16,16 @@ namespace DataRepository.Entities
         public DateTime CreatedOnUtc { get; set; }
         [Required]
         public int AssignmentStatusId { get; set; }
-
+        [Required]
         public int WorkerId { get; set; }
+        [Required]
         public int CustomerId { get; set; }
 
-        [Required]
+        [ForeignKey("WorkerId")]
         public virtual Worker Worker { get; set; }
-        [Required]
-        //[ForeignKey("CustomerId")]
+        [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
-        [Required]
-        //[ForeignKey("WorkerId")]
-        public virtual Worker ApprovedBy { get; set; }
+
+        public int ReviewedByUserId { get; set; }
     }
 }

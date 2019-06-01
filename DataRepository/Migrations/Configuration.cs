@@ -102,8 +102,8 @@ namespace DataRepository.Migrations
             var custUser1 = new User
             {
                 Role = customerRole,
-                FirstName = "Джон",
-                LastName = "Коннор",
+                FirstName = "Петро",
+                LastName = "Іванов",
                 DateOfBirth = new DateTime(1982, 02, 02),
                 Email = "customer@mail.com",
                 IsActive = true,
@@ -117,23 +117,23 @@ namespace DataRepository.Migrations
             var custUser2 = new User
             {
                 Role = customerRole,
-                FirstName = "Він",
-                LastName = "Дізель",
+                FirstName = "Марія",
+                LastName = "Петрова",
                 DateOfBirth = new DateTime(1932, 01, 02),
                 Email = "customer1@mail.com",
                 IsActive = true,
                 IsDeleted = false,
-                Gender = (int)GenderEnum.Чоловік,
+                Gender = (int)GenderEnum.Жінка,
                 Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
                 PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
-                Phone = "09090909990",
+                Phone = "0633126355",
                 Username = "username1"
             };
             var administrationUser = new User
             {
                 Role = administrationRole,
-                FirstName = "Лео",
-                LastName = "Мессі",
+                FirstName = "Андрій",
+                LastName = "Шишкарук",
                 DateOfBirth = new DateTime(1943, 11, 11),
                 Email = "administration@mail.com",
                 IsActive = true,
@@ -147,8 +147,8 @@ namespace DataRepository.Migrations
             var administrationUserContact = new User
             {
                 Role = administrationRole,
-                FirstName = "Контакт",
-                LastName = "Контакт",
+                FirstName = "Олег",
+                LastName = "Павлов",
                 DateOfBirth = new DateTime(1943, 11, 11),
                 Email = "workercontact@mail.com",
                 IsActive = true,
@@ -163,8 +163,8 @@ namespace DataRepository.Migrations
             var administrationLeadUser = new User
             {
                 Role = administrationLeadRole,
-                FirstName = "Пеп",
-                LastName = "Гвардіола",
+                FirstName = "Роман",
+                LastName = "Данилюк",
                 DateOfBirth = new DateTime(1952, 12, 02),
                 Email = "administrationLead@mail.com",
                 IsActive = true,
@@ -179,8 +179,8 @@ namespace DataRepository.Migrations
             var workerUser = new User
             {
                 Role = workerRole,
-                FirstName = "Андрій",
-                LastName = "Шевченко",
+                FirstName = "Олександр",
+                LastName = "Лисенко",
                 DateOfBirth = new DateTime(1952, 12, 02),
                 Email = "worker@mail.com",
                 IsActive = true,
@@ -679,19 +679,6 @@ namespace DataRepository.Migrations
 
             #endregion
 
-            #region WorkerPersonAssignment
-
-            var assignment = new WorkerPersonAssignment
-            {
-                Customer = customer,
-                Worker = worker,                
-                ApprovedBy = lead,
-                AssignmentStatusId = (int)WorkerPersonAssignmentStatuses.Активно
-            };
-
-            context.WorkerPersonAssignments.AddOrUpdate(assignment);
-            #endregion
-
             #region PersonRequest
 
             var personRequest1 = new PersonRequest
@@ -708,7 +695,6 @@ namespace DataRepository.Migrations
             context.PersonRequests.AddOrUpdate(personRequest1);
             #endregion
 
-            //SaveChanges(context);
             base.Seed(context);
 
         }

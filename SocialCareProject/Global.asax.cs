@@ -47,7 +47,7 @@ namespace SocialCareProject
 
                     HttpContext.Current.User = principal;
                 }
-                catch (CryptographicException cex)
+                catch (CryptographicException)
                 {
                     FormsAuthentication.SignOut();
                 }

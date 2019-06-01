@@ -124,6 +124,10 @@
     <Compile Include="Migrations\201906011314048_image type.Designer.cs">
       <DependentUpon>201906011314048_image type.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906011706051_added_columns_to_assignmnets.cs" />
+    <Compile Include="Migrations\201906011706051_added_columns_to_assignmnets.Designer.cs">
+      <DependentUpon>201906011706051_added_columns_to_assignmnets.cs</DependentUpon>
+    </Compile>
     <Compile Include="PagedList.cs" />
     <Compile Include="RepositoryPattern\EfRepository.cs" />
     <Compile Include="RepositoryPattern\IRepository.cs" />
@@ -143,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906011314048_image type.resx">
       <DependentUpon>201906011314048_image type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906011706051_added_columns_to_assignmnets.resx">
+      <DependentUpon>201906011706051_added_columns_to_assignmnets.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
