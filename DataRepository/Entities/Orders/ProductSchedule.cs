@@ -30,7 +30,7 @@ namespace DataRepository.Entities.Orders
         /// Gets or sets a value indicating whether the service/advice is available on Thursday
         /// </summary>
         [Required]
-        bool AvailableOnThursday { get; set; }
+        public bool AvailableOnThursday { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the service/advice is available on Friday

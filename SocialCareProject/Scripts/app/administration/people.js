@@ -10,13 +10,7 @@ People.PeopleMapping = {
 
 People.CustomerViewModel = function (data) {
     var self = this;
-    //self.Id = ko.observable(null);
-    //self.FullName = ko.observable(null);
-    //self.Email = ko.observable(null);
-    //self.Phone = ko.observable(null);
-    //self.GenderName = ko.observable(null);
-    //self.StatusId = ko.observable(null);
-    //self.IsInvalid = ko.observable(null);
+
 
     ko.mapping.fromJS(data, {}, self);
 

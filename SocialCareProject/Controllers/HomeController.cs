@@ -140,7 +140,7 @@ namespace SocialCareProject.Controllers
                 }
             }
 
-            return RedirectToAction("About");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Logout()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataRepository.Entities;
 using DataRepository.Enums;
 using DataRepository.Extensions;
 using Services.Assignments;
@@ -43,9 +44,9 @@ namespace SocialCareProject.Areas.Administration.Controllers
             var model = _customerModelFactory.PrepareCareRequestsListModel(requests);
 
             var workers = _assignmentService.GetAllowedForAssignWorkers(currentAdministrationId);
-            model.Workers = workers.Select(x => new WorkerForAssignViewModel
+            ViewBag.Workers = workers.Select(x => new WorkerForAssignViewModel
             {
-                Id = x.Id,
+                Id = x.UserId,
                 FullName = x.User.GetFullName()
             }).ToList();
 
@@ -64,17 +65,32 @@ namespace SocialCareProject.Areas.Administration.Controllers
             return CreateJsonResult(true, url, model);
         }
 
-        public JsonResult AssignWorkerToCustomer(int customerId, int requestId, string answer)
+        public JsonResult AssignWorkerToCustomer(int workerId, int requestId, string answer)
         {
             var careRequest = _customerService.GetCareRequestById(requestId);
 
             var currentUser = HttpContext.User as CustomUser;
-            careRequest.ReviewedById = _customerService.GetWorkerByUserId(currentUser.UserId).Id;
+            var currentWorker = _customerService.GetWorkerByUserId(currentUser.UserId);
+            var assignedWorker = _customerService.GetWorkerByUserId(workerId);
+            careRequest.ReviewedById = currentWorker.Id;
             careRequest.ReviewedOn = DateTime.UtcNow;
             careRequest.Answer = answer;
             careRequest.StatusId = (int)CareRequestStatuses.Approved;
-
             _customerService.UpdateCareRequest(careRequest);
+
+            var person = _customerService.GetCustomerById(careRequest.CustomerId);
+            person.StatusId = (int) CustomerCareStatuses.ПідДоглядом;
+            _customerService.Update(person);
+
+            var assignment  = new WorkerPersonAssignment
+            {
+                Customer = person,
+                ApprovedBy = currentWorker,
+                AssignmentStatusId = (int)WorkerPersonAssignmentStatuses.Активно,
+                CreatedOnUtc = DateTime.UtcNow,
+                Worker = assignedWorker
+            };
+            _assignmentService.Create(assignment);
 
             return CreateJsonResult(true);
         }

@@ -11,10 +11,15 @@ namespace Services.People
     public interface ICustomerService
     {
         Customer Create(Customer customer);
+        Customer Update(Customer customer);
+
+
         Customer GetCustomerById(int id);
         Customer GetCustomerByUserId(int id);
         Worker GetWorkerByUserId(int id);
        IPagedList<Customer> GetFilteredCustomers(int customerId, int pageIndex = default(int), int pageSize = int.MaxValue);
+
+       IPagedList<Worker> GetFilteredWorkers(int customerId, int pageIndex = default(int), int pageSize = int.MaxValue);
 
 
         #region Care Requests

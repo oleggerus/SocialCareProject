@@ -14,6 +14,10 @@ namespace SocialCareProject.Factories
     {
         CustomerModel PrepareCustomerModel(Customer customer);
 
+        WorkerItemModel PrepareWorkerItemModel(Worker worker);
+
+        WorkerListViewModel PrepareWorkersListViewModel(IPagedList<Worker> workers);
+
         PeopleListViewModel PreparePeopleListViewModel(IPagedList<Customer> customers);
 
         CareRequestModel PrepareCareRequestModel(CareRequest request);

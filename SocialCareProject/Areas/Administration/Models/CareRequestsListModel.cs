@@ -8,7 +8,7 @@ namespace SocialCareProject.Areas.Administration.Models
     {
         public SimplePagerModel Pager { get; set; }
         public IList<CareRequestModel> Requests { get; set; } = new List<CareRequestModel>();
-        public IList<WorkerForAssignViewModel> Workers{ get; set; } = new List<WorkerForAssignViewModel>();
+        //public IList<WorkerForAssignViewModel> Workers{ get; set; } = new List<WorkerForAssignViewModel>();
     }
 
     public class CareRequestModel

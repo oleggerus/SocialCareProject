@@ -1,28 +1,22 @@
-﻿@using DataRepository.Enums
-@using DataRepository.Extensions
-@model SocialCareProject.Areas.Administration.Models.PeopleListViewModel
-
+﻿
 @{
                 /**/
 
                 Layout = "../Shared/_Layout.cshtml";
-                @Scripts.Render("~/Scripts/app/administration/people.js")
-                ViewBag.Title = "Список усіх жителів";
+                @Scripts.Render("~/Scripts/app/administration/socialWorkers.js")
+                ViewBag.Title = "Cоціальні робітники";
 }
-
-<div id="peopleList">
+<div id="workersList">
     <div class="container inner-container">
         <div class="panel body-lightgrey">
             <div class="panel-body paged-list-in-tab">
                 <div class="row">
                     <div class="col-xs-12">
-                        <ul class="list-group results-table" data-bind="foreach: People">
+                        <ul class="list-group results-table" data-bind="foreach: Workers">
                             <li class="list-group-item-lightgrey">
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <label class="control-label" data-bind="text: FullName"></label>
-                                        <br />
-                                        <span data-bind="text: GenderName"></span>
                                     </div>
                                     <div class="col-xs-3 ">
                                         <span data-bind="text: Email"></span>
@@ -31,10 +25,10 @@
                                     </div>
 
                                     <div class="col-xs-3 ">
-                                        <span data-bind="text: CareStatus, attr: {class: GetCssStylesByStatus}"></span>
+                                        <span data-bind="text: Status, attr: {class: GetCssStylesByStatus}"></span>
                                     </div>
                                     <div class="col-xs-3 text-center">
-                                        <button type="button" data-bind="click:$root.Details.bind(this, Id())" class="btn btn-primary">Деталі</button>
+                                        <button type="button" data-bind="click:$root.Details.bind(this, WorkerId())" class="btn btn-primary">Деталі</button>
                                     </div>
                                 </div>
                             </li>
@@ -51,20 +45,19 @@
     </div>
 </div>
 
+
 <script type="text/javascript">
-    @*People.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
-    People.GetPeople = '@Html.Raw(Url.Action("GetFilteredPeople", "People"))';
-    People.GeneralErrorMessage = 'An error occured';
-    People.People = @Html.Raw(Json.Encode(Model.People));
-    People.Pager = @Html.Raw(Json.Encode(Model.Pager));
-    People.CustomerStatuses =  @Html.Raw(Json.Encode(EnumHelpers.ToList<CustomerCareStatuses>()));
-
-
-    People.ContainerId = 'peopleList';
+    @*Workers.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
+    Workers.GetWorkers = '@Html.Raw(Url.Action("GetFilteredSocialWorkers", "Worker"))';
+    Workers.GeneralErrorMessage = 'An error occured';
+    Workers.Workers = @Html.Raw(Json.Encode(Model.Workers));
+    Workers.Pager = @Html.Raw(Json.Encode(Model.Pager));
+    
+    Workers.ContainerId = 'workersList';
 
 
     $(document).ready(function() {
-        People.Init();
+        Workers.Init();
     });
 
 </script>

@@ -22,8 +22,7 @@ namespace Services.People
             _careRequestRepository = careRequestRepository;
         }
 
-        #region CRUD
-
+        
 
         public IPagedList<Customer> GetFilteredCustomers(int administrationId, int pageIndex = default(int),
             int pageSize = int.MaxValue)
@@ -33,7 +32,18 @@ namespace Services.People
             return new PagedList<Customer>(query.OrderBy(x => x.User.LastName), pageIndex,
                 pageSize);
         }
+        public IPagedList<Worker> GetFilteredWorkers(int administrationId, int pageIndex = default(int),
+            int pageSize = int.MaxValue)
+        {
+            var query = _workerRepository.TableNoTracking.Where(x =>
+                x.Administration.Id == administrationId && x.PositionId == default(int));
 
+            return new PagedList<Worker>(query.OrderBy(x => x.User.LastName), pageIndex,
+                pageSize);
+        }
+
+
+        #region CRUD
 
         public Customer Create(Customer customer)
         {
@@ -42,6 +52,17 @@ namespace Services.People
                 throw new ArgumentNullException();
             }
             _customerRepository.Insert(customer);
+
+            return customer;
+        }
+
+        public Customer Update(Customer customer)
+        {
+            if (customer == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _customerRepository.Update(customer);
 
             return customer;
         }

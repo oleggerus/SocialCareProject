@@ -11,5 +11,7 @@ namespace Services.Product
     {
         IPagedList<DataRepository.Entities.Orders.Product> GetAllProducts(int pageIndex = default(int), int pageSize = int.MaxValue);
 
+        DataRepository.Entities.Orders.Product GetById(int id);
+
     }
 }

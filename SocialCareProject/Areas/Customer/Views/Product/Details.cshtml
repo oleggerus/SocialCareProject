@@ -1,0 +1,81 @@
+﻿@model SocialCareProject.Areas.Customer.Models.Product.ProductDetailsModel
+
+@{
+    ViewBag.Title = "Деталі";
+    Layout = "../Shared/_Layout.cshtml";
+    @Scripts.Render("~/Scripts/app/customer/productDetails.js")
+}
+
+<div id="productDetails">
+    <div class="container inner-container" data-bind="with: Details">
+        <div class="card">
+            <div class="row">
+                <div class="col-xs-3" style="height: 200px; background: cadetblue">
+                </div>
+                <div class="col-xs-9">
+                    <div class="row">
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Назва</label>
+                            <div>
+                                <input class="form-control" maxlength="60" data-bind="value:  Name" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-8">
+                            <label class="control-label ">Опис</label>
+                            <div>
+                                <textarea type="text" class="form-control" maxlength="60" data-bind="value:  Description"></textarea>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Виробник</label>
+                            <div>
+                                <input class="form-control" data-bind="value:  Manufacturer" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Ціна</label>
+                            <div>
+                                <input class="form-control" data-bind="value: Price" />
+                                @*<input class="form-control datepicker" maxlength="60" data-bind="value:  DateOfBirth" />*@
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Постачальник</label>
+                            <div>
+                                <input class="form-control" data-bind="value:  Provider" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Фірма</label>
+                            <div>
+                                <input class="form-control" data-bind="value:  Vendor" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Категорія</label>
+                            <div>
+                                <input class="form-control" data-bind="value:  Category" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    ProductDetails.Details = @Html.Raw(Json.Encode(Model));
+    ProductDetails.ContainerId = 'productDetails';
+
+    ProductDetails.GeneralErrorMessage = 'An error occured';
+    ProductDetails.Init();
+
+    $(document).ready(function () {
+        ProductDetails.Init();
+    });
+</script>

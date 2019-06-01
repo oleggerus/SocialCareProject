@@ -13,7 +13,7 @@ namespace SocialCareProject.Factories
         
         ProductItemModel PrepareProductItemModel(Product product);
 
-        ProductModel PrepareProductModel(Product product);
+        ProductDetailsModel PrepareProductDetailsModel(Product product);
 
         ProductListModel PrepareProductListModel(IPagedList<Product> products);
     }

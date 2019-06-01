@@ -23,5 +23,10 @@ namespace Services.Product
                 pageSize);
 
         }
+
+        public DataRepository.Entities.Orders.Product GetById(int id)
+        {
+            return _productRepository.GetById(id);
+        }
     }
 }

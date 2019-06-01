@@ -16,6 +16,8 @@ Requests.AssignWorkerModal = function (requestId) {
     self.AssignedPersonId = ko.observable();
     self.CustomerFullName = ko.observable();
     self.RequestId = ko.observable(requestId);
+    self.WorkerId = ko.observable();
+    self.Answer = ko.observable();
 
     self.GetSelectedCustomerFullName = function (custId) {
         var person = ko.utils.arrayFirst(Requests.AllRequests,
@@ -37,26 +39,27 @@ Requests.AssignWorkerModal = function (requestId) {
     };
 
     self.SendRequest = function () {
-        //var url = CustomerDetails.SendRequestUrl;
-        //$.ajax({
-        //    url: url,
-        //    dataType: "json",
-        //    data: {
-        //        customerId: self.CustomerId(),
-        //        reason: self.Reason()
-        //    }
-        //}).done(function (result) {
-        //    if (result && result.success) {
-        //        $("#assignWorkerModal").modal('hide');
-        //        var btn = document.getElementById('actionButton');
-        //        btn.style.visibility = 'hidden';
-        //        notify.ok(result.message);
-        //    } else if (result && !result.success) {
-        //        notify.fail(result.message);
-        //    }
-        //}).fail(function () {
-        //    notify.fail("Щось пішло не так. Спробуйте ще раз");
-        //});
+        var url = Requests.AssignUrl;
+        $.ajax({
+            url: url,
+            dataType: "json",
+            data: {
+                workerId: 3,//self.WorkerId(),
+                answer: self.Answer(),
+                requestId: self.RequestId
+            }
+        }).done(function (result) {
+            if (result && result.success) {
+                $("#assignWorkerModal").modal('hide');
+                var btn = document.getElementById('actionButton');
+                btn.style.visibility = 'hidden';
+                notify.ok(result.message);
+            } else if (result && !result.success) {
+                notify.fail(result.message);
+            }
+        }).fail(function () {
+            notify.fail("Щось пішло не так. Спробуйте ще раз");
+        });
     };
 };
 
@@ -162,11 +165,13 @@ Requests.ListViewModel = function () {
     self.Pager = new PagerViewModel();
 
     self.Requests = ko.observableArray([]);
+    self.Workers = ko.observableArray([]);
 
     self.Init = function () {
         Requests.AllRequests = Requests.Requests; 
         ko.mapping.fromJS(Requests.Requests, Requests.RequestsMapping, self.Requests);
         ko.mapping.fromJS(Requests.Pager, {}, self.Pager);
+        ko.mapping.fromJS(Requests.Workers, {}, self.Workers);
     };
 
     

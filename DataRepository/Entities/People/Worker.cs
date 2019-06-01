@@ -6,6 +6,7 @@ namespace DataRepository.Entities.People
     public class Worker : BaseEntity
     {
         [Required]
+        //0 if social worker
         public int PositionId { get; set; }
         [Required]
         public bool IsLead { get; set; }

@@ -50,7 +50,7 @@ namespace SocialCareProject
             builder.RegisterType<AddressService>().As<IAddressService>().InstancePerLifetimeScope();
             builder.RegisterType<AdministrationService>().As<IAdministrationService>().InstancePerLifetimeScope();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
-            builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
+            builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerDependency();
             builder.RegisterType<ProviderService>().As<IProviderService>().InstancePerLifetimeScope();
             builder.RegisterType<WorkerService>().As<IWorkerService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();

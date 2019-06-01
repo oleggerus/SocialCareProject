@@ -45,6 +45,15 @@ namespace SocialCareProject.Areas.Customer.Controllers
             return CreateJsonResult(true, url, model);
         }
 
+        public ActionResult Details(int id)
+        {
+            var product = _productService.GetById(id);
+            var model = _productFactory.PrepareProductDetailsModel(product);
+
+            return View(model);
+        }
+
+
         private string GetUrlWithFilters(SimplePagerModel pager)
         {
             var urlParams = new

@@ -1,8 +1,10 @@
-﻿using DataRepository.Entities;
+﻿using System;
+using DataRepository.Entities;
 using DataRepository.Entities.People;
 using DataRepository.RepositoryPattern;
 using System.Collections.Generic;
 using System.Linq;
+using DataRepository.Enums;
 
 namespace Services.Assignments
 {
@@ -26,10 +28,30 @@ namespace Services.Assignments
                 .Where(x => x.Worker.Administration.Id == administrationId)
                 .GroupBy(x => x.Worker)
                 .Where(x => x.Count() < 7)
-                .Select(x => x.Key.Id);
+                .Select(x => x.Key.Id).ToList();
 
             return _workerRepository.TableNoTracking.Where(x => excludedWorkers.Contains(x.Id)).ToList();
         }
 
+        public WorkerPersonAssignment Create(WorkerPersonAssignment assignment)
+        {
+            if (assignment == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _assignmentRepository.Insert(assignment);
+
+            return assignment;
+        }
+
+        public bool IsWorkerFree(int workerUserId)
+        {
+            return _assignmentRepository.TableNoTracking.Count(x => x.Worker.UserId == workerUserId &&
+                                                                    x.AssignmentStatusId ==
+                                                                    (int) WorkerPersonAssignmentStatuses
+                                                                        .Активно) < 6;
+
+
+        }
     }
 }

@@ -164,8 +164,10 @@
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\CatalogueAdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\PeopleController.cs" />
+    <Compile Include="Areas\Administration\Controllers\WorkerController.cs" />
     <Compile Include="Areas\Administration\Models\CareRequestsListModel.cs" />
     <Compile Include="Areas\Administration\Models\PeopleListViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\WorkerItemModel.cs" />
     <Compile Include="Areas\Customer\Controllers\BaseCustomerController.cs" />
     <Compile Include="Areas\Customer\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Customer\Controllers\ErrorController.cs" />
@@ -278,9 +280,11 @@
     <Content Include="Scripts\app\administration\careRequests.js" />
     <Content Include="Scripts\app\administration\people.js" />
     <Content Include="Scripts\app\administration\productList.js" />
+    <Content Include="Scripts\app\administration\socialWorkers.js" />
     <Content Include="Scripts\app\customer\customer.details.js" />
     <Content Include="Scripts\app\customer\offerList.js" />
     <Content Include="Scripts\app\customer\personRequests.js" />
+    <Content Include="Scripts\app\customer\productDetails.js" />
     <Content Include="Scripts\app\customer\productList.js" />
     <Content Include="Scripts\bootbox.all.min.js" />
     <Content Include="Scripts\bootbox.locales.min.js" />
@@ -394,6 +398,8 @@
     <Content Include="Areas\Administration\Views\CatalogueAdministration\Index.cshtml" />
     <Content Include="Areas\Administration\Views\People\Index.cshtml" />
     <Content Include="Areas\Administration\Views\CareRequest\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Worker\Index.cshtml" />
+    <Content Include="Areas\Customer\Views\Product\Details.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
