@@ -1,0 +1,93 @@
+﻿@model SocialCareProject.Areas.Customer.Models.Home.NotificationListModel
+
+@{
+    ViewBag.Title = "Сповіщення";
+    Layout = "../Shared/_Layout.cshtml";
+    @Scripts.Render("~/Scripts/app/customer/notifications.js")
+
+}
+
+<div id="notificationsList">
+    <div class="container inner-container">
+        <div class="panel">
+            <div class="panel-body paged-list-in-tab">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-group results-table" data-bind="foreach: Notifications">
+
+                            <!--ko if: IsOpened()-->
+                            <li class="card"  style="background: darkgray">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-10">
+                                        <label class="control-label" data-bind="text: Text"></label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <span class="text-muted">Отримано: </span>
+                                        <span class="text-muted" data-bind="text: CreatedOnUtc"></span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!--/ko-->
+                            <!--ko ifnot: IsOpened()-->
+                            <!--ko if: IsPositive()-->
+                            <li class="card" style="background: lightgreen">
+
+                                <div class="row" >
+                                    <div class="col-xs-12 col-md-10">
+                                        <label class="control-label" data-bind="text: Text"></label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <span class="text-muted">Отримано: </span>
+                                        <span class="text-muted" data-bind="text: CreatedOnUtc"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--/ko-->
+                            <!--ko ifnot: IsPositive()-->
+                            <li class="card" style="background: lightpink">
+
+                                <div class="row" >
+                                    <div class="col-xs-12 col-md-10">
+                                        <label class="control-label" data-bind="text: Text"></label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <span class="text-muted">Отримано: </span>
+                                        <span class="text-muted" data-bind="text: CreatedOnUtc"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--/ko-->
+                            <!--/ko-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-2 col-xs-8 text-center" data-bind="with: Pager">
+                        @Html.Partial("_Pager")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    @*notifications.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
+    Notifications.GetNotifications = '@Html.Raw(Url.Action("GetNotifications", "Home"))';
+    Notifications.GeneralErrorMessage = 'Помилка в системі';
+    Notifications.Notifications = @Html.Raw(Json.Encode(Model.Notifications));
+    Notifications.Pager = @Html.Raw(Json.Encode(Model.Pager));
+
+
+    Notifications.ContainerId = 'notificationsList';
+
+
+    $(document).ready(function() {
+        Notifications.Init();
+    });
+
+</script>
+
+
+

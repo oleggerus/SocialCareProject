@@ -37,6 +37,8 @@ namespace DataRepository.Migrations
             context.Administrations.RemoveRange(context.Administrations);
             context.Addresses.RemoveRange(context.Addresses);
             context.Users.RemoveRange(context.Users);
+            context.Notifications.RemoveRange(context.Notifications);
+
             context.Roles.RemoveRange(context.Roles);
             context.CareRequests.RemoveRange(context.CareRequests);
 

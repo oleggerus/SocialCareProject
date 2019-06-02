@@ -66,6 +66,10 @@ namespace DataRepository
                 .HasRequired(c => c.CreatedBy)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<PersonRequest>()
+            //    .HasRequired(c => c.CreatedBy)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
         }
 
         public DbSet<Address> Addresses { get; set; }
@@ -83,6 +87,7 @@ namespace DataRepository
         public DbSet<User> Users { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Worker> Workers { get; set; }
+        public DbSet<Notification> Notifications{ get; set; }
         public DbSet<WorkerPersonAssignment> WorkerPersonAssignments { get; set; }
         public DbSet<CareRequest> CareRequests { get; set; }
 

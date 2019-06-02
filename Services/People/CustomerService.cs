@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataRepository;
 using DataRepository.Entities;
@@ -12,17 +13,21 @@ namespace Services.People
     {
         private readonly IRepository<CareRequest> _careRequestRepository;
         private readonly IRepository<Customer> _customerRepository;
+        private readonly IRepository<Notification> _notificationRepository;
+
         private readonly IRepository<Worker> _workerRepository;
         private readonly IRepository<WorkerPersonAssignment> _assignmentRepository;
 
 
         public CustomerService(IRepository<Customer> customerRepository,
             IRepository<CareRequest> careRequestRepository,
+            IRepository<Notification> notificationRepository,
             IRepository<Worker> workerRepository,
                 IRepository<WorkerPersonAssignment> assignmentRepository)
         {
             _customerRepository = customerRepository;
             _workerRepository = workerRepository;
+            _notificationRepository = notificationRepository;
             _assignmentRepository = assignmentRepository;
             _careRequestRepository = careRequestRepository;
         }
@@ -67,7 +72,45 @@ namespace Services.People
                 pageSize);
         }
 
+        public Notification InsertNotification(Notification notification)
+        {
+            if (notification == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _notificationRepository.Insert(notification);
 
+            return notification;
+        }
+
+        public List<Notification> GetNotifications(int userId)
+        {
+            return _notificationRepository.TableNoTracking.Where(x => x.UserId == userId).ToList();
+        }
+        public Notification GetNotificationById(int id)
+        {
+            return _notificationRepository.GetById(id);
+        }
+
+        public IPagedList<Notification> GetPagedNotifications(int userId, int pageIndex = default(int),
+            int pageSize = int.MaxValue)
+        {
+            var query = _notificationRepository.TableNoTracking.Where(x => x.UserId == userId);
+
+            return new PagedList<Notification>(query.OrderByDescending(x => x.CreatedOnUtc), pageIndex,
+                pageSize);
+        }
+
+        public Notification UpdateNotification(Notification notification)
+        {
+            if (notification == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _notificationRepository.Update(notification);
+
+            return notification;
+        }
         #region CRUD
 
         public Customer Create(Customer customer)

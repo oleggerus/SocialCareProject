@@ -14,7 +14,7 @@ namespace Services.People
         Customer Create(Customer customer);
         Customer Update(Customer customer);
 
-
+        Notification UpdateNotification(Notification notification);
         Customer GetCustomerById(int id);
         Customer GetCustomerByUserId(int id);
         Worker GetWorkerByUserId(int id);
@@ -24,7 +24,12 @@ namespace Services.People
 
        IPagedList<Worker> GetFilteredWorkers(int administrationId, int pageIndex = default(int), int pageSize = int.MaxValue);
 
+       Notification InsertNotification(Notification notification);
+       List<Notification> GetNotifications(int userId);
+       Notification GetNotificationById(int id);
 
+       IPagedList<Notification> GetPagedNotifications(int userId, int pageIndex = default(int),
+           int pageSize = int.MaxValue);
         #region Care Requests
 
         CareRequest InsertCareRequest(CareRequest careRequest);

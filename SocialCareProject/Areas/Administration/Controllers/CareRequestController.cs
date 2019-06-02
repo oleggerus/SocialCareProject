@@ -113,6 +113,17 @@ namespace SocialCareProject.Areas.Administration.Controllers
             _customerService.InsertAssignment(assignment);
             _customerService.Update(person);
 
+            var custUser = _customerService.GetCustomerById(careRequest.CustomerId);
+            var notification = new Notification
+            {
+                IsOpened = false,
+                IsPositive = true,
+                Text = answer,
+                CreatedOnUtc = DateTime.UtcNow,
+                UserId = custUser.UserId
+            };
+            _customerService.InsertNotification(notification);
+
             return Json(new { success = true, message = "Ваші зміни збережені" }, JsonRequestBehavior.AllowGet);
         }
 
@@ -135,6 +146,18 @@ namespace SocialCareProject.Areas.Administration.Controllers
             careRequest.StatusId = (int)CareRequestStatuses.Rejected;
 
             _customerService.UpdateCareRequest(careRequest);
+
+            var custUser = _customerService.GetCustomerById(careRequest.CustomerId);
+            var notification = new Notification
+            {
+                IsOpened = false,
+                IsPositive = false,
+                CreatedOnUtc = DateTime.UtcNow,
+                Text = answer,
+                UserId = custUser.UserId
+            };
+            _customerService.InsertNotification(notification);
+
             return Json(new { success = true, message = "Ваші зміни збережені" }, JsonRequestBehavior.AllowGet);
         }
 

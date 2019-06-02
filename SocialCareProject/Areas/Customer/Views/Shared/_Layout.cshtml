@@ -48,7 +48,7 @@
                             <span class="badge badge-primary">1</span>
                         </i>
                         Замовлення
-                        </a>
+                    </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                         <a class="dropdown-item" href='@Url.Action("PersonRequestList", "Offer")'>Мої запити</a>
                         <a class="dropdown-item" href='@Url.Action("Index", "Offer")'>Надані та пропоновані послуги</a>
@@ -69,7 +69,9 @@
                     </div>
                 </li>
             </ul>
-            <ul class="navbar-nav ">
+            @{ Html.RenderAction("NotificationsCount", "Home");}
+
+            @*<ul class="navbar-nav ">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa fa-bell">
@@ -78,15 +80,15 @@
                         Нотифікації
                     </a>
                 </li>
-                @*<li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa fa-envelope-o">
                             <span class="badge badge-success">1</span>
                         </i>
                         Повідомлення
                     </a>
-                </li>*@
-            </ul>
+                </li>
+            </ul>*@
             @*<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Пошук" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пошук</button>

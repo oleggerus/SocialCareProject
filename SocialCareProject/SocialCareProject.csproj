@@ -284,6 +284,7 @@
     <Content Include="Scripts\app\administration\productList.js" />
     <Content Include="Scripts\app\administration\socialWorkers.js" />
     <Content Include="Scripts\app\customer\customer.details.js" />
+    <Content Include="Scripts\app\customer\notifications.js" />
     <Content Include="Scripts\app\customer\offerList.js" />
     <Content Include="Scripts\app\customer\personRequests.js" />
     <Content Include="Scripts\app\customer\productDetails.js" />
@@ -404,6 +405,8 @@
     <Content Include="Areas\Customer\Views\Product\Details.cshtml" />
     <Content Include="Areas\Administration\Views\People\_Filter.cshtml" />
     <Content Include="Areas\Administration\Views\CareRequest\_Filter.cshtml" />
+    <Content Include="Areas\Customer\Views\Home\_Notifications.cshtml" />
+    <Content Include="Areas\Customer\Views\Home\Notifications.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

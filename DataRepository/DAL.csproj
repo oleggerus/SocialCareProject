@@ -81,6 +81,7 @@
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Administration.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\Orders\Category.cs" />
     <Compile Include="Entities\People\CareRequest.cs" />
     <Compile Include="Entities\People\Customer.cs" />
@@ -132,6 +133,14 @@
     <Compile Include="Migrations\201906021433073_update.Designer.cs">
       <DependentUpon>201906021433073_update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906021443526_add_notifications.cs" />
+    <Compile Include="Migrations\201906021443526_add_notifications.Designer.cs">
+      <DependentUpon>201906021443526_add_notifications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021602360_add_notifications_date.cs" />
+    <Compile Include="Migrations\201906021602360_add_notifications_date.Designer.cs">
+      <DependentUpon>201906021602360_add_notifications_date.cs</DependentUpon>
+    </Compile>
     <Compile Include="PagedList.cs" />
     <Compile Include="RepositoryPattern\EfRepository.cs" />
     <Compile Include="RepositoryPattern\IRepository.cs" />
@@ -157,6 +166,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906021433073_update.resx">
       <DependentUpon>201906021433073_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021443526_add_notifications.resx">
+      <DependentUpon>201906021443526_add_notifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021602360_add_notifications_date.resx">
+      <DependentUpon>201906021602360_add_notifications_date.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
