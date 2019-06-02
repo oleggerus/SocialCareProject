@@ -765,7 +765,7 @@ namespace DataRepository.Migrations
             {
                 Product = wheelChair,
                 CreatedBy = provider,
-                Description = "Ќайкращий виб≥р",
+                Description = "я п≥дготував цю пропозиц≥ю дл€ ¬ас, оск≥льки чув, що ¬и шукаЇте саме такий ≥нвал≥дний в≥зок",
                 IsDeleted = false,
                 StatusId = (int)OfferStatuses.PendingReview,
                 Customer = customer
@@ -775,7 +775,7 @@ namespace DataRepository.Migrations
             {
                 Product = bones,
                 CreatedBy = providerWithoutVendor,
-                Description = "ƒумаю, це те що ¬ам потр≥бно",
+                Description = "ƒумаю, ц€ пропозиц≥€ маЇ ¬ас зац≥кавити, оск≥льки це найдешевший ≥з вар≥ант≥в представлених на сайт≥",
                 IsDeleted = false,
                 ReviewedOnUtc = DateTime.UtcNow,
                 StatusId = (int)OfferStatuses.Declined,

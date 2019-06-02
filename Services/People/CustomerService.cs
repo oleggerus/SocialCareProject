@@ -65,8 +65,10 @@ namespace Services.People
         public IPagedList<Worker> GetFilteredWorkers(int administrationId, int pageIndex = default(int),
             int pageSize = int.MaxValue)
         {
+            //var query = _workerRepository.TableNoTracking.Where(x =>
+            //    x.Administration.Id == administrationId && x.PositionId == default(int));
             var query = _workerRepository.TableNoTracking.Where(x =>
-                x.Administration.Id == administrationId && x.PositionId == default(int));
+                x.Administration.Id == administrationId);
 
             return new PagedList<Worker>(query.OrderBy(x => x.User.LastName), pageIndex,
                 pageSize);
