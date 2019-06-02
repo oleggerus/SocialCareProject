@@ -1,11 +1,26 @@
 ﻿var Requests = Requests || {};
+
 Requests.FilterMapping = {
+    'ignore': ["Clear"]
 };
 
 Requests.RequestsMapping = {
     create: function (options) {
         return new Requests.RequestViewModel(options.data);
     }
+};
+
+Requests.FilterViewModel = function () {
+    var self = this;
+    self.Name = ko.observable(null);
+    self.StatusId = ko.observable(null);
+    
+
+
+    self.Clear = function () {
+        self.Name(null);
+        self.StatusId(null);
+    };
 };
 
 Requests.AllRequests = null;
@@ -166,11 +181,13 @@ Requests.ListViewModel = function () {
 
     self.Requests = ko.observableArray([]);
     self.Workers = ko.observableArray([]);
+    self.Filter = new Requests.FilterViewModel();
 
     self.Init = function () {
         Requests.AllRequests = Requests.Requests; 
         ko.mapping.fromJS(Requests.Requests, Requests.RequestsMapping, self.Requests);
         ko.mapping.fromJS(Requests.Pager, {}, self.Pager);
+        ko.mapping.fromJS(Requests.Filter, {}, self.Filter);
         ko.mapping.fromJS(Requests.Workers, {}, self.Workers);
     };
 
@@ -181,8 +198,13 @@ Requests.ListViewModel = function () {
 
     self.Load = function () {
         self.Loading(true);
+        var filter = {};
         var data = {
-            pager: ko.mapping.toJS(self.Pager, {})
+            pager: ko.mapping.toJS(self.Pager, {}),
+            statusId: self.Filter.StatusId(),
+            name: self.Filter.Name()
+            //filter: ko.mapping.toJS(self.Filter, Requests.FilterMapping)
+
         };
 
         $.ajax({
@@ -205,6 +227,16 @@ Requests.ListViewModel = function () {
         }).always(function () {
             self.Loading(false);
         });
+    };
+
+    self.ClearFilter = function () {
+        self.Pager.PageIndex(0);
+        self.Filter.Clear();
+        self.Load();
+    };
+    self.ApplyFilter = function () {
+        self.Pager.PageIndex(0);
+        self.Load(true);
     };
 
     self.Init();

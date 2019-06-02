@@ -164,10 +164,24 @@ namespace Services.People
             return true;
         }
 
-        public IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, int pageIndex = default(int),
+        public IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, string name, int? statusId = null, int pageIndex = default(int),
             int pageSize = int.MaxValue)
         {
             var query = _careRequestRepository.TableNoTracking.Where(x => x.Customer.AdministrationId == administrationId);
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                var tName = name.Trim();
+                query = query.Where(x =>
+                    x.Customer.User.FirstName.ToLower().Contains(tName) ||
+                    x.Customer.User.LastName.ToLower().Contains(tName));
+                
+            }
+
+            if (statusId.HasValue)
+            {
+                query = query.Where(x=>x.StatusId == statusId.Value);
+            }
 
             return new PagedList<CareRequest>(query.OrderByDescending(x => x.CreatedOnUtc), pageIndex,
                 pageSize);

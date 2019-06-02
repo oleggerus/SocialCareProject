@@ -32,7 +32,7 @@ namespace Services.People
         CareRequest UpdateCareRequest(CareRequest careRequest);
         bool CanCreateCareRequest(int personId);
 
-        IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, int pageIndex = default(int), int pageSize = int.MaxValue);
+        IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, string name, int? statusId = null, int pageIndex = default(int), int pageSize = int.MaxValue);
 
         #endregion
     }

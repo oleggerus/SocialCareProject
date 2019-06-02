@@ -9,8 +9,11 @@
 }
 
 <div id="requestsList">
+    <div class="form-grey">
+        @Html.Partial("_Filter")
+    </div>
     <div class="container inner-container">
-        <div class="panel body-lightgrey">
+        <div class="body-lightgrey">
 
             <div class="panel-body paged-list-in-tab">
                 <div class="row">
@@ -27,7 +30,7 @@
                                         </div>
                                         <div class="modal-body">
                                             Чи впевнені Ви у тому, що <span class="control-label" data-bind="text: CustomerFullName"></span> потребує соціального робітника?
-                                            <br /><br />
+                                            <br/><br/>
                                             Якщо так, оберіть доступного робітника зі списку.
                                             <div class="form-group">
                                                 <select class="form-control" style="width: 450px; max-width: 600px;" data-bind="value: WorkerId,
@@ -40,7 +43,7 @@
                                             </div>
 
                                         </div>
-                                         
+
                                         <div class="modal-footer">
                                             <div class="form-group text-right">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Відмінити</button>
@@ -64,7 +67,7 @@
                                         </div>
                                         <div class="modal-body">
                                             Чи впевнені Ви у тому, що <span class="control-label" data-bind="text: CustomerFullName"></span> не потребує соціального робітника?
-                                            <br /><br />
+                                            <br/><br/>
                                             Якщо так, додайте Ваше пояснення до цієї дії.
                                         </div>
                                         <div class="form-group">
@@ -160,6 +163,7 @@
     Requests.AssignUrl = '@Html.Raw(Url.Action("AssignWorkerToCustomer", "CareRequest"))';
     Requests.RejectUrl = '@Html.Raw(Url.Action("RejectCareRequest", "CareRequest"))';
     Requests.AssignWorkerToCustomerUrl = '@Html.Raw(Url.Action("AssignWorkerToCustomer", "CareRequest"))';
+    Requests.Filter = @Html.Raw(Json.Encode(Model.Filter));
 
     Requests.GeneralErrorMessage = 'An error occured';
     Requests.Requests = @Html.Raw(Json.Encode(Model.Requests));

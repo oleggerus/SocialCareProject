@@ -7,6 +7,9 @@ namespace SocialCareProject.Areas.Administration.Models
     public class CareRequestsListModel
     {
         public SimplePagerModel Pager { get; set; }
+
+        public CareRequestFilterModel Filter { get; set; }
+
         public IList<CareRequestModel> Requests { get; set; } = new List<CareRequestModel>();
         //public IList<WorkerForAssignViewModel> Workers{ get; set; } = new List<WorkerForAssignViewModel>();
     }
@@ -29,5 +32,11 @@ namespace SocialCareProject.Areas.Administration.Models
     {
         public int Id { get; set; }
         public string FullName { get; set; }
+    }
+
+    public class CareRequestFilterModel
+    {
+        public int? StatusId { get; set; }
+        public string Name { get; set; }
     }
 }

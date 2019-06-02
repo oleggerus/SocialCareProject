@@ -9,7 +9,7 @@ using DataRepository.Enums;
 namespace Services.Assignments
 {
     /// <summary>
-    /// Class implemented IWorkerPersonAssignmentService interface
+    /// Service class implemented IWorkerPersonAssignmentService interface
     /// </summary>
     public class WorkerPersonAssignmentService : IWorkerPersonAssignmentService
     {

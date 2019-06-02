@@ -36,12 +36,12 @@ namespace SocialCareProject.Areas.Administration.Controllers
         }
 
         // GET: Administration/CareRequest
-        public ActionResult Index(SimplePagerModel pager)
+        public ActionResult Index(SimplePagerModel pager, CareRequestFilterModel filter)
         {
             var currentUser = HttpContext.User as CustomUser;
             var currentAdministrationId = _userService.GetAdministrationIdByUserId(currentUser.UserId);
 
-            var requests = _customerService.GetFilteredCareRequests(currentAdministrationId, pager.PageIndex, pager.PageSize);
+            var requests = _customerService.GetFilteredCareRequests(currentAdministrationId, filter.Name, filter.StatusId, pager.PageIndex, pager.PageSize);
             var model = _customerModelFactory.PrepareCareRequestsListModel(requests);
 
             var workers = _assignmentService.GetAllowedForAssignWorkers(currentAdministrationId);
@@ -54,12 +54,12 @@ namespace SocialCareProject.Areas.Administration.Controllers
             return View(model);
         }
 
-        public JsonResult GetFilteredRequests(SimplePagerModel pager)
+        public JsonResult GetFilteredRequests(SimplePagerModel pager, CareRequestFilterModel filter)
         {
             var currentUser = HttpContext.User as CustomUser;
             var currentAdministrationId = _userService.GetAdministrationIdByUserId(currentUser.UserId);
 
-            var requests = _customerService.GetFilteredCareRequests(currentAdministrationId, pager.PageIndex, pager.PageSize);
+            var requests = _customerService.GetFilteredCareRequests(currentAdministrationId, filter.Name, filter.StatusId, pager.PageIndex, pager.PageSize);
             var model = _customerModelFactory.PrepareCareRequestsListModel(requests);
 
             var url = GetUrlWithFilters(pager, currentUser.AreaId);
