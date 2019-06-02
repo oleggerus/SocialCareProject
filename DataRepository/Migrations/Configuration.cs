@@ -403,7 +403,7 @@ namespace DataRepository.Migrations
                 User = custUser1,
                 IsInvalid = false,
                 IsSelfPaid = false,
-                StatusId = (int)CustomerCareStatuses.ПідДоглядом
+                StatusId = (int)CustomerCareStatuses.НеПотребуєДогляду
             };
             var customer2 = new Customer
             {

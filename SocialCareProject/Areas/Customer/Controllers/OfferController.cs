@@ -1,8 +1,12 @@
-﻿using Services.Offer;
+﻿using System;
+using Services.Offer;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
 using SocialCareProject.Models;
 using System.Web.Mvc;
+using DataRepository.Entities.Orders;
+using DataRepository.Enums;
+using Services.People;
 
 namespace SocialCareProject.Areas.Customer.Controllers
 {
@@ -10,12 +14,15 @@ namespace SocialCareProject.Areas.Customer.Controllers
     {
         private readonly IOfferService _offerService;
         private readonly IOfferModelFactory _offerModelFactory;
+        private readonly ICustomerService _customerService;
 
         public OfferController(IOfferService offerService,
-            IOfferModelFactory offerModelFactory)
+            IOfferModelFactory offerModelFactory,
+            ICustomerService customerService)
         {
             _offerService = offerService;
             _offerModelFactory = offerModelFactory;
+            _customerService = customerService;
         }
 
         public ActionResult Index(SimplePagerModel pager)
@@ -48,7 +55,10 @@ namespace SocialCareProject.Areas.Customer.Controllers
             var personRequests = _offerService.GetFilteredPersonRequests(currentUser?.UserId ?? default(int), pager.PageIndex, pager.PageSize);
             var model = _offerModelFactory.PreparePersonRequestsListModel(personRequests);
 
+            ViewBag.Categories = _offerService.GetCategories();
             if (currentUser != null) ViewBag.UserId = currentUser.UserId;
+
+
             return View("PersonRequestList", model);
         }
 
@@ -61,6 +71,39 @@ namespace SocialCareProject.Areas.Customer.Controllers
             var url = GetUrlWithFiltersForRequests(pager, id);
 
             return CreateJsonResult(true, url, model);
+        }
+
+        public JsonResult CreateNewRequest(string name, string description, int? categoryId = null)
+        {
+            var currentUser = HttpContext.User as CustomUser;
+            var id = currentUser?.UserId ?? default(int);
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(description) || !categoryId.HasValue)
+            {
+                return Json(new { success = false, message = "Заповніть усі поля"}, JsonRequestBehavior.AllowGet);
+            }
+
+            var customer = _customerService.GetCustomerByUserId(id);
+            var cat = _offerService.GetCategoryById(categoryId.Value);
+            if (cat == null)
+            {
+                return Json(new { success = false, message = "Некоректна категорія" }, JsonRequestBehavior.AllowGet);
+
+            }
+
+            var request = new PersonRequest
+            {
+                StatusId = (int) PersonRequestStatuses.Opened,
+                Name = name,
+                Description = description,
+                IsDeleted = false,
+                CustomerId = customer.Id,
+                CategoryId = categoryId.Value,
+                CreatedById = customer.Id,
+                CreatedOnUtc = DateTime.UtcNow
+            };
+            _offerService.InsertPersonRequest(request);
+
+            return Json(new { success = true, message = "Ваше побажання було збережено" }, JsonRequestBehavior.AllowGet);
         }
 
         private string GetUrlWithFilters(SimplePagerModel pager, int customerId)

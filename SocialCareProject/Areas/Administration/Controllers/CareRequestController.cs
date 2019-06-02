@@ -118,6 +118,14 @@ namespace SocialCareProject.Areas.Administration.Controllers
 
         public JsonResult RejectCareRequest(int requestId, string answer)
         {
+            var errorMessage = string.Empty;
+           
+            if (string.IsNullOrWhiteSpace(answer))
+            {
+                errorMessage = "Додайте коментар";
+                return Json(new { success = false, message = errorMessage }, JsonRequestBehavior.AllowGet);
+
+            }
             var careRequest = _customerService.GetCareRequestById(requestId);
 
             var currentUser = HttpContext.User as CustomUser;

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using DataRepository;
 using DataRepository.Entities.Orders;
 
@@ -12,5 +13,8 @@ namespace Services.Offer
 
         IPagedList<PersonRequest> GetFilteredPersonRequests(int customerId, int pageIndex = default(int), int pageSize = int.MaxValue);
 
+        Category GetCategoryById(int id);
+        IList<KeyValuePair<int, string>> GetCategories();
+        PersonRequest InsertPersonRequest(PersonRequest request);
     }
 }

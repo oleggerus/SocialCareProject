@@ -10,6 +10,7 @@ PersonRequests.PersonRequestModal = function (id) {
     self.Name = ko.observable();
     self.UserId = ko.observable(id);
     self.Description = ko.observable();
+    self.CategoryId = ko.observable();
 
     self.ShowModal = function () {
         $("#newItemModal").appendTo("#page");
@@ -22,7 +23,7 @@ PersonRequests.PersonRequestModal = function (id) {
             url: url,
             dataType: "json",
             data: {
-                userId: self.UserId(),
+                categoryId: self.CategoryId(),
                 name: self.Name(),
                 description: self.Description()
             }

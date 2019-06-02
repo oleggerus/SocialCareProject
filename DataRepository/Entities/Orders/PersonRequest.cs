@@ -29,6 +29,8 @@ namespace DataRepository.Entities.Orders
         public virtual Customer CreatedBy { get; set; }
 
         [Required]
+        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
         public DateTime CreatedOnUtc { get; set; }
