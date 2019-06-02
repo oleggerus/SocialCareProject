@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
 
 namespace SocialCareProject.Extensions
 {

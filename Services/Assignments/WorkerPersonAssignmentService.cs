@@ -8,6 +8,7 @@ using DataRepository.Enums;
 
 namespace Services.Assignments
 {
+    
     public class WorkerPersonAssignmentService : IWorkerPersonAssignmentService
     {
 
@@ -37,7 +38,7 @@ namespace Services.Assignments
         {
             if (assignment == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(assignment));
             }
             _assignmentRepository.Insert(assignment);
 

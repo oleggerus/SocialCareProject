@@ -68,14 +68,18 @@ namespace SocialCareProject.Areas.Administration.Controllers
 
         public ActionResult AssignWorkerToCustomer(int requestId, string answer, int? workerId = null)
         {
-
+            var errorMessage = string.Empty;
             if (!workerId.HasValue)
             {
-                ModelState.AddModelError("", "Оберіть соціального робітника");
+                errorMessage = "Оберіть соціального робітника";
+                return Json(new { success = false, message = errorMessage }, JsonRequestBehavior.AllowGet);
+
             }
             if (string.IsNullOrWhiteSpace(answer))
             {
-                ModelState.AddModelError("", "Додайте коментар");
+                errorMessage = "Додайте коментар";
+                return Json(new { success = false, message = errorMessage }, JsonRequestBehavior.AllowGet);
+
             }
 
             if (!ModelState.IsValid)

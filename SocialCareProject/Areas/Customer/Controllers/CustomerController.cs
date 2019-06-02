@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
-using System.Web.Razor.Editor;
 using DataRepository.Entities.People;
 using DataRepository.Enums;
 using Services.People;
@@ -57,19 +53,20 @@ namespace SocialCareProject.Areas.Customer.Controllers
 
             var user = _userService.GetUserById(id);
 
-            user.ImageMimeType= image.ContentType;
-            user.Avatar = new byte[image.ContentLength];
-            image.InputStream.Read(user.Avatar, 0, image.ContentLength);
-            _userService.UpdateUser(user);
-            if (currentUser != null)
+            if (image != null)
             {
-                var customer = _customerService.GetCustomerByUserId(currentUser.UserId);
-                var customerModel = _customerModelFactory.PrepareCustomerModel(customer);
-
-                ViewBag.CanCreateCareRequest = _customerService.CanCreateCareRequest(customer.Id);
-                return View("CustomerDetails", customerModel);
+                user.ImageMimeType = image.ContentType;
+                user.Avatar = new byte[image.ContentLength];
+                image.InputStream.Read(user.Avatar, 0, image.ContentLength);
             }
-            return View("CustomerDetails");
+
+            _userService.UpdateUser(user);
+            if (currentUser == null) return View("CustomerDetails");
+            var customer = _customerService.GetCustomerByUserId(currentUser.UserId);
+            var customerModel = _customerModelFactory.PrepareCustomerModel(customer);
+
+            ViewBag.CanCreateCareRequest = _customerService.CanCreateCareRequest(customer.Id);
+            return View("CustomerDetails", customerModel);
 
         }
 
@@ -103,7 +100,7 @@ namespace SocialCareProject.Areas.Customer.Controllers
                 StatusId = (int)CareRequestStatuses.Opened
             };
 
-            
+
             _customerService.InsertCareRequest(careRequest);
             return Json(new { success = true, message = "Ваш запит був успішно створений" }, JsonRequestBehavior.AllowGet);
         }
