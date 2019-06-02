@@ -121,8 +121,8 @@ namespace DataRepository.Migrations
                 Role = customerRole,
                 FirstName = "Марія",
                 LastName = "Петрова",
-                DateOfBirth = new DateTime(1932, 01, 02),
-                Email = "customer1@mail.com",
+                DateOfBirth = new DateTime(1962, 07, 02),
+                Email = "customer2@mail.com",
                 IsActive = true,
                 IsDeleted = false,
                 Gender = (int)GenderEnum.Жінка,
@@ -131,6 +131,71 @@ namespace DataRepository.Migrations
                 Phone = "0633126355",
                 Username = "username1"
             };
+
+
+            var custUser3 = new User
+            {
+                Role = customerRole,
+                FirstName = "Олесь",
+                LastName = "Гнатів",
+                DateOfBirth = new DateTime(1982, 02, 02),
+                Email = "customer3@mail.com",
+                IsActive = true,
+                IsDeleted = false,
+                Gender = (int)GenderEnum.Чоловік,
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
+                Phone = "09090909990",
+                Username = "connor"
+            };
+            var custUser4 = new User
+            {
+                Role = customerRole,
+                FirstName = "Оксана",
+                LastName = "Семенюк",
+                DateOfBirth = new DateTime(1985, 01, 02),
+                Email = "customer4@mail.com",
+                IsActive = true,
+                IsDeleted = false,
+                Gender = (int)GenderEnum.Жінка,
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
+                Phone = "0953126305",
+                Username = "username1"
+            };
+
+            var custUser5 = new User
+            {
+                Role = customerRole,
+                FirstName = "Петро",
+                LastName = "Іванов",
+                DateOfBirth = new DateTime(1982, 02, 02),
+                Email = "customer5@mail.com",
+                IsActive = true,
+                IsDeleted = false,
+                Gender = (int)GenderEnum.Чоловік,
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
+                Phone = "0950456090",
+                Username = "connor"
+            };
+            var custUser6 = new User
+            {
+                Role = customerRole,
+                FirstName = "Марія",
+                LastName = "Кравець",
+                DateOfBirth = new DateTime(1948, 01, 02),
+                Email = "customer6@mail.com",
+                IsActive = true,
+                IsDeleted = false,
+                Gender = (int)GenderEnum.Жінка,
+                Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
+                PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
+                Phone = "0633126355",
+                Username = "username1"
+            };
+
+
             var administrationUser = new User
             {
                 Role = administrationRole,
@@ -181,13 +246,13 @@ namespace DataRepository.Migrations
             var workerUser = new User
             {
                 Role = workerRole,
-                FirstName = "Олександр",
+                FirstName = "Олеся",
                 LastName = "Лисенко",
                 DateOfBirth = new DateTime(1952, 12, 02),
                 Email = "worker@mail.com",
                 IsActive = true,
                 IsDeleted = false,
-                Gender = (int)GenderEnum.Чоловік,
+                Gender = (int)GenderEnum.Жінка,
                 Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
                 PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
                 Phone = "09090909990",
@@ -197,8 +262,8 @@ namespace DataRepository.Migrations
             var vendorUser = new User
             {
                 Role = vendorRole,
-                FirstName = "Провайдер",
-                LastName = "Контакт",
+                FirstName = "Тарас",
+                LastName = "Биць",
                 MiddleName = "Анатолійович",
                 DateOfBirth = new DateTime(1935, 07, 14),
                 Email = "vendor@mail.com",
@@ -213,8 +278,8 @@ namespace DataRepository.Migrations
             var providerUser = new User
             {
                 Role = vendorRole,
-                FirstName = "Жорже",
-                LastName = "Мендес",
+                FirstName = "Микола",
+                LastName = "Павлів",
                 MiddleName = "Анатолійович",
                 DateOfBirth = new DateTime(1935, 07, 14),
                 Email = "vendor@mail.com",
@@ -229,14 +294,14 @@ namespace DataRepository.Migrations
             var providerNotVendorUser = new User
             {
                 Role = vendorRole,
-                FirstName = "Міно",
-                LastName = "Райола",
-                MiddleName = "Анатолійович",
+                FirstName = "Христина",
+                LastName = "Кривчун",
+                MiddleName = "Миколаївна",
                 DateOfBirth = new DateTime(1935, 07, 14),
                 Email = "vendor2@mail.com",
                 IsActive = true,
                 IsDeleted = false,
-                Gender = (int)GenderEnum.Чоловік,
+                Gender = (int)GenderEnum.Жінка,
                 Password = "21YbvcPQOs8JTfRkU3D/TsAzFWuqKPYo",
                 PasswordSalt = "jr0YbgcGuSLt5TWTti6vdw==",
                 Phone = "09090909990",
@@ -261,6 +326,10 @@ namespace DataRepository.Migrations
 
             context.Users.AddOrUpdate(custUser1);
             context.Users.AddOrUpdate(custUser2);
+            context.Users.AddOrUpdate(custUser3);
+            context.Users.AddOrUpdate(custUser4);
+            context.Users.AddOrUpdate(custUser5);
+            context.Users.AddOrUpdate(custUser6);
             context.Users.AddOrUpdate(administrationUser);
             context.Users.AddOrUpdate(administrationLeadUser);
             context.Users.AddOrUpdate(administrationUserContact);
@@ -291,7 +360,16 @@ namespace DataRepository.Migrations
                 HouseNameRoomNumber = "5, 12",
                 RegionId = (int)Regions.Львівська,
                 ZipPostalCode = "7508",
-                Street = "Лукаша"
+                Street = "Шевченка"
+            };
+            var defaultPersonAddress = new Address
+            {
+                City = "Львів",
+                Deleted = false,
+                HouseNameRoomNumber = "51, 45",
+                RegionId = (int)Regions.Львівська,
+                ZipPostalCode = "7508",
+                Street = "Стрийська"
             };
             var administrationUserAddress = new Address
             {
@@ -351,6 +429,7 @@ namespace DataRepository.Migrations
 
             context.Addresses.AddOrUpdate(personAddress);
             context.Addresses.AddOrUpdate(personAddress2);
+            context.Addresses.AddOrUpdate(defaultPersonAddress);
             context.Addresses.AddOrUpdate(vendorAddress);
             context.Addresses.AddOrUpdate(adminAddress);
             context.Addresses.AddOrUpdate(administrationLeadAddress);
@@ -416,9 +495,49 @@ namespace DataRepository.Migrations
                 IsSelfPaid = false,
                 StatusId = (int)CustomerCareStatuses.НеПотребуєДогляду
             };
+            var customer3 = new Customer
+            {
+                Address = personAddress,
+                Administration = administration,
+                User = custUser3,
+                IsInvalid = false,
+                IsSelfPaid = false,
+                StatusId = (int)CustomerCareStatuses.ПідДоглядом
+            };
+            var customer4 = new Customer
+            {
+                Address = personAddress2,
+                Administration = administration,
+                User = custUser4,
+                IsInvalid = true,
+                IsSelfPaid = false,
+                StatusId = (int)CustomerCareStatuses.НеПотребуєДогляду
+            };
+            var customer5 = new Customer
+            {
+                Address = personAddress,
+                Administration = administration,
+                User = custUser5,
+                IsInvalid = false,
+                IsSelfPaid = false,
+                StatusId = (int)CustomerCareStatuses.ПідДоглядом
+            };
+            var customer6 = new Customer
+            {
+                Address = personAddress2,
+                Administration = administration,
+                User = custUser6,
+                IsInvalid = true,
+                IsSelfPaid = false,
+                StatusId = (int)CustomerCareStatuses.НеПотребуєДогляду
+            };
 
             context.Customers.AddOrUpdate(customer);
             context.Customers.AddOrUpdate(customer2);
+            context.Customers.AddOrUpdate(customer3);
+            context.Customers.AddOrUpdate(customer4);
+            context.Customers.AddOrUpdate(customer5);
+            context.Customers.AddOrUpdate(customer6);
 
             var worker = new Worker
             {
@@ -509,9 +628,9 @@ namespace DataRepository.Migrations
             var bones = new Product
             {
                 Category = healthCareCategory,
-                Name = "Костилі",
+                Name = "Милиці",
                 Description = "2 шт.",
-                Manufacturer = "Tesla",
+                Manufacturer = "Харків",
                 Height = 1,
                 IsActive = true,
                 IsDeleted = false,
@@ -525,14 +644,14 @@ namespace DataRepository.Migrations
             {
                 Category = healthCareCategory,
                 Name = "Інвалідний візок ",
-                Description = "Дуже зручний і сучасний візок",
-                Manufacturer = "Tesla 1",
+                Description = "Найкращий вибір у даній ціновій категорії",
+                Manufacturer = "ЛьвівМедПром",
                 Height = 1,
                 Width = 1,
                 Weight = 4,
                 IsActive = true,
                 IsDeleted = false,
-                Price = 1250,
+                Price = 670,
                 StatusId = (int)ProductStatuses.Продукт,
                 IsGift = false,
                 IsNew = true,
@@ -542,15 +661,15 @@ namespace DataRepository.Migrations
 
             var bones1 = new Product
             {
-                Category = healthCareCategory,
-                Name = "Костилі 1",
+                Category = homeHelCategory,
+                Name = "Прибирання будинку щотижня",
                 Description = "2 шт.",
-                Manufacturer = "Tesla 1",
+                Manufacturer = "",
                 Height = 1,
                 IsActive = true,
                 IsDeleted = false,
-                Price = 50,
-                StatusId = (int)ProductStatuses.Продукт,
+                Price = 150,
+                StatusId = (int)ProductStatuses.Сервіс,
                 IsGift = false,
                 IsNew = false,
                 CreatedBy = providerWithoutVendor,
@@ -558,17 +677,17 @@ namespace DataRepository.Migrations
 
             var wheelChair2 = new Product
             {
-                Category = healthCareCategory,
-                Name = "Інвалідний візок 2",
-                Description = "Дуже зручний і сучасний візок",
-                Manufacturer = "Tesla 2",
+                Category = psychoHelpCategory,
+                Name = "Консультації з психотерапевтом",
+                Description = "Професіональна підтримка у разі виникнення проблем в Вашому житті",
+                Manufacturer = "",
                 Height = 1,
                 Width = 1,
                 Weight = 4,
                 IsActive = true,
                 IsDeleted = false,
                 Price = 1250,
-                StatusId = (int)ProductStatuses.Продукт,
+                StatusId = (int)ProductStatuses.Сервіс,
                 IsGift = false,
                 IsNew = true,
                 CreatedBy = provider,
@@ -578,9 +697,9 @@ namespace DataRepository.Migrations
             var bones2 = new Product
             {
                 Category = healthCareCategory,
-                Name = "Костилі 2",
-                Description = "2 шт.",
-                Manufacturer = "Tesla 2 ",
+                Name = "Футбольний м'яч",
+                Description = "Шкіріний, новий м'яч",
+                Manufacturer = "Adidas",
                 Height = 1,
                 IsActive = true,
                 IsDeleted = false,
@@ -594,9 +713,9 @@ namespace DataRepository.Migrations
             var wheelChair3 = new Product
             {
                 Category = healthCareCategory,
-                Name = "Інвалідний візок 3",
-                Description = "Дуже зручний і сучасний візок",
-                Manufacturer = "Tesla 3",
+                Name = "Окуляри",
+                Description = "Підберемо дизайн та лінзи спеціально для Вас",
+                Manufacturer = "Glass Corporation",
                 Height = 1,
                 Width = 1,
                 Weight = 4,
@@ -613,9 +732,9 @@ namespace DataRepository.Migrations
             var bones3 = new Product
             {
                 Category = healthCareCategory,
-                Name = "Костилі 3",
+                Name = "Милиці",
                 Description = "2 шт.",
-                Manufacturer = "Tesla 3",
+                Manufacturer = "Київ",
                 Height = 1,
                 IsActive = true,
                 IsDeleted = false,
