@@ -55,6 +55,7 @@ Requests.AssignWorkerModal = function (requestId) {
 
     self.SendRequest = function () {
         var url = Requests.AssignUrl;
+        notify.close();
         $.ajax({
             url: url,
             dataType: "json",
@@ -105,6 +106,7 @@ Requests.RejectRequestModal = function (requestId) {
     };
 
     self.SendRequest = function () {
+        notify.close();
         var url = Requests.RejectUrl;
         $.ajax({
             url: url,
@@ -197,6 +199,7 @@ Requests.ListViewModel = function () {
     };
 
     self.Load = function () {
+        notify.close();
         self.Loading(true);
         var filter = {};
         var data = {

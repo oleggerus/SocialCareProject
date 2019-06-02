@@ -80,7 +80,7 @@ People.ListViewModel = function () {
             pager: ko.mapping.toJS(self.Pager, {}),
             filter: ko.mapping.toJS(self.Filter, People.FilterMapping)
         };
-
+        notify.close();
         $.ajax({
             url: People.GetPeople,
             type: "POST",

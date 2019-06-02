@@ -24,7 +24,7 @@ Offers.ListViewModel = function () {
         var data = {
             pager: ko.mapping.toJS(self.Pager, {})
         };
-
+        notify.close();
         $.ajax({
             url: Offers.GetOffers,
             type: "POST",

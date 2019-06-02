@@ -15,7 +15,8 @@ CustomerDetails.CareRequsetModal = function(id) {
         $("#careRequestModal").modal('show');
     };
 
-    self.SendRequest = function() {
+    self.SendRequest = function () {
+        notify.close();
         var url = CustomerDetails.SendRequestUrl;
         $.ajax({
             url: url,
@@ -86,7 +87,7 @@ CustomerDetails.CustomerDetailsViewModel = function () {
     };
 
     self.UpdateProfile = function () {
-        notify.close()
+        notify.close();
         self.Loading(true);
         $.ajax({
             url: CustomerDetails.UpdateDetails,
@@ -111,7 +112,7 @@ CustomerDetails.CustomerDetailsViewModel = function () {
         var data = {
             pager: ko.mapping.toJS(self.Pager, {})
         };
-
+        notify.close();
         $.ajax({
             url: CustomerDetails.GetCustomerDetails,
             type: "POST",

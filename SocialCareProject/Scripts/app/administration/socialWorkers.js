@@ -41,7 +41,7 @@ Workers.ListViewModel = function () {
         var data = {
             pager: ko.mapping.toJS(self.Pager, {})
         };
-
+        notify.close();
         $.ajax({
             url: Workers.GetWorkers,
             type: "POST",

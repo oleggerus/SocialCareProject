@@ -19,6 +19,7 @@ PersonRequests.PersonRequestModal = function (id) {
 
     self.SendRequest = function () {
         var url = PersonRequests.SendRequestUrl;
+        notify.close();
         $.ajax({
             url: url,
             dataType: "json",
@@ -65,7 +66,7 @@ PersonRequests.ListViewModel = function () {
         var data = {
             pager: ko.mapping.toJS(self.Pager, {})
         };
-
+        notify.close();
         $.ajax({
             url: PersonRequests.GetPersonRequests,
             type: "POST",

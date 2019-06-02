@@ -16,7 +16,7 @@
                         <ul class="list-group results-table" data-bind="foreach: Notifications">
 
                             <!--ko if: IsOpened()-->
-                            <li class="card"  style="background: darkgray">
+                            <li class="card" style="background: darkgray">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-10">
                                         <label class="control-label" data-bind="text: Text"></label>
@@ -33,7 +33,7 @@
                             <!--ko if: IsPositive()-->
                             <li class="card" style="background: lightgreen">
 
-                                <div class="row" >
+                                <div class="row">
                                     <div class="col-xs-12 col-md-10">
                                         <label class="control-label" data-bind="text: Text"></label>
                                     </div>
@@ -47,7 +47,7 @@
                             <!--ko ifnot: IsPositive()-->
                             <li class="card" style="background: lightpink">
 
-                                <div class="row" >
+                                <div class="row">
                                     <div class="col-xs-12 col-md-10">
                                         <label class="control-label" data-bind="text: Text"></label>
                                     </div>

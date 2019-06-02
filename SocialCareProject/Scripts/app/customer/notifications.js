@@ -23,7 +23,7 @@ Notifications.ListViewModel = function () {
         var data = {
             pager: ko.mapping.toJS(self.Pager, {})
         };
-
+        notify.close();
         $.ajax({
             url: Notifications.GetNotifications,
             type: "POST",
