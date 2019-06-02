@@ -11,15 +11,12 @@ namespace Services.People
     public class UserService : IUserService
     {
         private readonly IRepository<User> _userRepository;
-        private readonly IRepository<Worker> _workerRepository;
         private readonly IWorkerService _workerService;
 
        public UserService(IRepository<User> userRepository,
-            IRepository<Worker> workerRepository,
             IWorkerService workerService)
         {
             _userRepository = userRepository;
-            _workerRepository = workerRepository;
             _workerService = workerService;
         }
 
@@ -41,7 +38,7 @@ namespace Services.People
         {
             if (user == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(user));
             }
             _userRepository.Update(user);
 

@@ -10,6 +10,7 @@ using Services.Assignments;
 using Services.People;
 using SocialCareProject.Areas.Administration.Models;
 using SocialCareProject.Authentication;
+using SocialCareProject.Extensions;
 using SocialCareProject.Factories;
 using SocialCareProject.Models;
 
@@ -65,13 +66,28 @@ namespace SocialCareProject.Areas.Administration.Controllers
             return CreateJsonResult(true, url, model);
         }
 
-        public ActionResult AssignWorkerToCustomer(int workerId, int requestId, string answer)
+        public ActionResult AssignWorkerToCustomer(int requestId, string answer, int? workerId = null)
         {
+
+            if (!workerId.HasValue)
+            {
+                ModelState.AddModelError("", "Оберіть соціального робітника");
+            }
+            if (string.IsNullOrWhiteSpace(answer))
+            {
+                ModelState.AddModelError("", "Додайте коментар");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return new ModelStateJsonResult(ModelState);
+            }
+
             var careRequest = _customerService.GetCareRequestById(requestId);
 
             var currentUser = HttpContext.User as CustomUser;
             var currentWorker = _customerService.GetWorkerByUserId(currentUser.UserId);
-            var assignedWorker = _customerService.GetWorkerByUserId(workerId);
+            var assignedWorker = _customerService.GetWorkerByUserId(workerId.Value);
             careRequest.ReviewedById = currentWorker.Id;
             careRequest.ReviewedOn = DateTime.UtcNow;
             careRequest.Answer = answer;

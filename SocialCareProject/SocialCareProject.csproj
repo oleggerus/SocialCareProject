@@ -195,6 +195,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DependencyConfig.cs" />
     <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Extensions\ModelStateJsonResult.cs" />
     <Compile Include="Factories\AddressModelFactory.cs" />
     <Compile Include="Factories\CustomerModelFactory.cs" />
     <Compile Include="Factories\IAddressModelFactory.cs" />

@@ -42,8 +42,6 @@ namespace SocialCareProject.Areas.Customer.Controllers
                 return RedirectToAction("Index", "Home", new { area = "" });
             }
 
-            var ad = customer.Administration;
-            var contact = ad.Contact;
             var customerModel = _customerModelFactory.PrepareCustomerModel(customer);
 
             ViewBag.CanCreateCareRequest = _customerService.CanCreateCareRequest(customer.Id);
@@ -63,11 +61,16 @@ namespace SocialCareProject.Areas.Customer.Controllers
             user.Avatar = new byte[image.ContentLength];
             image.InputStream.Read(user.Avatar, 0, image.ContentLength);
             _userService.UpdateUser(user);
-            var customer = _customerService.GetCustomerByUserId(currentUser.UserId);
-            var customerModel = _customerModelFactory.PrepareCustomerModel(customer);
+            if (currentUser != null)
+            {
+                var customer = _customerService.GetCustomerByUserId(currentUser.UserId);
+                var customerModel = _customerModelFactory.PrepareCustomerModel(customer);
 
-            ViewBag.CanCreateCareRequest = _customerService.CanCreateCareRequest(customer.Id);
-            return View("CustomerDetails", customerModel);
+                ViewBag.CanCreateCareRequest = _customerService.CanCreateCareRequest(customer.Id);
+                return View("CustomerDetails", customerModel);
+            }
+            return View("CustomerDetails");
+
         }
 
         public FileContentResult GetImage()

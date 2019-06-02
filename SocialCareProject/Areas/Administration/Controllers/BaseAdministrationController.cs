@@ -27,7 +27,6 @@ namespace SocialCareProject.Areas.Administration.Controllers
             }
 
             filterContext.ExceptionHandled = true;
-            //var Result = RedirectToAction("Error", "Common");
 
             var result = RedirectToRoute(
                 new RouteValueDictionary {

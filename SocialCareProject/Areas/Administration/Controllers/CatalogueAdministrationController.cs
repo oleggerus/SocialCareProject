@@ -23,7 +23,6 @@ namespace SocialCareProject.Areas.Administration.Controllers
         // GET: Customer/Product
         public ActionResult Index(SimplePagerModel pager)
         {
-            var currentUser = HttpContext.User as CustomUser;
             var products = _productService.GetAllProducts(pager.PageIndex, pager.PageSize);
 
             var model = _productFactory.PrepareProductListModel(products);

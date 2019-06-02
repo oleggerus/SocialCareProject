@@ -30,17 +30,12 @@ namespace DataRepository.Entities
             if (ReferenceEquals(this, other))
                 return true;
 
-            if (!IsTransient(this) &&
-                !IsTransient(other) &&
-                Equals(Id, other.Id))
-            {
-                var otherType = other.GetUnproxiedType();
-                var thisType = GetUnproxiedType();
-                return thisType.IsAssignableFrom(otherType) ||
-                       otherType.IsAssignableFrom(thisType);
-            }
+            if (IsTransient(this) || IsTransient(other) || !Equals(Id, other.Id)) return false;
+            var otherType = other.GetUnproxiedType();
+            var thisType = GetUnproxiedType();
+            return thisType.IsAssignableFrom(otherType) ||
+                   otherType.IsAssignableFrom(thisType);
 
-            return false;
         }
 
      
