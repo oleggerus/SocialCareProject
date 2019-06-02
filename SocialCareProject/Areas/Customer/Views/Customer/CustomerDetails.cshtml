@@ -8,6 +8,15 @@
     @Scripts.Render("~/Scripts/bootbox.min.js");
     ViewBag.Title = "Мій профіль";
 }
+@section Buttons
+{
+    <div id="buttonsection">
+        <button class="btn btn-primary" data-bind="click:UpdateProfile">
+            <i class="glyphicon glyphicon-plus"></i>
+            &nbsp; Зберегти зміни
+        </button>
+    </div>
+}
 <div id="customerDetails">
     <div class="container inner-container" data-bind="with: Details">
         <div class="modal fade" id="careRequestModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-bind="with: CareRequestModal">
@@ -40,38 +49,39 @@
 
         <div class="card">
             <div class="row">
-                <div class="col-xs-3" >
+                <div class="col-xs-3">
                     @using (Html.BeginForm("EditAvatar", "Customer",
                         FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                            @Html.HiddenFor(m => m.Id)
+                        @Html.HiddenFor(m => m.Id)
 
-                            <div class="form-group">
-                          
-                                @if (Model.Avatar == null)
-                                {
-                                    <div class="form-control-static">Немає зображення</div>
-                                }
-                                else
-                                {
-                                    <img class="img-thumbnail" width="150" height="150" src="@Url.Action("GetImage", "Customer")" alt=""/>
-                                }
-                                <div style="position:relative;">
-                                    <a class='' href='javascript:;'>Обрати файл
-                                        <input type="file" name="Image" size="40"
-                                               style="position:absolute;
+                        <div class="form-group">
+
+                            @if (Model.Avatar == null)
+                            {
+                                <div class="form-control-static">Немає зображення</div>
+                            }
+                            else
+                            {
+                                <img class="img-thumbnail" width="150" height="150" src="@Url.Action("GetImage", "Customer")" alt="" />
+                            }
+                            <div style="position:relative;">
+                                <a class='' href='javascript:;'>
+                                    Обрати файл
+                                    <input type="file" name="Image" size="40"
+                                           style="position:absolute;
                                                 left:0;filter: alpha(opacity=0); opacity:0;                                                                                                                                                                                                                                                                                  background-color:transparent;color:transparent;"
-                                               onchange='$("#upload-file-info").html($(this).val());'>
-                                    </a>
-                                </div>
+                                           onchange='$("#upload-file-info").html($(this).val());'>
+                                </a>
                             </div>
+                        </div>
                         <div class="panel-footer">
-                            <input type="submit" value="Зберегти" class="btn btn-primary" />
+                            <input type="submit" value="Зберегти фото" class="btn btn-primary" />
 
                         </div>
                     }
                 </div>
-  
+
                 <div class="col-xs-9">
                     <div class="row">
                         <div class="form-group col-xs-4">
@@ -95,14 +105,14 @@
                         <div class="form-group col-xs-4">
                             <label class="control-label ">Дата народження</label>
                             <div>
-                                <input class="form-control" data-bind="datePicker: DateOfBirth" />
+                                <input class="form-control disabled" readonly="readonly" onclick="function() {}" data-bind="datePicker: DateOfBirth" />
                                 @*<input class="form-control datepicker" maxlength="60" data-bind="value:  DateOfBirth" />*@
                             </div>
                         </div>
                         <div class="form-group col-xs-4">
                             <label class="control-label ">Стать</label>
                             <div>
-                                <input class="form-control" maxlength="60" data-bind="value:  GenderName" />
+                                <input class="form-control disabled" readonly="readonly" maxlength="60" data-bind="value:  GenderName" />
                             </div>
                         </div>
                         <div class="form-group col-xs-4">
@@ -111,13 +121,13 @@
                                 <input class="form-control" data-bind="value:  Email" />
                             </div>
                         </div>
-                        <div class="form-group col-xs-4">
+                        @*<div class="form-group col-xs-4">
                             <label class="control-label ">Мобільний телефон</label>
                             <div>
                                 <input class="form-control" maxlength="60" data-bind="value:  Phone" />
                             </div>
-                        </div>
-                        <div id="careRequestBtnId" class="form-group col-xs-8 martop-20 pull-right text-right">
+                        </div>*@
+                        <div id="careRequestBtnId" class="form-group col-xs-12 martop-20 pull-right text-right">
                             <button type="button" data-bind="click: MakeCareRequest, visible:CustomerDetails.CanCreateCareRequest === 'True'" class="btn btn-warning control-label">Потребую догляду</button>
                         </div>
                     </div>
@@ -158,12 +168,12 @@
                             <input class="form-control" data-bind="value:  ZipPostalCode" />
                         </div>
                     </div>
-                    <div class="form-group col-xs-4">
+                    @*<div class="form-group col-xs-4">
                         <label class="control-label ">Домашній телефон</label>
                         <div>
                             <input class="form-control" data-bind="value:  HomePhoneNumber" />
                         </div>
-                    </div>
+                    </div>*@
                     <div class="form-group col-xs-4">
                         <label class="control-label ">Мобільний телефон</label>
                         <div>
@@ -232,10 +242,12 @@
 <script type="text/javascript">
     CustomerDetails.Details = @Html.Raw(Json.Encode(Model));
     CustomerDetails.ContainerId = 'customerDetails';
+    CustomerDetails.ButtonsId = 'buttonsection';
+
     CustomerDetails.Regions =  @Html.Raw(Json.Encode(EnumHelpers.GetEnumKeyValuePairList<Regions>()));
     CustomerDetails.CustomerStatuses =  @Html.Raw(Json.Encode(EnumHelpers.ToList<CustomerCareStatuses>()));
 
-
+    CustomerDetails.UpdateDetails = '@Url.Action("UpdateDetails", "Customer")';
     CustomerDetails.GeneralErrorMessage = 'An error occured';
     CustomerDetails.CanCreateCareRequest = '@Convert.ToBoolean(ViewBag.CanCreateCareRequest)';
     CustomerDetails.Init();

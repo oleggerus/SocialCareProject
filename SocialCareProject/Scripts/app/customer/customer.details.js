@@ -85,7 +85,27 @@ CustomerDetails.CustomerDetailsViewModel = function () {
         ko.mapping.fromJS(CustomerDetails.Details, {}, self.Details);
     };
 
-   
+    self.UpdateProfile = function () {
+        notify.close()
+        self.Loading(true);
+        $.ajax({
+            url: CustomerDetails.UpdateDetails,
+            //type: "POST",
+            dataType: "json",
+            data: ko.mapping.toJS(self.Details, {})
+        }).done(function (result) {
+            if (result && result.success) {
+                notify.ok("Успішно збережено");
+            } else {
+                notify.fail(result.message, true);
+            }
+        }).fail(function () {
+            notify.fail("Відбувся збій", true);
+        }).always(function () {
+            self.Loading(false);
+        });
+    };
+
     self.Load = function () {
         self.Loading(true);
         var data = {
@@ -119,5 +139,5 @@ CustomerDetails.CustomerDetailsViewModel = function () {
 CustomerDetails.Init = function () {
     var viewModel = new CustomerDetails.CustomerDetailsViewModel();
     ko.applyBindings(viewModel,
-        $(CustomerDetails.ContainerId)[0]);
+        $(CustomerDetails.ContainerId, CustomerDetails.ButtonsId)[0]);
 };

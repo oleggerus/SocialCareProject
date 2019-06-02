@@ -11,6 +11,7 @@ namespace Services.People
     public class UserService : IUserService
     {
         private readonly IRepository<User> _userRepository;
+
         private readonly IWorkerService _workerService;
 
        public UserService(IRepository<User> userRepository,
