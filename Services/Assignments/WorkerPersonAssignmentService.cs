@@ -89,5 +89,16 @@ namespace Services.Assignments
 
 
         }
+
+        public Worker GetAssignedWorkerUser(int customerId)
+        {
+            var asign = _assignmentRepository.TableNoTracking.FirstOrDefault(x => x.CustomerId == customerId);
+            if (asign == null)
+            {
+                return new Worker();
+            }
+
+            return _workerRepository.GetById(asign.WorkerId);
+        }
     }
 }

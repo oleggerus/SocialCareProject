@@ -1,0 +1,57 @@
+﻿@model SocialCareProject.Areas.Customer.Models.Administration.AdministrationViewModel
+
+@{
+    ViewBag.Title = "Адміністрація";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div id="customerDetails">
+    <div class="container inner-container" data-bind="with: Details">
+
+        <div class="card">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group col-xs-4">
+                        <label class="control-label">Адміністрація</label>
+                        <div>
+                            <label> @Model.Administration</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label">Контактна особа</label>
+                        <div>
+                            <label> @Model.AdministrationContactName</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label">Контактний телефон</label>
+                        <div>
+                            <label> @Model.AdministrationPhone</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label">Сайт</label>
+                        <p>
+                            <a href="@Model.Description" target="_top">@Model.Description</a>
+                        </p>
+
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label">Електронна адреса</label>
+                        <div>
+                            <label> @Model.Email</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label class="control-label">Адреса</label>
+                        <div>
+                            <label> @Model.Address</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

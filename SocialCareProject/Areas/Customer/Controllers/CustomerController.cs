@@ -3,8 +3,11 @@ using System.Web;
 using System.Web.Mvc;
 using DataRepository.Entities.People;
 using DataRepository.Enums;
+using DataRepository.Extensions;
 using Services.Address;
+using Services.Assignments;
 using Services.People;
+using SocialCareProject.Areas.Customer.Models.Administration;
 using SocialCareProject.Areas.Customer.Models.Customer;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
@@ -17,17 +20,20 @@ namespace SocialCareProject.Areas.Customer.Controllers
         private readonly ICustomerService _customerService;
         private readonly IUserService _userService;
         private readonly IAddressService _addressService;
+        private readonly IWorkerPersonAssignmentService _assignmentService;
 
 
 
         public CustomerController(ICustomerModelFactory customerModelFactory,
             ICustomerService customerService, IUserService userService,
-            IAddressService addressService)
+            IAddressService addressService,
+            IWorkerPersonAssignmentService assignmentService)
         {
             _customerService = customerService;
             _addressService = addressService;
             _customerModelFactory = customerModelFactory;
             _userService = userService;
+            _assignmentService = assignmentService;
         }
 
 
@@ -145,6 +151,51 @@ namespace SocialCareProject.Areas.Customer.Controllers
 
             _customerService.InsertCareRequest(careRequest);
             return Json(new { success = true, message = "Ваш запит був успішно створений" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Administration()
+        {
+            var currentUser = HttpContext.User as CustomUser;
+            var id = currentUser?.UserId ?? default(int);
+
+            var customer = _customerService.GetCustomerByUserId(id);
+            var address = new AdministrationViewModel
+            {
+                Administration = customer.Administration.Name,
+                AdministrationContactName = customer.Administration.Contact.GetFullName(),
+                AdministrationPhone = customer.Administration.Phone,
+                Description = customer.Administration.Url,
+                Email = customer.Administration.Email,
+                Address = customer.Administration.Address.City + ", " + customer.Administration.Address.Street + ", " +
+                          customer.Administration.Address.HouseNameRoomNumber + " "
+
+            };
+            return View(address);
+        }
+
+        public ActionResult RequestedPerson()
+        {
+            var currentUser = HttpContext.User as CustomUser;
+            var id = currentUser?.UserId ?? default(int);
+
+            var customer = _customerService.GetCustomerByUserId(id);
+            var person = new AssignedPersonViewModel
+            {
+                Administration = customer.Administration.Name,
+                Address = customer.Administration.Address.City + ", " + customer.Administration.Address.Street + ", " +
+                          customer.Administration.Address.HouseNameRoomNumber + " "
+
+            };
+            var worker = _assignmentService.GetAssignedWorkerUser(customer.Id);
+            if (worker.Id == default(int))
+            {
+                return View(person);
+            }
+            person.FullName = worker.User.GetFullName();
+            person.Phone = worker.User.Phone;
+            person.Email = worker.User.Email;
+
+            return View(person);
         }
     }
 

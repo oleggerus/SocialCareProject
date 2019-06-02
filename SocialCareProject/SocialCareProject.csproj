@@ -175,6 +175,7 @@
     <Compile Include="Areas\Customer\Controllers\OfferController.cs" />
     <Compile Include="Areas\Customer\Controllers\ProductController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\Models\Administration\AdministrationViewModel.cs" />
     <Compile Include="Areas\Customer\Models\Customer\CustomerModel.cs" />
     <Compile Include="Areas\Customer\Models\Home\HomeCustomerModel.cs" />
     <Compile Include="Areas\Customer\Models\Offer\OfferModel.cs" />
@@ -407,6 +408,9 @@
     <Content Include="Areas\Administration\Views\CareRequest\_Filter.cshtml" />
     <Content Include="Areas\Customer\Views\Home\_Notifications.cshtml" />
     <Content Include="Areas\Customer\Views\Home\Notifications.cshtml" />
+    <Content Include="Areas\Customer\Views\Customer\Administration.cshtml" />
+    <Content Include="Areas\Customer\Views\Customer\RequestedPerson.cshtml" />
+    <Content Include="Areas\Administration\Views\Home\Administration.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

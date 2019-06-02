@@ -13,5 +13,7 @@ namespace Services.Assignments
         List<Worker> GetAllowedForAssignWorkers(int administrationId);
         WorkerPersonAssignment Create(WorkerPersonAssignment assignment);
         bool IsWorkerFree(int workerUserId);
+
+        Worker GetAssignedWorkerUser(int customerId);
     }
 }

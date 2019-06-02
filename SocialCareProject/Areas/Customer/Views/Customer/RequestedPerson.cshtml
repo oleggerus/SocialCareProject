@@ -1,0 +1,65 @@
+﻿@model SocialCareProject.Areas.Customer.Models.Administration.AssignedPersonViewModel
+
+@{
+    ViewBag.Title = "Особа, яка доглядає за Вами";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="customerDetails">
+    <div class="container inner-container" data-bind="with: Details">
+        @if (!string.IsNullOrWhiteSpace(Model.FullName))
+        {
+            <div class="card">
+
+                <div class="row">
+
+                    <div class="col-xs-12">
+                        <div class="form-group col-xs-4">
+                            <label class="control-label">Повне ім'я</label>
+                            <div>
+                                <label> @Model.FullName</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label">Мобільний телефон</label>
+                            <div>
+                                <label> @Model.Phone</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label">Електронна адреса</label>
+                            <div>
+                                <label> @Model.Email</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label">Адреса</label>
+                            <div>
+                                <label> @Model.Address</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="control-label">Відповідальний орган</label>
+                            <div>
+                                <label> @Model.Administration</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+        @if (string.IsNullOrWhiteSpace(Model.FullName))
+        {
+            <label class="control-label">
+                В даний момент Ви НЕ знаходитися під доглядом.
+                У разі необхідності створіть запит щодо догляду через сторінку Вашого профілю
+            </label>
+        }
+
+
+    </div>
+
+
+</div>
