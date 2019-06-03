@@ -1,6 +1,7 @@
 # SocialCareProject
 
-The project is open-source and can be used by everyone
+The project is open-source so can be improved by everyone.
+Source code is stored on https://github.com/oleggerus/SocialCareProject.git
 
 ## Setup
 1. Clone repository from GitGub orother sources.
