@@ -12,10 +12,10 @@
     <div class="form-grey">
         @Html.Partial("_Filter")
     </div>
-    <div class="container inner-container">
+    <div class="">
         <div class="body-lightgrey">
-
-            <div class="panel-body paged-list-in-tab">
+            <div class="text-right" style="padding-right: 10px"><span class="text-muted">Знайдено запитів - </span> <span class="text-muted" data-bind= "text:Pager.TotalCount"> </span></div>
+            <div class="panel-body paged-list-in-tab" style="padding-top: 0px">
                 <div class="row">
                     <div class="col-xs-12">
                         <ul class="list-group results-table" data-bind="foreach: Requests">
