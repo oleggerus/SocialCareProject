@@ -1,8 +1,5 @@
-﻿using System;
+﻿using SocialCareProject.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using SocialCareProject.Models;
 
 namespace SocialCareProject.Areas.Administration.Models
 {
@@ -15,8 +12,8 @@ namespace SocialCareProject.Areas.Administration.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public int UserId { get; set; }
-        public int WorkerId{ get; set; }
-        public byte[] Avatar{ get; set; }
+        public int WorkerId { get; set; }
+        public byte[] Avatar { get; set; }
         public string Status { get; set; }
         public bool IsFree { get; set; }
     }

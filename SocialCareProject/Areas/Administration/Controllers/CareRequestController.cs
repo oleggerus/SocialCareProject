@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using DataRepository.Entities;
+﻿using DataRepository.Entities;
 using DataRepository.Enums;
 using DataRepository.Extensions;
 using Services.Assignments;
@@ -13,6 +8,9 @@ using SocialCareProject.Authentication;
 using SocialCareProject.Extensions;
 using SocialCareProject.Factories;
 using SocialCareProject.Models;
+using System;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace SocialCareProject.Areas.Administration.Controllers
 {
@@ -130,7 +128,7 @@ namespace SocialCareProject.Areas.Administration.Controllers
         public JsonResult RejectCareRequest(int requestId, string answer)
         {
             var errorMessage = string.Empty;
-           
+
             if (string.IsNullOrWhiteSpace(answer))
             {
                 errorMessage = "Додайте коментар";

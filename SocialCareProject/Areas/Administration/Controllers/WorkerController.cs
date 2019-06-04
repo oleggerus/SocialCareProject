@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Services.People;
+﻿using Services.People;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
 using SocialCareProject.Models;
+using System.Web.Mvc;
 
 namespace SocialCareProject.Areas.Administration.Controllers
 {

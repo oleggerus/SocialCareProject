@@ -1,6 +1,5 @@
-﻿using System;
+﻿using SocialCareProject.Models;
 using System.Collections.Generic;
-using SocialCareProject.Models;
 
 namespace SocialCareProject.Areas.Administration.Models
 {

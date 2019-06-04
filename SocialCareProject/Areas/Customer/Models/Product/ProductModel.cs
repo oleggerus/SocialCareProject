@@ -1,7 +1,6 @@
-﻿using System;
+﻿using SocialCareProject.Models;
+using System;
 using System.Collections.Generic;
-using DataRepository;
-using SocialCareProject.Models;
 
 namespace SocialCareProject.Areas.Customer.Models.Product
 {
@@ -26,7 +25,7 @@ namespace SocialCareProject.Areas.Customer.Models.Product
         public string Manufacturer { get; set; }
     }
 
-    public class ProductDetailsModel 
+    public class ProductDetailsModel
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -41,12 +40,12 @@ namespace SocialCareProject.Areas.Customer.Models.Product
         public double Width { get; set; }
         public double Height { get; set; }
         public int? ScheduleId { get; set; }
-        public bool IsService{ get; set; }
+        public bool IsService { get; set; }
         public byte[] Picture { get; set; }
         public int CategoryId { get; set; }
         public int CreatedById { get; set; }
         public string Provider { get; set; }
-        public string Vendor{ get; set; }
+        public string Vendor { get; set; }
         public string Category { get; set; }
         public bool IsRecurring { get; set; }
         public bool BasedOnWeek { get; set; }

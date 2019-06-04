@@ -1,9 +1,5 @@
-﻿using System;
+﻿using SocialCareProject.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using DataRepository;
-using SocialCareProject.Models;
 
 namespace SocialCareProject.Areas.Customer.Models.Offer
 {

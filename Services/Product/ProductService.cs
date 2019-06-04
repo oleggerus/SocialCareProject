@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DataRepository;
-using DataRepository.Entities.Orders;
+﻿using DataRepository;
 using DataRepository.RepositoryPattern;
+using System.Linq;
 
 namespace Services.Product
 {
@@ -17,7 +15,7 @@ namespace Services.Product
 
         public IPagedList<DataRepository.Entities.Orders.Product> GetAllProducts(int pageIndex = default(int), int pageSize = int.MaxValue)
         {
-            var query =  _productRepository.TableNoTracking.Where(x => x.IsActive  && !x.IsDeleted);
+            var query = _productRepository.TableNoTracking.Where(x => x.IsActive && !x.IsDeleted);
 
             return new PagedList<DataRepository.Entities.Orders.Product>(query.OrderBy(x => x.CreatedOnUtc), pageIndex,
                 pageSize);

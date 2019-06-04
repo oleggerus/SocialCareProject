@@ -1,10 +1,8 @@
-﻿using System;
-using DataRepository.RepositoryPattern;
-using System.Linq;
-using System.Web.Mvc;
-using DataRepository.Entities;
-using DataRepository.Entities.People;
+﻿using DataRepository.Entities.People;
 using DataRepository.Enums;
+using DataRepository.RepositoryPattern;
+using System;
+using System.Linq;
 
 namespace Services.People
 {
@@ -14,8 +12,8 @@ namespace Services.People
 
         private readonly IWorkerService _workerService;
 
-       public UserService(IRepository<User> userRepository,
-            IWorkerService workerService)
+        public UserService(IRepository<User> userRepository,
+             IWorkerService workerService)
         {
             _userRepository = userRepository;
             _workerService = workerService;
@@ -58,7 +56,7 @@ namespace Services.People
             switch (userRoleArea)
             {
                 case (int)AreaTypes.Administration:
-                return _workerService.GetWorkerByUserId(userId).Administration.Id;
+                    return _workerService.GetWorkerByUserId(userId).Administration.Id;
 
                 case (int)AreaTypes.Customer:
                     break;

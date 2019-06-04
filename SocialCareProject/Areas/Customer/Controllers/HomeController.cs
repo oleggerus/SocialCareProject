@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using DataRepository;
+﻿using DataRepository;
 using DataRepository.Extensions;
 using Services;
 using Services.People;
 using SocialCareProject.Areas.Customer.Models.Home;
-using SocialCareProject.Areas.Customer.Models.Product;
 using SocialCareProject.Authentication;
 using SocialCareProject.Models;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace SocialCareProject.Areas.Customer.Controllers
 {
@@ -98,7 +94,7 @@ namespace SocialCareProject.Areas.Customer.Controllers
                 Pager = Extensions.Extensions.ToSimplePagerModel(notifications)
             };
 
-         
+
             foreach (var item in notifications)
             {
                 var updateItem = _customerService.GetNotificationById(item.Id);
@@ -132,7 +128,7 @@ namespace SocialCareProject.Areas.Customer.Controllers
                 updateItem.IsOpened = true;
                 _customerService.UpdateNotification(updateItem);
             }
-            return CreateJsonResult(true, data:model);
+            return CreateJsonResult(true, data: model);
         }
 
     }

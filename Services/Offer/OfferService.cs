@@ -39,7 +39,7 @@ namespace Services.Offer
         public IPagedList<PersonRequest> GetFilteredPersonRequests(int customerId, int pageIndex = default(int), int pageSize = Int32.MaxValue)
         {
             var query = _personRequestrRepository.TableNoTracking.Where(x => !x.IsDeleted && x.Customer.UserId == customerId);
-           
+
             return new PagedList<PersonRequest>(query.OrderBy(x => x.CreatedOnUtc), pageIndex, pageSize);
         }
 
@@ -50,7 +50,7 @@ namespace Services.Offer
 
         public IList<KeyValuePair<int, string>> GetCategories()
         {
-            return _categoryRepository.TableNoTracking.ToList().Select(x=>new KeyValuePair<int,string>(x.Id, x.Name)).ToList();
+            return _categoryRepository.TableNoTracking.ToList().Select(x => new KeyValuePair<int, string>(x.Id, x.Name)).ToList();
         }
 
         public PersonRequest InsertPersonRequest(PersonRequest request)

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
-using DataRepository.Entities.People;
+﻿using DataRepository.Entities.People;
 using DataRepository.Enums;
 using DataRepository.Extensions;
 using Services.Address;
@@ -11,6 +8,9 @@ using SocialCareProject.Areas.Customer.Models.Administration;
 using SocialCareProject.Areas.Customer.Models.Customer;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
+using System;
+using System.Web;
+using System.Web.Mvc;
 
 namespace SocialCareProject.Areas.Customer.Controllers
 {
@@ -97,11 +97,11 @@ namespace SocialCareProject.Areas.Customer.Controllers
         {
             if (string.IsNullOrWhiteSpace(model.LastName) || string.IsNullOrWhiteSpace(model.FirstName) ||
                 string.IsNullOrWhiteSpace(model.City)
-                || string.IsNullOrWhiteSpace(model.Phone) || string.IsNullOrWhiteSpace(model.Email) 
+                || string.IsNullOrWhiteSpace(model.Phone) || string.IsNullOrWhiteSpace(model.Email)
                 || string.IsNullOrWhiteSpace(model.HouseNameRoomNumber)
                 || string.IsNullOrWhiteSpace(model.Street) || string.IsNullOrWhiteSpace(model.ZipPostalCode))
             {
-              return Json(new { success = false, message = "Заповніть усі необхідні поля" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "Заповніть усі необхідні поля" }, JsonRequestBehavior.AllowGet);
             }
 
             var currentUser = HttpContext.User as CustomUser;
@@ -109,12 +109,12 @@ namespace SocialCareProject.Areas.Customer.Controllers
 
             var user = _userService.GetUserById(id);
             user.FirstName = model.FirstName;
-            user.LastName= model.LastName;
-            user.MiddleName = model. MiddleName;
+            user.LastName = model.LastName;
+            user.MiddleName = model.MiddleName;
             user.Email = model.Email;
-            user.Phone =  model.Phone;
+            user.Phone = model.Phone;
             user.UpdatedOnUtc = DateTime.UtcNow;
-            
+
             _userService.UpdateUser(user);
             var customer = _customerService.GetCustomerByUserId(id);
             var address = _addressService.GetAddressById(customer.AddressId);

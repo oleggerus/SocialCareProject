@@ -1,12 +1,11 @@
-﻿using System;
+﻿using SocialCareProject.Authentication;
 using System.Web.Mvc;
 using System.Web.Routing;
-using SocialCareProject.Authentication;
 
 namespace SocialCareProject.Areas.Administration.Controllers
 {
     [CustomAuthorize(Roles = "AdministrationRole, AdministrationLeadRole")]
-    public abstract partial class BaseAdministrationController : Controller
+    public abstract class BaseAdministrationController : Controller
     {
         protected virtual JsonResult CreateJsonResult(bool success, string redirect = null, object data = null,
             string message = null, string returnUrl = null)

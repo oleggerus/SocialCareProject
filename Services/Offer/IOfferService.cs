@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DataRepository;
+﻿using DataRepository;
 using DataRepository.Entities.Orders;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Services.Offer
 {

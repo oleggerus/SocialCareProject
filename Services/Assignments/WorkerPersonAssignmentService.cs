@@ -1,10 +1,10 @@
-﻿using System;
-using DataRepository.Entities;
+﻿using DataRepository.Entities;
 using DataRepository.Entities.People;
+using DataRepository.Enums;
 using DataRepository.RepositoryPattern;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using DataRepository.Enums;
 
 namespace Services.Assignments
 {
@@ -84,7 +84,7 @@ namespace Services.Assignments
         {
             return _assignmentRepository.TableNoTracking.Count(x => x.Worker.UserId == workerUserId &&
                                                                     x.AssignmentStatusId ==
-                                                                    (int) WorkerPersonAssignmentStatuses
+                                                                    (int)WorkerPersonAssignmentStatuses
                                                                         .Активно) < MaxAmountOfActiveAssignments;
 
 

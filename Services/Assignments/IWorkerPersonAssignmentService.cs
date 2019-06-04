@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataRepository.Entities;
+﻿using DataRepository.Entities;
 using DataRepository.Entities.People;
+using System.Collections.Generic;
 
 namespace Services.Assignments
 {

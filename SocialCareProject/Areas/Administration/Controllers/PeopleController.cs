@@ -1,9 +1,9 @@
-﻿using System.Web.Mvc;
-using Services.People;
+﻿using Services.People;
 using SocialCareProject.Areas.Administration.Models;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
 using SocialCareProject.Models;
+using System.Web.Mvc;
 
 namespace SocialCareProject.Areas.Administration.Controllers
 {
@@ -14,9 +14,9 @@ namespace SocialCareProject.Areas.Administration.Controllers
         private readonly ICustomerModelFactory _customerModelFactory;
         private readonly IUserService _userService;
 
-       public PeopleController(ICustomerService customerService,
-           ICustomerModelFactory customerModelFactory,
-           IUserService userService)
+        public PeopleController(ICustomerService customerService,
+            ICustomerModelFactory customerModelFactory,
+            IUserService userService)
         {
             _customerService = customerService;
             _customerModelFactory = customerModelFactory;
@@ -33,7 +33,7 @@ namespace SocialCareProject.Areas.Administration.Controllers
                 filter.Email, filter.StatusId, pager.PageIndex, pager.PageSize);
             var model = _customerModelFactory.PreparePeopleListViewModel(people);
             model.Filter = filter;
-            
+
             return View(model);
         }
 

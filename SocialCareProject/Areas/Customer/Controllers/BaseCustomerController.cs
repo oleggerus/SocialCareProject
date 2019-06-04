@@ -1,7 +1,6 @@
-﻿using System;
+﻿using SocialCareProject.Authentication;
 using System.Web.Mvc;
 using System.Web.Routing;
-using SocialCareProject.Authentication;
 
 namespace SocialCareProject.Areas.Customer.Controllers
 {

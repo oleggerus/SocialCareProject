@@ -1,12 +1,12 @@
-﻿using System;
+﻿using DataRepository.Entities.Orders;
+using DataRepository.Enums;
 using Services.Offer;
+using Services.People;
 using SocialCareProject.Authentication;
 using SocialCareProject.Factories;
 using SocialCareProject.Models;
+using System;
 using System.Web.Mvc;
-using DataRepository.Entities.Orders;
-using DataRepository.Enums;
-using Services.People;
 
 namespace SocialCareProject.Areas.Customer.Controllers
 {
@@ -79,7 +79,7 @@ namespace SocialCareProject.Areas.Customer.Controllers
             var id = currentUser?.UserId ?? default(int);
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(description) || !categoryId.HasValue)
             {
-                return Json(new { success = false, message = "Заповніть усі поля"}, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "Заповніть усі поля" }, JsonRequestBehavior.AllowGet);
             }
 
             var customer = _customerService.GetCustomerByUserId(id);
@@ -92,7 +92,7 @@ namespace SocialCareProject.Areas.Customer.Controllers
 
             var request = new PersonRequest
             {
-                StatusId = (int) PersonRequestStatuses.Opened,
+                StatusId = (int)PersonRequestStatuses.Opened,
                 Name = name,
                 Description = description,
                 IsDeleted = false,

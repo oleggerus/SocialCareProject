@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Web;
-
-namespace SocialCareProject.Areas.Customer.Models.Administration
+﻿namespace SocialCareProject.Areas.Customer.Models.Administration
 {
     public class AdministrationViewModel
     {
@@ -14,7 +8,7 @@ namespace SocialCareProject.Areas.Customer.Models.Administration
 
         public string Description { get; set; }
         public string Email { get; set; }
-        public string Address {get; set; }
+        public string Address { get; set; }
 
     }
 

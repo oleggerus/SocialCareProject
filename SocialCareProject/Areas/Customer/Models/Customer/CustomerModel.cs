@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using Newtonsoft.Json;
+using System;
 using System.Web.Script.Serialization;
-using Newtonsoft.Json;
 
 namespace SocialCareProject.Areas.Customer.Models.Customer
 {

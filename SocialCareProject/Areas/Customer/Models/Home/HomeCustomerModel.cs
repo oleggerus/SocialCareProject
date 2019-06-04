@@ -1,18 +1,14 @@
-﻿using System;
+﻿using SocialCareProject.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using SocialCareProject.Areas.Customer.Models.Product;
-using SocialCareProject.Models;
 
 namespace SocialCareProject.Areas.Customer.Models.Home
 {
     public class HomeCustomerModel
     {
-        public int Id{ get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
-    
+
     public class NotificationCountModel
     {
         public int Number { get; set; }

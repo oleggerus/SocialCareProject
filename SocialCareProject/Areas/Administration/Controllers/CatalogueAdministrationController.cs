@@ -1,8 +1,7 @@
-﻿using System.Web.Mvc;
-using Services.Product;
-using SocialCareProject.Authentication;
+﻿using Services.Product;
 using SocialCareProject.Factories;
 using SocialCareProject.Models;
+using System.Web.Mvc;
 
 namespace SocialCareProject.Areas.Administration.Controllers
 {

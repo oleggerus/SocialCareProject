@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using DataRepository.Entities.People;
+﻿using DataRepository.Entities.People;
 using DataRepository.RepositoryPattern;
+using System.Linq;
 
 namespace Services.People
 {

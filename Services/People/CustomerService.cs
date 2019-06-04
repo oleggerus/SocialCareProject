@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DataRepository;
+﻿using DataRepository;
 using DataRepository.Entities;
 using DataRepository.Entities.People;
 using DataRepository.Enums;
 using DataRepository.RepositoryPattern;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Services.People
 {
@@ -149,7 +149,7 @@ namespace Services.People
             return assignment;
         }
 
-       
+
 
         public Customer GetCustomerById(int id)
         {
@@ -221,12 +221,12 @@ namespace Services.People
                 query = query.Where(x =>
                     x.Customer.User.FirstName.ToLower().Contains(tName) ||
                     x.Customer.User.LastName.ToLower().Contains(tName));
-                
+
             }
 
             if (statusId.HasValue)
             {
-                query = query.Where(x=>x.StatusId == statusId.Value);
+                query = query.Where(x => x.StatusId == statusId.Value);
             }
 
             return new PagedList<CareRequest>(query.OrderByDescending(x => x.CreatedOnUtc), pageIndex,

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataRepository;
+﻿using DataRepository;
 using DataRepository.Entities;
 using DataRepository.Entities.People;
+using System.Collections.Generic;
 
 namespace Services.People
 {
@@ -20,16 +16,16 @@ namespace Services.People
         Worker GetWorkerByUserId(int id);
 
         WorkerPersonAssignment InsertAssignment(WorkerPersonAssignment assignment);
-        IPagedList<Customer> GetFilteredCustomers(int administrationId, string name, string phone, string email,  int? statusId = null, int pageIndex = default(int), int pageSize = int.MaxValue);
+        IPagedList<Customer> GetFilteredCustomers(int administrationId, string name, string phone, string email, int? statusId = null, int pageIndex = default(int), int pageSize = int.MaxValue);
 
-       IPagedList<Worker> GetFilteredWorkers(int administrationId, int pageIndex = default(int), int pageSize = int.MaxValue);
+        IPagedList<Worker> GetFilteredWorkers(int administrationId, int pageIndex = default(int), int pageSize = int.MaxValue);
 
-       Notification InsertNotification(Notification notification);
-       List<Notification> GetNotifications(int userId);
-       Notification GetNotificationById(int id);
+        Notification InsertNotification(Notification notification);
+        List<Notification> GetNotifications(int userId);
+        Notification GetNotificationById(int id);
 
-       IPagedList<Notification> GetPagedNotifications(int userId, int pageIndex = default(int),
-           int pageSize = int.MaxValue);
+        IPagedList<Notification> GetPagedNotifications(int userId, int pageIndex = default(int),
+            int pageSize = int.MaxValue);
         #region Care Requests
 
         CareRequest InsertCareRequest(CareRequest careRequest);
