@@ -14,8 +14,8 @@ Products.ListViewModel = function () {
         ko.mapping.fromJS(Products.Pager, {}, self.Pager);
     };
 
-    self.Details = function (referenceId) {
-        setLocation(Products.Details + encodeURIComponent(location.href));
+    self.Details = function (id) {
+        window.location.replace(Products.Details + "?id="+id);
     };
 
     self.Load = function () {

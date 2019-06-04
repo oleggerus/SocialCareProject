@@ -1,4 +1,5 @@
-﻿@model SocialCareProject.Areas.Customer.Models.Product.ProductDetailsModel
+﻿@using System.Activities.Statements
+@model SocialCareProject.Areas.Customer.Models.Product.ProductDetailsModel
 
 @{
     ViewBag.Title = "Деталі";
@@ -17,49 +18,51 @@
                         <div class="form-group col-xs-4">
                             <label class="control-label ">Назва</label>
                             <div>
-                                <input class="form-control" maxlength="60" data-bind="value:  Name" />
-                            </div>
+                                <label>@Model.Name</label>
+                                </div>
                         </div>
-                        <div class="form-group col-xs-8">
+                        <div class="form-group col-xs-4">
                             <label class="control-label ">Опис</label>
                             <div>
-                                <textarea type="text" class="form-control" maxlength="60" data-bind="value:  Description"></textarea>
+                                <label>@Model.Description</label>
                             </div>
                         </div>
                        
-                    </div>
-                    <div class="row">
+                   
                         <div class="form-group col-xs-4">
                             <label class="control-label ">Виробник</label>
                             <div>
-                                <input class="form-control" data-bind="value:  Manufacturer" />
+                                <label>@Model.Manufacturer</label>
                             </div>
                         </div>
                         <div class="form-group col-xs-4">
                             <label class="control-label ">Ціна</label>
                             <div>
-                                <input class="form-control" data-bind="value: Price" />
+                                <label>@Model.Price</label>
                                 @*<input class="form-control datepicker" maxlength="60" data-bind="value:  DateOfBirth" />*@
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-xs-4">
+                            <label class="control-label ">Категорія</label>
+                            <div>
+                                <label>@Model.Category</label>
                             </div>
                         </div>
                         <div class="form-group col-xs-4">
                             <label class="control-label ">Постачальник</label>
                             <div>
-                                <input class="form-control" data-bind="value:  Provider" />
+                                <label>@Model.Provider</label>
                             </div>
                         </div>
+                        @if(!string.IsNullOrWhiteSpace(Model.Vendor)){ 
                         <div class="form-group col-xs-4">
                             <label class="control-label ">Фірма</label>
                             <div>
-                                <input class="form-control" data-bind="value:  Vendor" />
+                                <label>@Model.Vendor</label>
                             </div>
-                        </div>
-                        <div class="form-group col-xs-4">
-                            <label class="control-label ">Категорія</label>
-                            <div>
-                                <input class="form-control" data-bind="value:  Category" />
-                            </div>
-                        </div>
+                        </div>}
+
                     </div>
                 </div>
             </div>
@@ -69,7 +72,7 @@
 </div>
 
 <script type="text/javascript">
-    ProductDetails.Details = @Html.Raw(Json.Encode(Model));
+    @*ProductDetails.Details = @Html.Raw(Json.Encode(Model));
     ProductDetails.ContainerId = 'productDetails';
 
     ProductDetails.GeneralErrorMessage = 'An error occured';
@@ -77,5 +80,5 @@
 
     $(document).ready(function () {
         ProductDetails.Init();
-    });
+    });*@
 </script>

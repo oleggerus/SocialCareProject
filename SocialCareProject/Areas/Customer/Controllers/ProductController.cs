@@ -20,6 +20,8 @@ namespace SocialCareProject.Areas.Customer.Controllers
         }
 
 
+
+
         // GET: Customer/Product
         public ActionResult Index(SimplePagerModel pager)
         {
@@ -48,6 +50,8 @@ namespace SocialCareProject.Areas.Customer.Controllers
             return View(model);
         }
 
+
+        
 
         private string GetUrlWithFilters(SimplePagerModel pager)
         {

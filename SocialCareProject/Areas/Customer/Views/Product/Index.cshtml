@@ -48,7 +48,7 @@
 </div>
 
 <script type="text/javascript">
-    @*Products.Details = '@Html.Raw(Url.Action("CreateOrEditReference", "Reference"))';*@
+    Products.Details = '@Html.Raw(Url.Action("Details", "Product"))';
     Products.GetProducts = '@Html.Raw(Url.Action("GetFilteredProducts", "Product"))';
     Products.GeneralErrorMessage = 'An error occured';
     Products.Products = @Html.Raw(Json.Encode(Model.Products));
