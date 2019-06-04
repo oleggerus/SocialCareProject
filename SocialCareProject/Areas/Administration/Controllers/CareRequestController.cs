@@ -38,8 +38,21 @@ namespace SocialCareProject.Areas.Administration.Controllers
         {
             var currentUser = HttpContext.User as CustomUser;
             var currentAdministrationId = _userService.GetAdministrationIdByUserId(currentUser.UserId);
+            var a = new DateTime();
+            var b = new DateTime();
+            if (filter.StartDate != null)
+            {
+                a = DateTime.Parse(filter.StartDate);
+            }
 
-            var requests = _customerService.GetFilteredCareRequests(currentAdministrationId, filter.Name, filter.StatusId, pager.PageIndex, pager.PageSize);
+            if (filter.EndDate != null)
+            {
+                b = DateTime.Parse(filter.EndDate);
+            }
+          
+            var requests = _customerService.GetFilteredCareRequests(currentAdministrationId, filter.Name, a,
+                b,
+                filter.StatusId, pager.PageIndex, pager.PageSize);
             var model = _customerModelFactory.PrepareCareRequestsListModel(requests);
 
             var workers = _assignmentService.GetAllowedForAssignWorkers(currentAdministrationId);
@@ -56,8 +69,22 @@ namespace SocialCareProject.Areas.Administration.Controllers
         {
             var currentUser = HttpContext.User as CustomUser;
             var currentAdministrationId = _userService.GetAdministrationIdByUserId(currentUser.UserId);
+            var a = new DateTime();
+            var b = new DateTime();
+            // var ticks = DateTime.ParseExact()
 
-            var requests = _customerService.GetFilteredCareRequests(currentAdministrationId, filter.Name, filter.StatusId, pager.PageIndex, pager.PageSize);
+            if (filter.StartDate != null && !string.IsNullOrWhiteSpace(filter.StartDate))
+            {
+                a = DateTime.ParseExact(filter.StartDate, "dd.MM.yyyy", null);
+            }
+
+            if (filter.EndDate!= null && !string.IsNullOrWhiteSpace(filter.EndDate))
+            {
+                b = DateTime.ParseExact(filter.EndDate, "dd.MM.yyyy", null);
+            }
+            var requests = _customerService.GetFilteredCareRequests(currentAdministrationId, filter.Name, a,
+                b, filter.StatusId,
+                 pager.PageIndex, pager.PageSize);
             var model = _customerModelFactory.PrepareCareRequestsListModel(requests);
 
             var url = GetUrlWithFilters(pager, currentUser.AreaId);

@@ -1,4 +1,5 @@
-﻿using SocialCareProject.Models;
+﻿using System;
+using SocialCareProject.Models;
 using System.Collections.Generic;
 
 namespace SocialCareProject.Areas.Administration.Models
@@ -37,5 +38,7 @@ namespace SocialCareProject.Areas.Administration.Models
     {
         public int? StatusId { get; set; }
         public string Name { get; set; }
+        public string StartDate{ get; set; }
+        public string EndDate { get; set; }
     }
 }

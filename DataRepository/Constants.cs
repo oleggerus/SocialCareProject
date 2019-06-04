@@ -21,14 +21,13 @@
 
         public static class NameFormat
         {
-            public const string Default = "{0} {1}";
+            public const string Default = "{0} {1} {2}";
             public const string Alternative = "{1}, {0}";
         }
 
         public static class TempDataKey
         {
             public const string PostRedirectNotify = "PostRedirectNotify";
-            public const string ReturnToTransactionDetailsUrl = "returnToTransactionDetailsUrl";
         }
 
         public static class Paging

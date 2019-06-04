@@ -210,7 +210,8 @@ namespace Services.People
             return true;
         }
 
-        public IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, string name, int? statusId = null, int pageIndex = default(int),
+        public IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, string name, DateTime? startDate, DateTime? endDate, 
+            int? statusId = null, int pageIndex = default(int),
             int pageSize = int.MaxValue)
         {
             var query = _careRequestRepository.TableNoTracking.Where(x => x.Customer.AdministrationId == administrationId);
@@ -222,6 +223,15 @@ namespace Services.People
                     x.Customer.User.FirstName.ToLower().Contains(tName) ||
                     x.Customer.User.LastName.ToLower().Contains(tName));
 
+            }
+
+            if (startDate.HasValue && startDate.Value != default(DateTime))
+            {
+                query = query.Where(x => x.ReviewedOn.HasValue && x.ReviewedOn.Value >= startDate.Value);
+            }
+            if (endDate.HasValue && endDate.Value != default(DateTime))
+            {
+                query = query.Where(x => x.ReviewedOn.HasValue && x.ReviewedOn.Value <= endDate.Value);
             }
 
             if (statusId.HasValue)

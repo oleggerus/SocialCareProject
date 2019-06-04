@@ -1,8 +1,8 @@
 ﻿var Requests = Requests || {};
 
-Requests.FilterMapping = {
-    'ignore': ["Clear"]
-};
+//Requests.FilterMapping = {
+//    'ignore': ["Clear"]
+//};
 
 Requests.RequestsMapping = {
     create: function (options) {
@@ -14,12 +14,14 @@ Requests.FilterViewModel = function () {
     var self = this;
     self.Name = ko.observable(null);
     self.StatusId = ko.observable(null);
-    
-
+    self.StartDate = ko.observable(null);
+    self.EndDate = ko.observable(null);
 
     self.Clear = function () {
         self.Name(null);
         self.StatusId(null);
+        self.EndDate(null);
+        self.StartDate(null);
     };
 };
 
@@ -130,17 +132,15 @@ Requests.RejectRequestModal = function (requestId) {
     };
 };
 
-
-
 Requests.RequestViewModel = function (data) {
     var self = this;
- 
+
     self.DetailsPanelExpanded = ko.observable(false);
 
     ko.mapping.fromJS(data, {}, self);
     self.AssignWorkerModal = new Requests.AssignWorkerModal(self.Id());
     self.RejectRequestModal = new Requests.RejectRequestModal(self.Id());
-    
+
     self.RequestStatus = ko.pureComputed(function () {
         var status = ko.utils.arrayFirst(Requests.CareRequestStatuses,
             function (item) {
@@ -186,14 +186,14 @@ Requests.ListViewModel = function () {
     self.Filter = new Requests.FilterViewModel();
 
     self.Init = function () {
-        Requests.AllRequests = Requests.Requests; 
+        Requests.AllRequests = Requests.Requests;
         ko.mapping.fromJS(Requests.Requests, Requests.RequestsMapping, self.Requests);
         ko.mapping.fromJS(Requests.Pager, {}, self.Pager);
         ko.mapping.fromJS(Requests.Filter, {}, self.Filter);
         ko.mapping.fromJS(Requests.Workers, {}, self.Workers);
     };
 
-    
+
     self.Details = function (referenceId) {
         setLocation(Requests.Details + encodeURIComponent(location.href));
     };
@@ -201,13 +201,14 @@ Requests.ListViewModel = function () {
     self.Load = function () {
         notify.close();
         self.Loading(true);
-        var filter = {};
+
         var data = {
             pager: ko.mapping.toJS(self.Pager, {}),
             statusId: self.Filter.StatusId(),
-            name: self.Filter.Name()
-            //filter: ko.mapping.toJS(self.Filter, Requests.FilterMapping)
-
+            name: self.Filter.Name(),
+            StartDate: ko.mapping.toJS(ko.mapping.fromJS(self.Filter.StartDate() ? self.Filter.StartDate().toLocaleDateString() : self.Filter.StartDate())),
+            EndDate: ko.mapping.toJS(ko.mapping.fromJS(self.Filter.EndDate() ? self.Filter.EndDate().toLocaleDateString() : self.Filter.EndDate()))
+            //filter: ko.mapping.toJS(ko.mapping.fromJS(self.Filter))
         };
 
         $.ajax({
@@ -219,7 +220,7 @@ Requests.ListViewModel = function () {
             if (result && result.success) {
                 ko.mapping.fromJS(result.data.Requests, Requests.RequestsMapping, self.Requests);
                 ko.mapping.fromJS(result.data.Pager, {}, self.Pager);
-                Requests.AllRequests = result.data.Requests; 
+                Requests.AllRequests = result.data.Requests;
                 history.replaceState({}, null, result.redirect);
 
             } else {

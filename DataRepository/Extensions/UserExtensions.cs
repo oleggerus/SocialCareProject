@@ -14,23 +14,30 @@ namespace DataRepository.Extensions
 
             var firstName = user.FirstName;
             var lastName = user.LastName;
+            var middleName = user.MiddleName;
 
-            string fullName = string.Empty;
-            if (!string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName))
+            var fullName = string.Empty;
+            if (!string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName) && !string.IsNullOrWhiteSpace(middleName))
             {
-                fullName = string.Format(format, firstName, lastName);
+                fullName = string.Format(format, firstName, lastName, middleName);
             }
             else
             {
+                fullName = "";
                 if (!string.IsNullOrWhiteSpace(firstName))
                 {
-                    fullName = firstName;
+                    fullName = fullName +  firstName + " ";
                 }
 
                 if (!string.IsNullOrWhiteSpace(lastName))
                 {
-                    fullName = lastName;
+                    fullName = fullName + lastName + " ";
                 }
+                if (!string.IsNullOrWhiteSpace(middleName))
+                {
+                    fullName = fullName + middleName + " ";
+                }
+
             }
 
             return fullName;

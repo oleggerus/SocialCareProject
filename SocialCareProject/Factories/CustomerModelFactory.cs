@@ -70,11 +70,11 @@ namespace SocialCareProject.Factories
             {
                 Id = request.Id,
                 CustomerId = request.CustomerId,
-                CreatedOnUtc = request.CreatedOnUtc.ToString(Constants.DateFormat.ShortDateString),
+                CreatedOnUtc = request.CreatedOnUtc.ToString(Constants.DateFormat.ShortDateStringUS),
                 CustomerFullName = _customerService.GetCustomerById(request.CustomerId).User.GetFullName(),
                 Reason = request.Reason,
                 Answer = request.Answer,
-                ReviewedOn = request.ReviewedOn.GetValueOrDefault().ToString(Constants.DateFormat.ShortDateString),
+                ReviewedOn = request.ReviewedOn.GetValueOrDefault().ToString(Constants.DateFormat.ShortDateStringUS),
                 StatusId = request.StatusId
             };
             if (request.ReviewedById.HasValue)
