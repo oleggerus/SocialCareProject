@@ -35,6 +35,7 @@ namespace Services.People
         CareRequest GetCareRequestById(int id);
         CareRequest UpdateCareRequest(CareRequest careRequest);
         bool CanCreateCareRequest(int personId);
+        NumberRequests GetNumberOfRequests();
 
         IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, string name, DateTime? startDate,
             DateTime? endDate, int? statusId = null,

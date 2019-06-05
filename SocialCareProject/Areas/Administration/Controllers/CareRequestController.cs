@@ -61,6 +61,10 @@ namespace SocialCareProject.Areas.Administration.Controllers
                 Id = x.UserId,
                 FullName = x.User.GetFullName()
             }).ToList();
+            var numbers = _customerService.GetNumberOfRequests();
+            ViewBag.Awaiting = numbers.Avaiting;
+            ViewBag.Approved = numbers.Approved;
+            ViewBag.Rejected = numbers.Rejected;
 
             return View(model);
         }

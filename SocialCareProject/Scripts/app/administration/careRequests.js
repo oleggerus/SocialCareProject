@@ -202,6 +202,12 @@ Requests.ListViewModel = function () {
         setLocation(Requests.Details + encodeURIComponent(location.href));
     };
 
+
+    self.ShowStat = function() {
+        $("#statModal").appendTo("#page");
+        $("#statModal").modal('show');
+    };
+
     self.Load = function () {
         notify.close();
         self.Loading(true);

@@ -219,6 +219,20 @@ namespace Services.People
             return true;
         }
 
+
+        public NumberRequests GetNumberOfRequests()
+        {
+            var model  = new NumberRequests();
+            var Approved = _careRequestRepository.TableNoTracking.Count(x => x.StatusId == (int) CareRequestStatuses.Approved);
+            var Opened = _careRequestRepository.TableNoTracking.Count(x => x.StatusId == (int)CareRequestStatuses.Opened);
+            var Rejected = _careRequestRepository.TableNoTracking.Count(x => x.StatusId == (int)CareRequestStatuses.Rejected);
+
+            model.Approved = Approved;
+            model.Avaiting = Opened;
+            model.Rejected = Rejected;
+            return model;
+        }
+
         public IPagedList<CareRequest> GetFilteredCareRequests(int administrationId, string name, DateTime? startDate, DateTime? endDate, 
             int? statusId = null, int pageIndex = default(int),
             int pageSize = int.MaxValue)

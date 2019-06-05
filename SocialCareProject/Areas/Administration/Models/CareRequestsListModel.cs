@@ -1,6 +1,8 @@
 ﻿using System;
 using SocialCareProject.Models;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Security.AccessControl;
 
 namespace SocialCareProject.Areas.Administration.Models
 {
@@ -27,6 +29,7 @@ namespace SocialCareProject.Areas.Administration.Models
         public int StatusId { get; set; }
     }
 
+   
 
     public class WorkerForAssignViewModel
     {

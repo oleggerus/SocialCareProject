@@ -87,6 +87,7 @@
     <Compile Include="People\IProviderService.cs" />
     <Compile Include="People\IUserService.cs" />
     <Compile Include="People\IWorkerService.cs" />
+    <Compile Include="People\NumberRequests.cs" />
     <Compile Include="People\ProviderService.cs" />
     <Compile Include="People\UserService.cs" />
     <Compile Include="People\WorkerService.cs" />

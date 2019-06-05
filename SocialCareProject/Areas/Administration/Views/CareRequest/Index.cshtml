@@ -1,20 +1,30 @@
 ﻿@using DataRepository.Enums
 @using DataRepository.Extensions
 @model SocialCareProject.Areas.Administration.Models.CareRequestsListModel
-
 @{
     Layout = "../Shared/_Layout.cshtml";
     @Scripts.Render("~/Scripts/app/administration/careRequests.js")
     ViewBag.Title = "Запити на необхідність догляду";
-}
 
+
+}
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+@section Buttons
+{
+    <div id="buttonsection">
+        <button class="btn btn-success" data-bind="click:ShowStat">
+            <i class="glyphicon glyphicon-plus"></i>
+            &nbsp; Статистика
+        </button>
+    </div>
+}
 <div id="requestsList">
     <div class="form-grey">
         @Html.Partial("_Filter")
     </div>
     <div class="">
         <div class="body-lightgrey">
-            <div class="text-right" style="padding-right: 10px"><span class="text-muted">Знайдено запитів - </span> <span class="text-muted" data-bind= "text:Pager.TotalCount"> </span></div>
+            <div class="text-right" style="padding-right: 10px"><span class="text-muted">Знайдено запитів - </span> <span class="text-muted" data-bind="text:Pager.TotalCount"> </span></div>
             <div class="panel-body paged-list-in-tab" style="padding-top: 0px">
                 <div class="row">
                     <div class="col-xs-12">
@@ -30,7 +40,7 @@
                                         </div>
                                         <div class="modal-body">
                                             Чи впевнені Ви у тому, що <span class="control-label" data-bind="text: CustomerFullName"></span> потребує соціального робітника?
-                                            <br/><br/>
+                                            <br /><br />
                                             Якщо так, оберіть доступного робітника зі списку.
                                             <div class="form-group">
                                                 <select class="form-control" style="width: 450px; max-width: 600px;" data-bind="value: WorkerId,
@@ -54,7 +64,30 @@
                                 </div>
                             </div>
 
+                            <div class="modal fade" id="statModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-bind="with: AssignWorkerModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content"style="width: 600px">
+                                        <div class="modal-header">
 
+                                            <h4 class="modal-title">
+                                                <span>Статистика розгляду запитів</span>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div>
+                                                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <div class="form-group text-right">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="modal fade" id="rejectRequest" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-bind="with: RejectRequestModal">
                                 <div class="modal-dialog" role="document">
@@ -67,7 +100,7 @@
                                         </div>
                                         <div class="modal-body">
                                             Чи впевнені Ви у тому, що <span class="control-label" data-bind="text: CustomerFullName"></span> не потребує соціального робітника?
-                                            <br/><br/>
+                                            <br /><br />
                                             Якщо так, додайте Ваше пояснення до цієї дії.
                                         </div>
                                         <div class="form-group">
@@ -127,14 +160,14 @@
                                                     </div>
 
                                                     <div class="col-xs-2">
-                                                        
+
                                                         <div data-bind="visible: StatusId() != 1">
                                                             <div data-bind="visible: ReviewedOn()" class="text-right">
 
-                                                                <span class="control-label">Розглянуто:</span><br/><span data-bind="text: ReviewedOn"></span>
+                                                                <span class="control-label">Розглянуто:</span><br /><span data-bind="text: ReviewedOn"></span>
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <div data-bind="visible: StatusId() == 1">
                                                             <div class="btn-group" id="actionButton">
                                                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -148,8 +181,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
-                                                    
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -182,11 +215,36 @@
     Requests.Workers = @Html.Raw(Json.Encode(ViewBag.Workers));
     Requests.Pager = @Html.Raw(Json.Encode(Model.Pager));
     Requests.CareRequestStatuses =  @Html.Raw(Json.Encode(EnumHelpers.ToList<CareRequestStatuses>()));
-    
+    Requests.Awaiting =  @Html.Raw(Json.Encode(ViewBag.Awaiting));
+    Requests.Approved =  @Html.Raw(Json.Encode(ViewBag.Approved));
+    Requests.Rejected =  @Html.Raw(Json.Encode(ViewBag.Rejected));
 
     Requests.ContainerId = 'requestsList';
 
+    window.onload = function () {
 
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "light1", // "light1", "light2", "dark1", "dark2"
+            exportEnabled: true,
+            animationEnabled: true,
+            
+            data: [{
+                type: "pie",
+                startAngle: 180,
+                toolTipContent: "<b>{label}</b>: {y}шт.",
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabel: "{label} - {y}шт.",
+                dataPoints:  [
+                    { y: Requests.Awaiting, label: "Треба розгляд" },
+                    { y: Requests.Approved, label: "Підтверджено" },
+                    { y: Requests.Rejected, label: "Відхилено" },
+                ]
+            }]
+        });
+        chart.render();
+
+    }
     $(document).ready(function() {
         Requests.Init();
     });
