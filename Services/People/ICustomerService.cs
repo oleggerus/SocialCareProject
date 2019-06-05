@@ -16,6 +16,8 @@ namespace Services.People
         Customer GetCustomerByUserId(int id);
         Worker GetWorkerByUserId(int id);
 
+        List<User> GetAssignedUsers(int workerId);
+
         WorkerPersonAssignment InsertAssignment(WorkerPersonAssignment assignment);
         IPagedList<Customer> GetFilteredCustomers(int administrationId, string name, string phone, string email, int? statusId = null, int pageIndex = default(int), int pageSize = int.MaxValue);
 

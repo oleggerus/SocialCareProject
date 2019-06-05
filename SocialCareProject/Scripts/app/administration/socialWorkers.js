@@ -13,6 +13,7 @@ Workers.SocialWorkerViewModel = function (data) {
 
 
     ko.mapping.fromJS(data, {}, self);
+    self.DetailsPanelExpanded = ko.observable(false);
 
 
     self.GetCssStylesByStatus = ko.pureComputed(function () {

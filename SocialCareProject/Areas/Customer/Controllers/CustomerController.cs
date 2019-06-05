@@ -148,7 +148,8 @@ namespace SocialCareProject.Areas.Customer.Controllers
                 StatusId = (int)CareRequestStatuses.Opened
             };
 
-
+            customer.StatusId = (int) CustomerCareStatuses.ПроситьДогляду;
+            _customerService.Update(customer);
             _customerService.InsertCareRequest(careRequest);
             return Json(new { success = true, message = "Ваш запит був успішно створений" }, JsonRequestBehavior.AllowGet);
         }

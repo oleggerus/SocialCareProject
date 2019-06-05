@@ -165,6 +165,15 @@ namespace Services.People
         {
             return _workerRepository.TableNoTracking.SingleOrDefault(x => x.UserId == id);
         }
+
+        public List<User> GetAssignedUsers(int workerId)
+        {
+            return _assignmentRepository.TableNoTracking.Where(x =>
+                    x.WorkerId == workerId && x.AssignmentStatusId == (int) WorkerPersonAssignmentStatuses.Активно)
+                .Select(x => x.Customer.User).ToList();
+
+        }
+
         #endregion
 
 

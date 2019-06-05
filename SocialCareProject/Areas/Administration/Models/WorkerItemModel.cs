@@ -1,5 +1,6 @@
 ﻿using SocialCareProject.Models;
 using System.Collections.Generic;
+using DataRepository.Entities.People;
 
 namespace SocialCareProject.Areas.Administration.Models
 {
@@ -16,6 +17,8 @@ namespace SocialCareProject.Areas.Administration.Models
         public byte[] Avatar { get; set; }
         public string Status { get; set; }
         public bool IsFree { get; set; }
+        public int OpenSlots { get; set; }
+        public IList<User> Users{ get; set; } = new List<User>();
     }
 
     public class WorkerListViewModel

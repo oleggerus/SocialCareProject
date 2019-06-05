@@ -26,11 +26,15 @@ People.FilterViewModel = function () {
 };
 
 
+
+
 People.CustomerViewModel = function (data) {
     var self = this;
 
 
     ko.mapping.fromJS(data, {}, self);
+
+    self.DetailsPanelExpanded = ko.observable(false);
 
     self.CareStatus = ko.pureComputed(function () {
         var status = ko.utils.arrayFirst(People.CustomerStatuses,

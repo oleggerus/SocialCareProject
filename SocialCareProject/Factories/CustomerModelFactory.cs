@@ -114,6 +114,7 @@ namespace SocialCareProject.Factories
 
         public WorkerItemModel PrepareWorkerItemModel(Worker worker)
         {
+            var users = _customerService.GetAssignedUsers(worker.Id);
 
             var isFree = _assignmentService.IsWorkerFree(worker.UserId);
             return new WorkerItemModel
@@ -128,7 +129,9 @@ namespace SocialCareProject.Factories
                 Phone = worker.User.Phone,
                 Avatar = worker.User.Avatar,
                 IsFree = isFree,
-                Status = isFree ? "Доступний" : "Зайнятий"
+                Status = isFree ? "Доступний" : "Зайнятий",
+                Users = users,
+                OpenSlots = 6-users.Count
             };
         }
     }
