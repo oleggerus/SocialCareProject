@@ -9,7 +9,7 @@ Requests.RequestsMapping = {
         return new Requests.RequestViewModel(options.data);
     }
 };
-
+Requests.IdForSet = null;
 Requests.FilterViewModel = function () {
     var self = this;
     self.Name = ko.observable(null);
@@ -64,7 +64,7 @@ Requests.AssignWorkerModal = function (requestId) {
             data: {
                 workerId: self.WorkerId(),
                 answer: self.Answer(),
-                requestId: self.RequestId
+                requestId: Requests.IdForSet
             }
         }).done(function (result) {
             if (result && result.success) {
@@ -72,6 +72,8 @@ Requests.AssignWorkerModal = function (requestId) {
                 var btn = document.getElementById('actionButton');
                 btn.style.visibility = 'hidden';
                 notify.ok(result.message);
+                setTimeout(location.reload.bind(location), 1000);
+
             } else if (result && !result.success) {
                 notify.fail(result.message);
             }
@@ -114,7 +116,7 @@ Requests.RejectRequestModal = function (requestId) {
             url: url,
             dataType: "json",
             data: {
-                requestId: self.RequestId(),
+                requestId: Requests.IdForSet,
                 answer: self.Answer()
             }
         }).done(function (result) {
@@ -151,11 +153,13 @@ Requests.RequestViewModel = function (data) {
         }
     });
 
-    self.OpenApproveModal = function () {
+    self.OpenApproveModal = function (id) {
+        Requests.IdForSet = id;
         self.AssignWorkerModal.ShowModal(self.CustomerId());
     };
 
-    self.OpenRejectModal = function () {
+    self.OpenRejectModal = function (id) {
+        Requests.IdForSet = id;
         self.RejectRequestModal.ShowModal(self.CustomerId());
     };
 

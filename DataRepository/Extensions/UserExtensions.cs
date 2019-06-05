@@ -19,20 +19,22 @@ namespace DataRepository.Extensions
             var fullName = string.Empty;
             if (!string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName) && !string.IsNullOrWhiteSpace(middleName))
             {
-                fullName = string.Format(format, firstName, lastName, middleName);
+                fullName = string.Format(format, lastName, firstName, middleName);
             }
             else
             {
                 fullName = "";
-                if (!string.IsNullOrWhiteSpace(firstName))
-                {
-                    fullName = fullName +  firstName + " ";
-                }
 
                 if (!string.IsNullOrWhiteSpace(lastName))
                 {
                     fullName = fullName + lastName + " ";
                 }
+
+                if (!string.IsNullOrWhiteSpace(firstName))
+                {
+                    fullName = fullName + firstName + " ";
+                }
+
                 if (!string.IsNullOrWhiteSpace(middleName))
                 {
                     fullName = fullName + middleName + " ";
