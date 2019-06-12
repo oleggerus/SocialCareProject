@@ -131,7 +131,7 @@ namespace SocialCareProject.Factories
                 IsFree = isFree,
                 Status = isFree ? "Доступний" : "Зайнятий",
                 Users = users,
-                OpenSlots = 6-users.Count
+                OpenSlots = users.Count
             };
         }
     }
