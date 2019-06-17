@@ -77,16 +77,24 @@ namespace SocialCareProject.Areas.Customer.Controllers
         {
             var currentUser = HttpContext.User as CustomUser;
             var id = currentUser?.UserId ?? default(int);
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(description) || !categoryId.HasValue)
+            if (string.IsNullOrWhiteSpace(name))
             {
-                return Json(new { success = false, message = "Заповніть усі поля" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "Заповніть поле вводу для назви" }, JsonRequestBehavior.AllowGet);
+            }
+            if ( string.IsNullOrWhiteSpace(description) )
+            {
+                return Json(new { success = false, message = "Заповніть поле вводу для детального опису" }, JsonRequestBehavior.AllowGet);
+            }
+            if (!categoryId.HasValue)
+            {
+                return Json(new { success = false, message = "Оберіть категорію, до якої належати дане побажання" }, JsonRequestBehavior.AllowGet);
             }
 
             var customer = _customerService.GetCustomerByUserId(id);
             var cat = _offerService.GetCategoryById(categoryId.Value);
             if (cat == null)
             {
-                return Json(new { success = false, message = "Некоректна категорія" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "Обрано некоректну категорію" }, JsonRequestBehavior.AllowGet);
 
             }
 

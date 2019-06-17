@@ -4,14 +4,14 @@
 @if (Model.Number != 0)
 {
     <ul class="navbar-nav ">
-    <li class="nav-item">
-        <a class="nav-link" href="@Url.Action("Notifications","Home")">
-            <i class="fa fa-bell">
-                <span class="badge badge-info">@Model.Number</span>
-            </i>
-            Нотифікації
-        </a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Notifications","Home")">
+                <i class="fa fa-bell">
+                    <span class="badge badge-info">@Model.Number</span>
+                </i>
+                Сповіщення
+            </a>
+        </li>
     </ul>
 }
 @if (Model.Number == 0)
@@ -22,25 +22,15 @@
                 <i class="fa fa-bell">
                     <span class="badge badge-info"></span>
                 </i>
-                Нотифікації
+                Сповіщення
             </a>
         </li>
     </ul>
 }
 <script>
-   
     NotificationsList= @Html.Raw(Json.Encode( ViewBag.Notifications));
 
     function showNotifications() {
         NotificationsList.forEach
     }
 </script>
-        @*<li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fa fa-envelope-o">
-                    <span class="badge badge-success">1</span>
-                </i>
-                Повідомлення
-            </a>
-        </li>*@
-
