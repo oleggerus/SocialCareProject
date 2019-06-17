@@ -172,7 +172,7 @@ namespace DataRepository.Migrations
             {
                 Role = customerRole,
                 FirstName = "Петро",
-                LastName = "Івасюк",
+                LastName = "Калнишевський",
                 MiddleName = "Романович",
                 DateOfBirth = new DateTime(1982, 02, 02),
                 Email = "customer5@mail.com",
